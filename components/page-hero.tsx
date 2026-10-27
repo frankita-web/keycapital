@@ -13,7 +13,7 @@ export function PageHero({
     <section className="relative overflow-hidden bg-ink text-white">
       <div className="bg-grid absolute inset-0 [mask-image:linear-gradient(to_bottom,black,transparent)]" />
       <div className="absolute -top-40 right-0 size-[36rem] rounded-full bg-brand/30 blur-[120px]" />
-      <div className="relative mx-auto max-w-7xl px-6 pt-40 pb-20 lg:px-10 lg:pt-48 lg:pb-28">
+      <div className="relative mx-auto max-w-7xl px-6 pt-28 pb-16 lg:px-10 lg:pt-36 lg:pb-20">
         <p className="text-xs font-semibold tracking-[0.25em] text-brand-light uppercase">{eyebrow}</p>
         <h1 className="mt-5 max-w-4xl font-display text-5xl leading-[1.02] tracking-tight md:text-7xl">
           {title}

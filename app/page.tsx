@@ -25,18 +25,18 @@ export default function Home() {
         <div className="absolute -top-48 -right-32 size-[44rem] rounded-full bg-brand/35 blur-[140px]" />
         <div className="absolute bottom-0 -left-40 size-[28rem] rounded-full bg-brand-light/10 blur-[120px]" />
 
-        <div className="relative mx-auto grid max-w-7xl gap-16 px-6 pt-40 pb-16 lg:grid-cols-12 lg:px-10 lg:pt-52">
+        <div className="relative mx-auto grid max-w-7xl gap-16 px-6 pt-28 pb-12 lg:grid-cols-12 lg:px-10 lg:pt-32">
           <div className="lg:col-span-8">
             <Eyebrow light>Banca de inversión independiente</Eyebrow>
-            <h1 className="mt-8 font-display text-[3.4rem] leading-[0.98] tracking-tight sm:text-7xl lg:text-[6.5rem]">
+            <h1 className="mt-6 font-display text-[3.2rem] leading-[0.98] tracking-tight sm:text-7xl lg:text-[5.75rem]">
               Confianza en un equipo <em className="text-brand-light">senior</em> con resultados concretos.
             </h1>
-            <p className="mt-8 max-w-xl text-lg leading-relaxed text-white/65">
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/65">
               Asesoramos a medianas y grandes empresas, y a sus accionistas, en compra y venta de
               compañías, financiamiento, reestructuración de pasivos y valoraciones. Con
               independencia y creatividad.
             </p>
-            <div className="mt-10 flex flex-wrap gap-3">
+            <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="/contacto"
                 className="rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-ink transition hover:bg-brand-light"
@@ -81,7 +81,7 @@ export default function Home() {
       </section>
 
       {/* Clientes */}
-      <section className="pt-20 lg:pt-24">
+      <section className="pt-16 lg:pt-20">
         <Reveal className="mx-auto max-w-7xl px-6 lg:px-10">
           <Eyebrow>Empresas que han confiado en nosotros</Eyebrow>
         </Reveal>
