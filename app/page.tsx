@@ -80,6 +80,16 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Clientes */}
+      <section className="pt-20 lg:pt-24">
+        <Reveal className="mx-auto max-w-7xl px-6 lg:px-10">
+          <Eyebrow>Empresas que han confiado en nosotros</Eyebrow>
+        </Reveal>
+        <div className="mt-10">
+          <ClientMarquee />
+        </div>
+      </section>
+
       {/* Servicios */}
       <section className="mx-auto max-w-7xl px-6 py-28 lg:px-10 lg:py-36">
         <div className="grid gap-10 lg:grid-cols-12">
@@ -165,18 +175,6 @@ export default function Home() {
               <DealCard deal={d} />
             </Reveal>
           ))}
-        </div>
-      </section>
-
-      {/* Clientes */}
-      <section className="pb-28 lg:pb-36">
-        <Reveal className="mx-auto max-w-7xl px-6 lg:px-10">
-          <p className="text-center text-sm font-medium text-muted">
-            Empresas que han confiado en nosotros
-          </p>
-        </Reveal>
-        <div className="mt-10">
-          <ClientMarquee />
         </div>
       </section>
 
