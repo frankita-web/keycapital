@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-ink: #071523;
+  --color-ink-2: #0c2136;
+  --color-brand: #0a71b3;
+  --color-brand-light: #4fb0ec;
+  --color-paper: #f6f5f1;
+  --color-line: #e4e2dc;
+  --color-graphite: #4d4d4d;
+  --color-muted: #6b7380;
+  --font-sans: var(--font-geist-sans);
+  --font-display: var(--font-display-serif);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+::selection {
+  background: var(--color-brand);
+  color: white;
+}
+
+/* Marquee de logos */
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee 60s linear infinite;
+}
+.group:hover .animate-marquee {
+  animation-play-state: paused;
+}
+
+/* Aparición al hacer scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Grilla sutil del hero */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.05) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-marquee {
+    animation: none;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
