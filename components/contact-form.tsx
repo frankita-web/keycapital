@@ -58,7 +58,7 @@ export function ContactForm() {
           {servicios.map((s) => (
             <label key={s.titulo} className="cursor-pointer">
               <input type="radio" name="interes" value={s.titulo} className="peer sr-only" />
-              <span className="block border border-line px-4 py-2 text-sm transition peer-checked:border-ink peer-checked:bg-ink peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-brand hover:border-ink/40">
+              <span className="block rounded-full border border-line px-4 py-2 text-sm transition peer-checked:border-ink peer-checked:bg-ink peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-brand hover:border-ink/40">
                 {s.titulo}
               </span>
             </label>

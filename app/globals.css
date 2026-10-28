@@ -42,16 +42,15 @@ body {
   text-transform: uppercase;
 }
 
-/* Botones rectangulares */
+/* Botones redondos, como la referencia */
 @utility btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.9rem 1.75rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  border-radius: 9999px;
+  padding: 0.85rem 1.75rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
   transition:
     background-color 0.2s,
     color 0.2s,
