@@ -5,7 +5,7 @@ import { PageHero } from "@/components/page-hero";
 
 export const metadata: Metadata = {
   title: "Medios",
-  description: "Key Capital en la prensa: transacciones, entrevistas y rankings.",
+  description: "KeyCapital en la prensa: transacciones, entrevistas y rankings.",
 };
 
 export default function MediosPage() {
@@ -15,7 +15,7 @@ export default function MediosPage() {
         eyebrow="Medios"
         title={
           <>
-            Key Capital en la <em className="text-brand-light">prensa</em>.
+            KeyCapital en la <span className="text-brand-light">prensa</span>.
           </>
         }
       >

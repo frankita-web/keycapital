@@ -32,11 +32,11 @@ export function Header() {
       }`}
     >
       <div className="relative z-10 mx-auto flex h-18 max-w-7xl items-center justify-between px-6 lg:px-10">
-        <Link href="/" aria-label="Key Capital, inicio" onClick={() => setOpen(false)}>
+        <Link href="/" aria-label="KeyCapital, inicio" onClick={() => setOpen(false)}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={solid ? "/logo.svg" : "/logo-white.svg"}
-            alt="Key Capital"
+            alt="KeyCapital"
             width={176}
             height={36}
             className="h-8 w-auto"
@@ -120,7 +120,7 @@ export function Header() {
               key={item.href}
               href={item.href}
               onClick={() => setOpen(false)}
-              className={`font-display text-5xl ${
+              className={`font-display text-4xl ${
                 pathname === item.href ? "text-brand-light" : "text-white"
               }`}
             >

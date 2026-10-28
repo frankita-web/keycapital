@@ -17,7 +17,7 @@ export default function EquipoPage() {
         eyebrow="Equipo"
         title={
           <>
-            Experiencia senior, <em className="text-brand-light">dedicación</em> personal.
+            Experiencia senior, <span className="text-brand-light">dedicación</span> personal.
           </>
         }
       >
@@ -40,7 +40,7 @@ export default function EquipoPage() {
                       height={170}
                       className="size-32 rounded-full lg:size-36"
                     />
-                    <h2 className="mt-8 font-display text-4xl leading-tight lg:text-5xl">{p.nombre}</h2>
+                    <h2 className="mt-8 font-display text-3xl leading-tight lg:text-4xl">{p.nombre}</h2>
                     <p className="mt-2 font-medium text-brand">{p.cargo}</p>
                   </div>
                 </div>

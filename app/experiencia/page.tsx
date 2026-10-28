@@ -7,7 +7,7 @@ import { transacciones } from "@/lib/data";
 export const metadata: Metadata = {
   title: "Experiencia",
   description:
-    "Transacciones de M&A, financiamiento, reestructuración de pasivos y valoración asesoradas por Key Capital.",
+    "Transacciones de M&A, financiamiento, reestructuración de pasivos y valoración asesoradas por KeyCapital.",
 };
 
 export default function ExperienciaPage() {
@@ -17,7 +17,7 @@ export default function ExperienciaPage() {
         eyebrow="Experiencia"
         title={
           <>
-            Experiencia que da <em className="text-brand-light">confianza</em>.
+            Experiencia que da <span className="text-brand-light">confianza</span>.
           </>
         }
       >

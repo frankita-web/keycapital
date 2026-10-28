@@ -9,7 +9,7 @@ export function DealCard({ deal }: { deal: Transaccion }) {
         <span className="font-medium tracking-wide text-muted">{etiqueta[deal.categoria]}</span>
         <span className="rounded-full bg-paper px-3 py-1 font-semibold tabular-nums text-ink">{deal.anio}</span>
       </div>
-      <h3 className="mt-8 font-display text-3xl leading-tight text-ink">{deal.cliente}</h3>
+      <h3 className="mt-8 font-display text-2xl leading-tight text-ink">{deal.cliente}</h3>
       <p className="mt-3 text-sm leading-relaxed text-muted">{deal.detalle}</p>
       <div className="mt-auto pt-8">
         <div className="h-px w-full bg-line transition-colors group-hover:bg-brand/30" />

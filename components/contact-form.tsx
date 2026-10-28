@@ -26,14 +26,14 @@ export function ContactForm() {
       "",
       String(data.get("mensaje") ?? ""),
     ].join("\n");
-    const asunto = `Contacto web — ${nombre}${empresa ? ` (${empresa})` : ""}`;
+    const asunto = `Contacto web: ${nombre}${empresa ? ` (${empresa})` : ""}`;
     window.location.href = `mailto:${contacto.email}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
     setEnviado(true);
   }
 
   return (
     <form onSubmit={onSubmit} className="space-y-5">
-      <h2 className="font-display text-4xl">Escríbanos</h2>
+      <h2 className="font-display text-3xl">Escríbanos</h2>
       <div className="grid gap-5 sm:grid-cols-2">
         <label className="block">
           <span className="mb-2 block text-sm font-medium">Nombre *</span>

@@ -1,4 +1,4 @@
-# Key Capital — sitio web
+# KeyCapital: sitio web
 
 Rediseño de keycapitalchile.cl en Next.js (App Router, TypeScript, Tailwind CSS v4).
 

@@ -21,15 +21,14 @@ export default function Home() {
     <>
       {/* Hero */}
       <section className="relative overflow-hidden bg-ink text-white">
-        <div className="bg-grid absolute inset-0 [mask-image:radial-gradient(ellipse_at_top_right,black_20%,transparent_70%)]" />
         <div className="absolute -top-48 -right-32 size-[44rem] rounded-full bg-brand/35 blur-[140px]" />
         <div className="absolute bottom-0 -left-40 size-[28rem] rounded-full bg-brand-light/10 blur-[120px]" />
 
         <div className="relative mx-auto grid max-w-7xl gap-16 px-6 pt-28 pb-12 lg:grid-cols-12 lg:px-10 lg:pt-32">
           <div className="lg:col-span-8">
             <Eyebrow light>Banca de inversión independiente</Eyebrow>
-            <h1 className="mt-6 font-display text-[3.2rem] leading-[0.98] tracking-tight sm:text-7xl lg:text-[5.75rem]">
-              Confianza en un equipo <em className="text-brand-light">senior</em> con resultados concretos.
+            <h1 className="mt-6 font-display text-[2.6rem] leading-[1.02] sm:text-6xl lg:text-[4.6rem]">
+              Confianza en un equipo <span className="text-brand-light">senior</span> con resultados concretos.
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/65">
               Asesoramos a medianas y grandes empresas, y a sus accionistas, en compra y venta de
@@ -59,7 +58,7 @@ export default function Home() {
                 <span>Última transacción</span>
                 <span className="rounded-full bg-white/10 px-3 py-1 font-semibold text-white">2025</span>
               </div>
-              <p className="mt-10 font-display text-4xl leading-tight">NIBSA S.A.</p>
+              <p className="mt-10 font-display text-3xl leading-tight">NIBSA S.A.</p>
               <p className="mt-1 text-sm text-white/60">vendida a HOFFENS S.A.</p>
               <div className="mt-8 h-px bg-white/10" />
               <p className="mt-4 text-sm font-semibold text-brand-light">Asesor financiero de la transacción</p>
@@ -72,7 +71,7 @@ export default function Home() {
             {cifras.map((c) => (
               <div key={c.label} className="bg-ink/90 p-6 lg:p-8">
                 <dt className="sr-only">{c.label}</dt>
-                <dd className="font-display text-5xl tabular-nums lg:text-6xl">{c.valor}</dd>
+                <dd className="font-display text-4xl tabular-nums lg:text-5xl">{c.valor}</dd>
                 <dd className="mt-2 text-sm text-white/55">{c.label}</dd>
               </div>
             ))}
@@ -95,7 +94,7 @@ export default function Home() {
         <div className="grid gap-10 lg:grid-cols-12">
           <Reveal className="lg:col-span-5">
             <Eyebrow>Servicios</Eyebrow>
-            <h2 className="mt-6 font-display text-5xl leading-[1.05] tracking-tight md:text-6xl">
+            <h2 className="mt-6 font-display text-4xl leading-[1.08] md:text-5xl">
               Asesoría en las decisiones que definen una empresa.
             </h2>
           </Reveal>
@@ -115,7 +114,7 @@ export default function Home() {
                 <span className="font-display text-xl text-brand transition-colors group-hover:text-brand-light">
                   0{i + 1}
                 </span>
-                <h3 className="mt-12 font-display text-4xl leading-tight transition-colors group-hover:text-white">
+                <h3 className="mt-12 font-display text-3xl leading-tight transition-colors group-hover:text-white">
                   {s.titulo}
                 </h3>
                 <p className="mt-4 max-w-md leading-relaxed text-muted transition-colors group-hover:text-white/65">
@@ -127,15 +126,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Por qué Key Capital */}
+      {/* Por qué KeyCapital */}
       <section className="bg-ink-2 text-white">
         <div className="mx-auto max-w-7xl px-6 py-28 lg:px-10 lg:py-36">
           <Reveal>
-            <Eyebrow light>Por qué Key Capital</Eyebrow>
-            <p className="mt-8 font-display text-5xl leading-[1.05] tracking-tight md:text-7xl">
+            <Eyebrow light>Por qué KeyCapital</Eyebrow>
+            <p className="mt-8 font-display text-4xl leading-[1.08] md:text-6xl">
               {valores.map((v, i) => (
                 <span key={v}>
-                  <span className={i % 2 === 0 ? "text-white" : "text-white/40 italic"}>{v}</span>
+                  <span className={i % 2 === 0 ? "text-white" : "text-white/40"}>{v}</span>
                   {i < valores.length - 2 ? ", " : i === valores.length - 2 ? " y " : "."}
                 </span>
               ))}
@@ -158,7 +157,7 @@ export default function Home() {
         <Reveal className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
           <div>
             <Eyebrow>Experiencia</Eyebrow>
-            <h2 className="mt-6 max-w-2xl font-display text-5xl leading-[1.05] tracking-tight md:text-6xl">
+            <h2 className="mt-6 max-w-2xl font-display text-4xl leading-[1.08] md:text-5xl">
               Transacciones recientes
             </h2>
           </div>
@@ -184,7 +183,7 @@ export default function Home() {
           <div className="grid gap-16 lg:grid-cols-12">
             <Reveal className="lg:col-span-5">
               <Eyebrow>Equipo</Eyebrow>
-              <h2 className="mt-6 font-display text-5xl leading-[1.05] tracking-tight md:text-6xl">
+              <h2 className="mt-6 font-display text-4xl leading-[1.08] md:text-5xl">
                 Socios que lideran cada mandato.
               </h2>
               <p className="mt-6 max-w-md text-lg leading-relaxed text-muted">
@@ -210,7 +209,7 @@ export default function Home() {
                       className="size-20 rounded-full grayscale transition group-hover:grayscale-0"
                     />
                     <div className="flex-1">
-                      <p className="font-display text-3xl leading-tight">{p.nombre}</p>
+                      <p className="font-display text-2xl leading-tight">{p.nombre}</p>
                       <p className="mt-1 text-sm text-muted">{p.cargo}</p>
                     </div>
                     <span className="text-2xl text-ink/30 transition group-hover:translate-x-1 group-hover:text-brand">

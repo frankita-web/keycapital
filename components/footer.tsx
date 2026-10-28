@@ -15,7 +15,7 @@ export async function Footer() {
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logo-white.svg" alt="Key Capital" width={196} height={40} className="h-9 w-auto" />
+            <img src="/logo-white.svg" alt="KeyCapital" width={196} height={40} className="h-9 w-auto" />
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-white/60">
               Boutique independiente de banca de inversión. Un equipo senior al servicio de
               medianas y grandes empresas, y de sus accionistas, desde 2010.
@@ -63,7 +63,7 @@ export async function Footer() {
         </div>
 
         <div className="mt-16 flex flex-col gap-6 border-t border-white/10 pt-8 text-xs text-white/45 md:flex-row md:items-center md:justify-between">
-          <p>© {anio} Key Capital. Todos los derechos reservados.</p>
+          <p>© {anio} KeyCapital. Todos los derechos reservados.</p>
           <ul className="flex flex-wrap gap-x-6 gap-y-2">
             {contacto.redes.map((r) => (
               <li key={r.nombre}>

@@ -9,8 +9,7 @@
   --color-line: #e4e2dc;
   --color-graphite: #4d4d4d;
   --color-muted: #6b7380;
-  --font-sans: var(--font-geist-sans);
-  --font-display: var(--font-display-serif);
+  --font-sans: var(--font-archivo);
 }
 
 html {
@@ -25,6 +24,14 @@ body {
 ::selection {
   background: var(--color-brand);
   color: white;
+}
+
+/* Títulos: Archivo levemente expandida */
+@utility font-display {
+  font-family: var(--font-archivo);
+  font-stretch: 112%;
+  font-weight: 500;
+  letter-spacing: -0.03em;
 }
 
 /* Marquee de logos */
@@ -51,14 +58,6 @@ body {
 .reveal.is-visible {
   opacity: 1;
   transform: none;
-}
-
-/* Grilla sutil del hero */
-.bg-grid {
-  background-image:
-    linear-gradient(to right, rgb(255 255 255 / 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(255 255 255 / 0.05) 1px, transparent 1px);
-  background-size: 72px 72px;
 }
 
 @media (prefers-reduced-motion: reduce) {
