@@ -33,27 +33,27 @@ export function MediaGallery() {
 
   return (
     <>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid border-t border-l border-line sm:grid-cols-2 lg:grid-cols-3">
         {medios.map((m, i) => (
           <button
             key={m.imagen}
             type="button"
             onClick={() => setAbierto(i)}
-            className="group block w-full overflow-hidden rounded-3xl border border-line bg-white text-left transition hover:-translate-y-1 hover:shadow-[0_24px_48px_-24px_rgba(7,21,35,0.3)]"
+            className="group block w-full border-r border-b border-line bg-white p-5 text-left"
           >
-            <div className="relative aspect-[4/3] overflow-hidden bg-paper">
+            <div className="relative aspect-[4/3] overflow-hidden border border-line bg-paper">
               <Image
                 src={m.imagen}
                 alt={m.titulo}
                 fill
                 sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                className="object-cover object-top transition duration-500 group-hover:scale-[1.03]"
+                className="object-cover object-top"
               />
             </div>
-            <div className="flex items-end justify-between gap-4 p-6">
+            <div className="flex items-end justify-between gap-4 pt-5">
               <div>
-                <p className="text-xs font-medium tracking-wide text-brand">{m.fuente}</p>
-                <h3 className="mt-2 font-display text-xl leading-tight text-balance">{m.titulo}</h3>
+                <p className="label text-brand">{m.fuente}</p>
+                <h3 className="mt-2 font-display text-lg leading-snug text-balance group-hover:text-brand">{m.titulo}</h3>
               </div>
               {m.fecha && <span className="shrink-0 text-xs text-muted tabular-nums">{m.fecha}</span>}
             </div>
@@ -66,7 +66,7 @@ export function MediaGallery() {
           role="dialog"
           aria-modal="true"
           aria-label={actual.titulo}
-          className="fixed inset-0 z-[60] flex flex-col bg-ink/95 backdrop-blur-sm"
+          className="fixed inset-0 z-[60] flex flex-col bg-ink"
           onClick={cerrar}
         >
           <div className="flex items-center justify-between px-6 py-5 text-white">
@@ -77,7 +77,7 @@ export function MediaGallery() {
             <button
               type="button"
               onClick={cerrar}
-              className="rounded-full border border-white/20 px-4 py-2 text-sm hover:bg-white/10"
+              className="btn border border-white/30 hover:border-white"
             >
               Cerrar ✕
             </button>
@@ -89,14 +89,14 @@ export function MediaGallery() {
             <button
               type="button"
               onClick={() => mover(-1)}
-              className="rounded-full border border-white/20 px-5 py-2 text-sm text-white hover:bg-white/10"
+              className="btn border border-white/30 text-white hover:border-white"
             >
               ← Anterior
             </button>
             <button
               type="button"
               onClick={() => mover(1)}
-              className="rounded-full border border-white/20 px-5 py-2 text-sm text-white hover:bg-white/10"
+              className="btn border border-white/30 text-white hover:border-white"
             >
               Siguiente →
             </button>

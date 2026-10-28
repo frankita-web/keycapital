@@ -18,7 +18,7 @@ export default function ExperienciaPage() {
         eyebrow="Experiencia"
         title={
           <>
-            Experiencia que da <span className="text-brand-light">confianza</span>.
+            Experiencia que da confianza.
           </>
         }
       >

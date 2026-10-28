@@ -23,7 +23,7 @@ export async function Footer() {
           </div>
 
           <div className="lg:col-span-2">
-            <h3 className="text-xs font-semibold tracking-[0.2em] text-white/40 uppercase text-balance">Sitio</h3>
+            <h3 className="label text-white/45">Sitio</h3>
             <ul className="mt-5 space-y-3 text-sm">
               {navegacion.map((item) => (
                 <li key={item.href}>
@@ -36,7 +36,7 @@ export async function Footer() {
           </div>
 
           <div className="lg:col-span-2">
-            <h3 className="text-xs font-semibold tracking-[0.2em] text-white/40 uppercase text-balance">Servicios</h3>
+            <h3 className="label text-white/45">Servicios</h3>
             <ul className="mt-5 space-y-3 text-sm text-white/75">
               {servicios.map((s) => (
                 <li key={s.titulo}>{s.titulo}</li>
@@ -45,7 +45,7 @@ export async function Footer() {
           </div>
 
           <div className="lg:col-span-3">
-            <h3 className="text-xs font-semibold tracking-[0.2em] text-white/40 uppercase text-balance">Oficina</h3>
+            <h3 className="label text-white/45">Oficina</h3>
             <address className="mt-5 space-y-3 text-sm not-italic text-white/75">
               <a href={contacto.mapaUrl} target="_blank" rel="noreferrer" className="block hover:text-white">
                 {contacto.direccion}

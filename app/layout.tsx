@@ -36,9 +36,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${archivo.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col font-sans">
-        <noscript>
-          <style>{".reveal{opacity:1;transform:none}"}</style>
-        </noscript>
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

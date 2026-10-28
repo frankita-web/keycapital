@@ -55,9 +55,9 @@ export function DealExplorerView({
 
   return (
     <div>
-      <div className="sticky top-18 z-20 -mx-6 flex flex-col gap-4 border-b border-line bg-paper/90 px-6 py-4 backdrop-blur-xl lg:-mx-10 lg:flex-row lg:items-center lg:justify-between lg:px-10">
-        <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1 lg:pb-0" role="tablist">
-          {opciones.map((o) => {
+      <div className="flex flex-col gap-6 border-b border-line lg:flex-row lg:items-end lg:justify-between">
+        <div className="-mb-px flex gap-8 overflow-x-auto" role="tablist">
+          {opciones.filter((o) => o.total > 0).map((o) => {
             const activo = filtro === o.id;
             return (
               <button
@@ -66,12 +66,12 @@ export function DealExplorerView({
                 role="tab"
                 aria-selected={activo}
                 onClick={() => setFiltro(o.id)}
-                className={`flex shrink-0 items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition ${
-                  activo ? "bg-ink text-white" : "bg-white text-ink/70 ring-1 ring-line hover:text-ink"
+                className={`flex shrink-0 items-center gap-2 border-b-2 pb-4 text-sm transition-colors ${
+                  activo ? "border-ink text-ink" : "border-transparent text-ink/55 hover:text-ink"
                 }`}
               >
                 {o.label}
-                <span className={`text-xs tabular-nums ${activo ? "text-white/50" : "text-ink/35"}`}>
+                <span className="text-xs text-ink/40 tabular-nums">
                   {o.total}
                 </span>
               </button>
@@ -84,12 +84,12 @@ export function DealExplorerView({
           onChange={(e) => setBusqueda(e.target.value)}
           placeholder="Buscar empresa o año…"
           aria-label="Buscar transacción"
-          className="w-full rounded-full border border-line bg-white px-5 py-2.5 text-sm outline-none placeholder:text-muted focus:border-brand lg:w-72"
+          className="mb-3 w-full border border-line bg-white px-4 py-2.5 text-sm outline-none placeholder:text-muted focus:border-ink lg:w-72"
         />
       </div>
 
       {empresa && (
-        <div className="mt-8 flex flex-wrap items-center gap-4 rounded-3xl border border-line bg-white p-4 pr-6">
+        <div className="mt-8 flex flex-wrap items-center gap-4 border border-line bg-paper p-4 pr-6">
           <div className="flex h-14 w-24 items-center justify-center">
             <Image
               src={`/clientes/${empresa.logo}`}
@@ -105,7 +105,7 @@ export function DealExplorerView({
           <Link
             href="/experiencia"
             scroll={false}
-            className="rounded-full border border-ink/15 px-4 py-2 text-sm font-medium transition hover:border-ink hover:bg-ink hover:text-white"
+            className="text-sm text-ink underline underline-offset-4 hover:text-brand"
           >
             Ver todas
           </Link>
@@ -113,7 +113,7 @@ export function DealExplorerView({
       )}
 
       {visibles.length > 0 ? (
-        <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid border-t border-l border-line md:grid-cols-2 lg:grid-cols-3">
           {visibles.map((d) => (
             <DealCard key={`${d.categoria}-${d.cliente}-${d.anio}`} deal={d} />
           ))}

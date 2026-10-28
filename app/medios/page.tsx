@@ -15,7 +15,7 @@ export default function MediosPage() {
         eyebrow="Medios"
         title={
           <>
-            KeyCapital en la <span className="text-brand-light">prensa</span>.
+            KeyCapital en los medios.
           </>
         }
       >

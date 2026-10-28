@@ -1,77 +1,59 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-ink: #071523;
-  --color-ink-2: #0c2136;
+  --color-ink: #0b1f33;
+  --color-ink-2: #12293f;
   --color-brand: #0a71b3;
-  --color-brand-light: #4fb0ec;
-  --color-paper: #f6f5f1;
-  --color-line: #e4e2dc;
+  --color-brand-light: #7fb8de;
+  --color-paper: #f7f6f2;
+  --color-line: #dcd9d1;
   --color-graphite: #4d4d4d;
-  --color-muted: #6b7380;
+  --color-muted: #646b75;
   --font-sans: var(--font-archivo);
 }
 
 html {
-  scroll-behavior: smooth;
-  /* El rebote del scroll muestra este color: igual al hero y al footer */
+  /* El rebote del scroll muestra este color: igual a la barra superior y al footer */
   background: var(--color-ink);
 }
 
 body {
-  background: var(--color-paper);
+  background: white;
   color: var(--color-ink);
 }
 
 ::selection {
-  background: var(--color-brand);
+  background: var(--color-ink);
   color: white;
 }
 
-/* Títulos: Archivo levemente expandida */
+/* Títulos: sobrios, sin exagerar el tamaño */
 @utility font-display {
   font-family: var(--font-archivo);
-  font-stretch: 112%;
-  font-weight: 500;
-  letter-spacing: -0.03em;
+  font-weight: 400;
+  letter-spacing: -0.015em;
 }
 
-/* Marquee de logos */
-@keyframes marquee {
-  to {
-    transform: translateX(-50%);
-  }
-}
-.animate-marquee {
-  animation: marquee 60s linear infinite;
-}
-.group:hover .animate-marquee {
-  animation-play-state: paused;
+/* Etiqueta pequeña en mayúsculas sobre los títulos */
+@utility label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
 
-/* Aparición al hacer scroll */
-.reveal {
-  opacity: 0;
-  transform: translateY(24px);
+/* Botones rectangulares */
+@utility btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9rem 1.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   transition:
-    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.reveal.is-visible {
-  opacity: 1;
-  transform: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  .animate-marquee {
-    animation: none;
-  }
-  .reveal {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
+    background-color 0.2s,
+    color 0.2s,
+    border-color 0.2s;
 }

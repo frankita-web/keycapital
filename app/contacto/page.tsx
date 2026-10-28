@@ -5,7 +5,7 @@ import { contacto } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Contacto",
-  description: "Conversemos sobre la venta, compra o financiamiento de su empresa.",
+  description: "Conversemos sobre la venta, compra o financiamiento de tu empresa.",
 };
 
 export default function ContactoPage() {
@@ -15,17 +15,17 @@ export default function ContactoPage() {
         eyebrow="Contacto"
         title={
           <>
-            Conversemos sobre su <span className="text-brand-light">próximo paso</span>.
+            Conversemos.
           </>
         }
       >
-        Cuéntenos brevemente su situación. Un socio le responderá personalmente y con total
+        Cuéntanos brevemente tu situación. Un socio te responderá personalmente y con total
         confidencialidad.
       </PageHero>
 
       <section className="mx-auto grid max-w-7xl gap-12 px-6 py-20 lg:grid-cols-12 lg:px-10 lg:py-28">
         <div className="lg:col-span-7">
-          <div className="rounded-[2rem] border border-line bg-white p-8 lg:p-12">
+          <div className="border border-line bg-white p-8 lg:p-12">
             <ContactForm />
           </div>
         </div>
@@ -35,25 +35,25 @@ export default function ContactoPage() {
             href={contacto.mapaUrl}
             target="_blank"
             rel="noreferrer"
-            className="group block rounded-3xl bg-ink p-8 text-white transition hover:bg-ink-2"
+            className="group block bg-ink p-8 text-white"
           >
-            <p className="text-xs font-semibold tracking-[0.2em] text-brand-light uppercase">Oficina</p>
+            <p className="label text-brand-light">Oficina</p>
             <p className="mt-4 font-display text-2xl leading-tight text-balance">{contacto.direccion}</p>
             <p className="mt-1 text-white/60">{contacto.comuna}</p>
             <p className="mt-6 text-sm text-white/70 group-hover:text-white">Ver en Google Maps →</p>
           </a>
           <a
             href={contacto.telefonoHref}
-            className="block rounded-3xl border border-line bg-white p-8 transition hover:border-brand"
+            className="block border border-line bg-white p-8 transition-colors hover:border-ink"
           >
-            <p className="text-xs font-semibold tracking-[0.2em] text-muted uppercase">Teléfono</p>
+            <p className="label text-muted">Teléfono</p>
             <p className="mt-4 font-display text-2xl text-balance">{contacto.telefono}</p>
           </a>
           <a
             href={`mailto:${contacto.email}`}
-            className="block rounded-3xl border border-line bg-white p-8 transition hover:border-brand"
+            className="block border border-line bg-white p-8 transition-colors hover:border-ink"
           >
-            <p className="text-xs font-semibold tracking-[0.2em] text-muted uppercase">Correo</p>
+            <p className="label text-muted">Correo</p>
             <p className="mt-4 font-display text-xl break-all text-balance">{contacto.email}</p>
           </a>
         </aside>
