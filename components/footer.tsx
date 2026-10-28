@@ -16,14 +16,14 @@ export async function Footer() {
           <div className="lg:col-span-5">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/logo-white.svg" alt="KeyCapital" width={196} height={40} className="h-9 w-auto" />
-            <p className="mt-6 max-w-sm text-sm leading-relaxed text-white/60">
+            <p className="mt-6 max-w-sm text-sm leading-relaxed text-white/60 text-pretty">
               Boutique independiente de banca de inversión. Un equipo senior al servicio de
               medianas y grandes empresas, y de sus accionistas, desde 2010.
             </p>
           </div>
 
           <div className="lg:col-span-2">
-            <h3 className="text-xs font-semibold tracking-[0.2em] text-white/40 uppercase">Sitio</h3>
+            <h3 className="text-xs font-semibold tracking-[0.2em] text-white/40 uppercase text-balance">Sitio</h3>
             <ul className="mt-5 space-y-3 text-sm">
               {navegacion.map((item) => (
                 <li key={item.href}>
@@ -36,7 +36,7 @@ export async function Footer() {
           </div>
 
           <div className="lg:col-span-2">
-            <h3 className="text-xs font-semibold tracking-[0.2em] text-white/40 uppercase">Servicios</h3>
+            <h3 className="text-xs font-semibold tracking-[0.2em] text-white/40 uppercase text-balance">Servicios</h3>
             <ul className="mt-5 space-y-3 text-sm text-white/75">
               {servicios.map((s) => (
                 <li key={s.titulo}>{s.titulo}</li>
@@ -45,7 +45,7 @@ export async function Footer() {
           </div>
 
           <div className="lg:col-span-3">
-            <h3 className="text-xs font-semibold tracking-[0.2em] text-white/40 uppercase">Oficina</h3>
+            <h3 className="text-xs font-semibold tracking-[0.2em] text-white/40 uppercase text-balance">Oficina</h3>
             <address className="mt-5 space-y-3 text-sm not-italic text-white/75">
               <a href={contacto.mapaUrl} target="_blank" rel="noreferrer" className="block hover:text-white">
                 {contacto.direccion}

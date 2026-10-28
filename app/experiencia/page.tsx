@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { CtaBand } from "@/components/cta-band";
-import { DealExplorer } from "@/components/deal-explorer";
+import { DealExplorer, DealExplorerView } from "@/components/deal-explorer";
 import { PageHero } from "@/components/page-hero";
 import { transacciones } from "@/lib/data";
 
@@ -26,7 +27,9 @@ export default function ExperienciaPage() {
       </PageHero>
 
       <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
-        <DealExplorer />
+        <Suspense fallback={<DealExplorerView empresa={null} />}>
+          <DealExplorer />
+        </Suspense>
       </section>
 
       <CtaBand />

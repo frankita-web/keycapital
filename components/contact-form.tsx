@@ -33,7 +33,7 @@ export function ContactForm() {
 
   return (
     <form onSubmit={onSubmit} className="space-y-5">
-      <h2 className="font-display text-3xl">Escríbanos</h2>
+      <h2 className="font-display text-3xl text-balance">Escríbanos</h2>
       <div className="grid gap-5 sm:grid-cols-2">
         <label className="block">
           <span className="mb-2 block text-sm font-medium">Nombre *</span>

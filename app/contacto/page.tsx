@@ -38,7 +38,7 @@ export default function ContactoPage() {
             className="group block rounded-3xl bg-ink p-8 text-white transition hover:bg-ink-2"
           >
             <p className="text-xs font-semibold tracking-[0.2em] text-brand-light uppercase">Oficina</p>
-            <p className="mt-4 font-display text-2xl leading-tight">{contacto.direccion}</p>
+            <p className="mt-4 font-display text-2xl leading-tight text-balance">{contacto.direccion}</p>
             <p className="mt-1 text-white/60">{contacto.comuna}</p>
             <p className="mt-6 text-sm text-white/70 group-hover:text-white">Ver en Google Maps →</p>
           </a>
@@ -47,14 +47,14 @@ export default function ContactoPage() {
             className="block rounded-3xl border border-line bg-white p-8 transition hover:border-brand"
           >
             <p className="text-xs font-semibold tracking-[0.2em] text-muted uppercase">Teléfono</p>
-            <p className="mt-4 font-display text-2xl">{contacto.telefono}</p>
+            <p className="mt-4 font-display text-2xl text-balance">{contacto.telefono}</p>
           </a>
           <a
             href={`mailto:${contacto.email}`}
             className="block rounded-3xl border border-line bg-white p-8 transition hover:border-brand"
           >
             <p className="text-xs font-semibold tracking-[0.2em] text-muted uppercase">Correo</p>
-            <p className="mt-4 font-display text-xl break-all">{contacto.email}</p>
+            <p className="mt-4 font-display text-xl break-all text-balance">{contacto.email}</p>
           </a>
         </aside>
       </section>

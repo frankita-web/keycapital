@@ -1,30 +1,57 @@
 "use client";
 
+import Image from "next/image";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";
 import { DealCard } from "@/components/deal-card";
-import { categorias, transacciones, type Categoria } from "@/lib/data";
+import {
+  categorias,
+  clientes,
+  nombrePorLogo,
+  slugLogo,
+  transacciones,
+  type Categoria,
+} from "@/lib/data";
 
 type Filtro = Categoria | "todas";
 
+/** Lee ?empresa= de la URL (los logos del inicio enlazan aquí). */
 export function DealExplorer() {
+  const slug = useSearchParams().get("empresa");
+  const empresa = clientes.find((c) => slugLogo(c.logo) === slug) ?? null;
+  return <DealExplorerView key={slug ?? ""} empresa={empresa} />;
+}
+
+export function DealExplorerView({
+  empresa,
+}: {
+  empresa: { nombre: string; logo: string } | null;
+}) {
   const [filtro, setFiltro] = useState<Filtro>("todas");
   const [busqueda, setBusqueda] = useState("");
 
+  const base = empresa ? transacciones.filter((t) => t.logos?.includes(empresa.logo)) : transacciones;
+
   const opciones: { id: Filtro; label: string; total: number }[] = [
-    { id: "todas", label: "Todas", total: transacciones.length },
+    { id: "todas", label: "Todas", total: base.length },
     ...categorias.map((c) => ({
       ...c,
-      total: transacciones.filter((t) => t.categoria === c.id).length,
+      total: base.filter((t) => t.categoria === c.id).length,
     })),
   ];
 
   const visibles = useMemo(() => {
     const q = busqueda.trim().toLowerCase();
-    return transacciones
+    return base
       .filter((t) => filtro === "todas" || t.categoria === filtro)
-      .filter((t) => !q || `${t.cliente} ${t.detalle} ${t.anio}`.toLowerCase().includes(q))
+      .filter((t) => {
+        if (!q) return true;
+        const marcas = (t.logos ?? []).map((l) => nombrePorLogo[l]).join(" ");
+        return `${t.cliente} ${t.detalle} ${t.anio} ${marcas}`.toLowerCase().includes(q);
+      })
       .sort((a, b) => b.anio - a.anio);
-  }, [filtro, busqueda]);
+  }, [base, filtro, busqueda]);
 
   return (
     <div>
@@ -60,6 +87,30 @@ export function DealExplorer() {
           className="w-full rounded-full border border-line bg-white px-5 py-2.5 text-sm outline-none placeholder:text-muted focus:border-brand lg:w-72"
         />
       </div>
+
+      {empresa && (
+        <div className="mt-8 flex flex-wrap items-center gap-4 rounded-3xl border border-line bg-white p-4 pr-6">
+          <div className="flex h-14 w-24 items-center justify-center">
+            <Image
+              src={`/clientes/${empresa.logo}`}
+              alt={empresa.nombre}
+              width={120}
+              height={72}
+              className="max-h-14 w-auto object-contain mix-blend-multiply"
+            />
+          </div>
+          <p className="flex-1 text-sm text-muted">
+            Transacciones relacionadas con <strong className="font-semibold text-ink">{empresa.nombre}</strong>
+          </p>
+          <Link
+            href="/experiencia"
+            scroll={false}
+            className="rounded-full border border-ink/15 px-4 py-2 text-sm font-medium transition hover:border-ink hover:bg-ink hover:text-white"
+          >
+            Ver todas
+          </Link>
+        </div>
+      )}
 
       {visibles.length > 0 ? (
         <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">

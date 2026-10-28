@@ -27,10 +27,10 @@ export default function Home() {
         <div className="relative mx-auto grid max-w-7xl gap-16 px-6 pt-28 pb-12 lg:grid-cols-12 lg:px-10 lg:pt-32">
           <div className="lg:col-span-8">
             <Eyebrow light>Banca de inversión independiente</Eyebrow>
-            <h1 className="mt-6 font-display text-[2.6rem] leading-[1.02] sm:text-6xl lg:text-[4.6rem]">
+            <h1 className="mt-6 font-display text-[2.6rem] leading-[1.02] sm:text-6xl lg:text-[4.6rem] text-balance">
               Confianza en un equipo <span className="text-brand-light">senior</span> con resultados concretos.
             </h1>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/65">
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/65 text-pretty">
               Asesoramos a medianas y grandes empresas, y a sus accionistas, en compra y venta de
               compañías, financiamiento, reestructuración de pasivos y valoraciones. Con
               independencia y creatividad.
@@ -58,7 +58,7 @@ export default function Home() {
                 <span>Última transacción</span>
                 <span className="rounded-full bg-white/10 px-3 py-1 font-semibold text-white">2025</span>
               </div>
-              <p className="mt-10 font-display text-3xl leading-tight">NIBSA S.A.</p>
+              <p className="mt-10 font-display text-3xl leading-tight text-balance">NIBSA S.A.</p>
               <p className="mt-1 text-sm text-white/60">vendida a HOFFENS S.A.</p>
               <div className="mt-8 h-px bg-white/10" />
               <p className="mt-4 text-sm font-semibold text-brand-light">Asesor financiero de la transacción</p>
@@ -94,12 +94,12 @@ export default function Home() {
         <div className="grid gap-10 lg:grid-cols-12">
           <Reveal className="lg:col-span-5">
             <Eyebrow>Servicios</Eyebrow>
-            <h2 className="mt-6 font-display text-4xl leading-[1.08] md:text-5xl">
+            <h2 className="mt-6 font-display text-4xl leading-[1.08] md:text-5xl text-balance">
               Asesoría en las decisiones que definen una empresa.
             </h2>
           </Reveal>
           <Reveal className="lg:col-span-6 lg:col-start-7 lg:self-end" delay={100}>
-            <p className="text-lg leading-relaxed text-muted">
+            <p className="text-lg leading-relaxed text-muted text-pretty">
               Cada mandato lo lidera personalmente un socio con más de dos décadas en banca de
               inversión. Sin estructuras pesadas ni conflictos de interés: solo foco en el
               resultado para nuestros clientes.
@@ -114,10 +114,10 @@ export default function Home() {
                 <span className="font-display text-xl text-brand transition-colors group-hover:text-brand-light">
                   0{i + 1}
                 </span>
-                <h3 className="mt-12 font-display text-3xl leading-tight transition-colors group-hover:text-white">
+                <h3 className="mt-12 font-display text-3xl leading-tight transition-colors group-hover:text-white text-balance">
                   {s.titulo}
                 </h3>
-                <p className="mt-4 max-w-md leading-relaxed text-muted transition-colors group-hover:text-white/65">
+                <p className="mt-4 max-w-md leading-relaxed text-muted transition-colors group-hover:text-white/65 text-pretty">
                   {s.descripcion}
                 </p>
               </div>
@@ -131,7 +131,7 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-6 py-28 lg:px-10 lg:py-36">
           <Reveal>
             <Eyebrow light>Por qué KeyCapital</Eyebrow>
-            <p className="mt-8 font-display text-4xl leading-[1.08] md:text-6xl">
+            <p className="mt-8 font-display text-4xl leading-[1.08] md:text-6xl text-balance">
               {valores.map((v, i) => (
                 <span key={v}>
                   <span className={i % 2 === 0 ? "text-white" : "text-white/40"}>{v}</span>
@@ -144,8 +144,8 @@ export default function Home() {
           <div className="mt-20 grid gap-12 border-t border-white/10 pt-12 md:grid-cols-3">
             {pilares.map((p, i) => (
               <Reveal key={p.titulo} delay={i * 100}>
-                <h3 className="text-lg font-semibold">{p.titulo}</h3>
-                <p className="mt-3 leading-relaxed text-white/60">{p.descripcion}</p>
+                <h3 className="text-lg font-semibold text-balance">{p.titulo}</h3>
+                <p className="mt-3 leading-relaxed text-white/60 text-pretty">{p.descripcion}</p>
               </Reveal>
             ))}
           </div>
@@ -157,7 +157,7 @@ export default function Home() {
         <Reveal className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
           <div>
             <Eyebrow>Experiencia</Eyebrow>
-            <h2 className="mt-6 max-w-2xl font-display text-4xl leading-[1.08] md:text-5xl">
+            <h2 className="mt-6 max-w-2xl font-display text-4xl leading-[1.08] md:text-5xl text-balance">
               Transacciones recientes
             </h2>
           </div>
@@ -183,10 +183,10 @@ export default function Home() {
           <div className="grid gap-16 lg:grid-cols-12">
             <Reveal className="lg:col-span-5">
               <Eyebrow>Equipo</Eyebrow>
-              <h2 className="mt-6 font-display text-4xl leading-[1.08] md:text-5xl">
+              <h2 className="mt-6 font-display text-4xl leading-[1.08] md:text-5xl text-balance">
                 Socios que lideran cada mandato.
               </h2>
-              <p className="mt-6 max-w-md text-lg leading-relaxed text-muted">
+              <p className="mt-6 max-w-md text-lg leading-relaxed text-muted text-pretty">
                 Ex gerentes generales de Banchile Citibank Global Markets y Banchile Asesoría
                 Financiera, con trayectoria en Banedwards.
               </p>
@@ -209,7 +209,7 @@ export default function Home() {
                       className="size-20 rounded-full grayscale transition group-hover:grayscale-0"
                     />
                     <div className="flex-1">
-                      <p className="font-display text-2xl leading-tight">{p.nombre}</p>
+                      <p className="font-display text-2xl leading-tight text-balance">{p.nombre}</p>
                       <p className="mt-1 text-sm text-muted">{p.cargo}</p>
                     </div>
                     <span className="text-2xl text-ink/30 transition group-hover:translate-x-1 group-hover:text-brand">

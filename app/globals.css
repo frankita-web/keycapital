@@ -14,6 +14,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* El rebote del scroll muestra este color: igual al hero y al footer */
+  background: var(--color-ink);
 }
 
 body {

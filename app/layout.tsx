@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Archivo } from "next/font/google";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
@@ -23,6 +23,10 @@ export const metadata: Metadata = {
     locale: "es_CL",
     siteName: "KeyCapital",
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#071523",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

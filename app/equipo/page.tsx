@@ -40,13 +40,13 @@ export default function EquipoPage() {
                       height={170}
                       className="size-32 rounded-full lg:size-36"
                     />
-                    <h2 className="mt-8 font-display text-3xl leading-tight lg:text-4xl">{p.nombre}</h2>
+                    <h2 className="mt-8 font-display text-3xl leading-tight lg:text-4xl text-balance">{p.nombre}</h2>
                     <p className="mt-2 font-medium text-brand">{p.cargo}</p>
                   </div>
                 </div>
                 <div className="md:col-span-6 md:col-start-7 md:pt-12">
                   <p className="text-xs font-semibold tracking-[0.2em] text-muted uppercase">{p.formacion}</p>
-                  <p className="mt-5 text-xl leading-relaxed text-ink/80">{p.bio}</p>
+                  <p className="mt-5 text-xl leading-relaxed text-ink/80 text-pretty">{p.bio}</p>
                   <a
                     href={`mailto:${p.email}`}
                     className="mt-8 inline-flex items-center gap-2 rounded-full border border-ink/15 px-5 py-2.5 text-sm font-medium transition hover:border-ink hover:bg-ink hover:text-white"

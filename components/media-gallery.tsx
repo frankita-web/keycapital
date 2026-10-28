@@ -53,7 +53,7 @@ export function MediaGallery() {
             <div className="flex items-end justify-between gap-4 p-6">
               <div>
                 <p className="text-xs font-medium tracking-wide text-brand">{m.fuente}</p>
-                <h3 className="mt-2 font-display text-xl leading-tight">{m.titulo}</h3>
+                <h3 className="mt-2 font-display text-xl leading-tight text-balance">{m.titulo}</h3>
               </div>
               {m.fecha && <span className="shrink-0 text-xs text-muted tabular-nums">{m.fecha}</span>}
             </div>
@@ -72,7 +72,7 @@ export function MediaGallery() {
           <div className="flex items-center justify-between px-6 py-5 text-white">
             <div>
               <p className="text-xs text-brand-light">{actual.fuente}</p>
-              <p className="font-display text-xl">{actual.titulo}</p>
+              <p className="font-display text-xl text-balance">{actual.titulo}</p>
             </div>
             <button
               type="button"
