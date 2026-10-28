@@ -3,8 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useMemo, useState } from "react";
-import { DealCard } from "@/components/deal-card";
 import {
   categorias,
   clientes,
@@ -12,115 +10,119 @@ import {
   slugLogo,
   transacciones,
   type Categoria,
+  type Transaccion,
 } from "@/lib/data";
 
-type Filtro = Categoria | "todas";
-
-/** Lee ?empresa= de la URL (los logos del inicio enlazan aquí). */
+/** Lee ?tipo= (pestaña) y ?empresa= (los logos del inicio enlazan aquí). */
 export function DealExplorer() {
-  const slug = useSearchParams().get("empresa");
-  const empresa = clientes.find((c) => slugLogo(c.logo) === slug) ?? null;
-  return <DealExplorerView key={slug ?? ""} empresa={empresa} />;
+  const params = useSearchParams();
+  const tipo = categorias.find((c) => c.id === params.get("tipo"))?.id ?? null;
+  const empresa = clientes.find((c) => slugLogo(c.logo) === params.get("empresa")) ?? null;
+  return <DealExplorerView tipo={tipo} empresa={empresa} />;
 }
 
 export function DealExplorerView({
+  tipo,
   empresa,
 }: {
+  tipo: Categoria | null;
   empresa: { nombre: string; logo: string } | null;
 }) {
-  const [filtro, setFiltro] = useState<Filtro>("todas");
-  const [busqueda, setBusqueda] = useState("");
-
-  const base = empresa ? transacciones.filter((t) => t.logos?.includes(empresa.logo)) : transacciones;
-
-  const opciones: { id: Filtro; label: string; total: number }[] = [
-    { id: "todas", label: "Todas", total: base.length },
-    ...categorias.map((c) => ({
-      ...c,
-      total: base.filter((t) => t.categoria === c.id).length,
-    })),
-  ];
-
-  const visibles = useMemo(() => {
-    const q = busqueda.trim().toLowerCase();
-    return base
-      .filter((t) => filtro === "todas" || t.categoria === filtro)
-      .filter((t) => {
-        if (!q) return true;
-        const marcas = (t.logos ?? []).map((l) => nombrePorLogo[l]).join(" ");
-        return `${t.cliente} ${t.detalle} ${t.anio} ${marcas}`.toLowerCase().includes(q);
-      })
+  if (empresa) {
+    const casos = transacciones
+      .filter((t) => t.logos?.includes(empresa.logo))
       .sort((a, b) => b.anio - a.anio);
-  }, [base, filtro, busqueda]);
-
-  return (
-    <div>
-      <div className="flex flex-col gap-6 border-b border-line lg:flex-row lg:items-end lg:justify-between">
-        <div className="-mb-px flex gap-8 overflow-x-auto" role="tablist">
-          {opciones.filter((o) => o.total > 0).map((o) => {
-            const activo = filtro === o.id;
-            return (
-              <button
-                key={o.id}
-                type="button"
-                role="tab"
-                aria-selected={activo}
-                onClick={() => setFiltro(o.id)}
-                className={`flex shrink-0 items-center gap-2 border-b-2 pb-4 text-sm transition-colors ${
-                  activo ? "border-ink text-ink" : "border-transparent text-ink/55 hover:text-ink"
-                }`}
-              >
-                {o.label}
-                <span className="text-xs text-ink/40 tabular-nums">
-                  {o.total}
-                </span>
-              </button>
-            );
-          })}
-        </div>
-        <input
-          type="search"
-          value={busqueda}
-          onChange={(e) => setBusqueda(e.target.value)}
-          placeholder="Buscar empresa o año…"
-          aria-label="Buscar transacción"
-          className="mb-3 w-full border border-line bg-white px-4 py-2.5 text-sm outline-none placeholder:text-muted focus:border-ink lg:w-72"
-        />
-      </div>
-
-      {empresa && (
-        <div className="mt-8 flex flex-wrap items-center gap-4 border border-line bg-paper p-4 pr-6">
-          <div className="flex h-14 w-24 items-center justify-center">
+    return (
+      <div>
+        <div className="flex flex-wrap items-center gap-6 border-b border-line pb-8">
+          <div className="flex h-16 w-32 items-center">
             <Image
               src={`/clientes/${empresa.logo}`}
               alt={empresa.nombre}
-              width={120}
-              height={72}
-              className="max-h-14 w-auto object-contain mix-blend-multiply"
+              width={160}
+              height={96}
+              className="max-h-16 w-auto object-contain mix-blend-multiply"
             />
           </div>
-          <p className="flex-1 text-sm text-muted">
-            Transacciones relacionadas con <strong className="font-semibold text-ink">{empresa.nombre}</strong>
-          </p>
-          <Link
-            href="/experiencia"
-            scroll={false}
-            className="text-sm text-ink underline underline-offset-4 hover:text-brand"
-          >
-            Ver todas
+          <div className="flex-1">
+            <p className="label text-brand">Transacciones relacionadas</p>
+            <h2 className="mt-2 font-display text-3xl">{empresa.nombre}</h2>
+          </div>
+          <Link href="/experiencia" scroll={false} className="btn border border-ink/20 hover:border-ink">
+            Ver toda la experiencia
           </Link>
         </div>
-      )}
+        <ListaCasos casos={casos} mostrarCategoria />
+      </div>
+    );
+  }
 
-      {visibles.length > 0 ? (
-        <div className="mt-10 grid border-t border-l border-line md:grid-cols-2 lg:grid-cols-3">
-          {visibles.map((d) => (
-            <DealCard key={`${d.categoria}-${d.cliente}-${d.anio}`} deal={d} />
-          ))}
-        </div>
-      ) : (
-        <p className="py-24 text-center text-muted">No encontramos transacciones para “{busqueda}”.</p>
-      )}
+  const activa = tipo ?? categorias[0].id;
+  const casos = transacciones.filter((t) => t.categoria === activa).sort((a, b) => b.anio - a.anio);
+
+  return (
+    <div>
+      <nav
+        className="flex flex-wrap gap-x-8 gap-y-2 shadow-[inset_0_-1px_0_var(--color-line)]"
+        aria-label="Tipos de transacción"
+      >
+        {categorias.map((c) => {
+          const total = transacciones.filter((t) => t.categoria === c.id).length;
+          const esActiva = c.id === activa;
+          return (
+            <Link
+              key={c.id}
+              href={`/experiencia?tipo=${c.id}`}
+              scroll={false}
+              aria-current={esActiva ? "page" : undefined}
+              className={`flex items-baseline gap-2 border-b-2 pb-3 transition-colors md:pb-4 ${
+                esActiva ? "border-ink text-ink" : "border-transparent text-ink/50 hover:text-ink"
+              }`}
+            >
+              <span className="font-display text-lg md:text-2xl">{c.label}</span>
+              <span className="text-xs tabular-nums text-ink/40">{total}</span>
+            </Link>
+          );
+        })}
+      </nav>
+      <ListaCasos casos={casos} />
     </div>
+  );
+}
+
+const etiqueta = Object.fromEntries(categorias.map((c) => [c.id, c.label]));
+
+function ListaCasos({ casos, mostrarCategoria = false }: { casos: Transaccion[]; mostrarCategoria?: boolean }) {
+  return (
+    <ul className="divide-y divide-line border-b border-line">
+      {casos.map((t) => (
+        <li
+          key={`${t.categoria}-${t.cliente}-${t.anio}`}
+          className="grid grid-cols-[3.5rem_1fr] gap-x-6 gap-y-3 py-6 md:grid-cols-[4rem_8rem_1fr_11rem] md:items-center md:gap-x-8"
+        >
+          <span className="text-sm text-muted tabular-nums">{t.anio}</span>
+          <div className="hidden h-12 items-center gap-3 md:flex">
+            {t.logos?.slice(0, 2).map((logo) => (
+              <Image
+                key={logo}
+                src={`/clientes/${logo}`}
+                alt={nombrePorLogo[logo] ?? ""}
+                width={120}
+                height={72}
+                className="max-h-12 w-auto max-w-16 object-contain mix-blend-multiply"
+              />
+            ))}
+          </div>
+          <div className="col-start-2 md:col-start-auto">
+            {mostrarCategoria && <p className="label mb-1 text-brand">{etiqueta[t.categoria]}</p>}
+            <h3 className="font-display text-xl leading-snug">{t.cliente}</h3>
+            <p className="mt-1 text-sm leading-relaxed text-pretty text-muted">{t.detalle}</p>
+          </div>
+          <p className="col-start-2 text-sm font-semibold text-ink md:col-start-auto md:text-right">
+            {t.monto ?? ""}
+          </p>
+        </li>
+      ))}
+    </ul>
   );
 }

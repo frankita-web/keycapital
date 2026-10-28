@@ -15,18 +15,14 @@ export default function ExperienciaPage() {
     <>
       <PageHero
         eyebrow="Experiencia"
-        title={
-          <>
-            Experiencia que da confianza.
-          </>
-        }
+        title="Experiencia que da confianza."
       >
         {transacciones.length} transacciones asesoradas en venta y compra de empresas,
         financiamiento, reestructuración de pasivos y valoración.
       </PageHero>
 
-      <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
-        <Suspense fallback={<DealExplorerView empresa={null} />}>
+      <section className="mx-auto max-w-7xl px-6 py-14 lg:px-10 lg:py-20">
+        <Suspense fallback={<DealExplorerView tipo={null} empresa={null} />}>
           <DealExplorer />
         </Suspense>
       </section>
