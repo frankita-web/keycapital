@@ -24,7 +24,7 @@ export function DealCard({ deal }: { deal: Transaccion }) {
           <span className="h-px w-10 bg-line" />
         )}
       </div>
-      <h3 className="mt-6 font-display text-xl leading-snug text-balance">{deal.cliente}</h3>
+      <h3 className="mt-6 font-display text-2xl leading-snug text-balance">{deal.cliente}</h3>
       <p className="mt-3 text-sm leading-relaxed text-pretty text-muted">{deal.detalle}</p>
       <div className="mt-auto w-full pt-8">
         {deal.monto && <p className="text-base font-semibold text-ink">{deal.monto}</p>}

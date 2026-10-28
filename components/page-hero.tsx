@@ -13,7 +13,7 @@ export function PageHero({
     <section className="bg-ink text-white">
       <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-24">
         <p className="label text-brand-light">{eyebrow}</p>
-        <h1 className="mt-5 max-w-3xl font-display text-4xl leading-[1.1] text-balance md:text-5xl">
+        <h1 className="mt-5 max-w-3xl font-display text-5xl leading-[1.05] text-balance md:text-6xl">
           {title}
         </h1>
         {children && (

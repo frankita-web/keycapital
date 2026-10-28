@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { CtaBand } from "@/components/cta-band";
 import { MediaGallery } from "@/components/media-gallery";
 import { PageHero } from "@/components/page-hero";
 
@@ -26,8 +25,6 @@ export default function MediosPage() {
       <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
         <MediaGallery />
       </section>
-
-      <CtaBand />
     </>
   );
 }

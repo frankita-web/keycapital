@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { CtaBand } from "@/components/cta-band";
 import { PageHero } from "@/components/page-hero";
 import { equipo } from "@/lib/data";
 
@@ -47,8 +46,6 @@ export default function EquipoPage() {
           ))}
         </div>
       </section>
-
-      <CtaBand />
     </>
   );
 }

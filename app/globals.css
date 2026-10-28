@@ -9,7 +9,7 @@
   --color-line: #dcd9d1;
   --color-graphite: #4d4d4d;
   --color-muted: #646b75;
-  --font-sans: var(--font-archivo);
+  --font-sans: var(--font-inter);
 }
 
 html {
@@ -27,11 +27,11 @@ body {
   color: white;
 }
 
-/* Títulos: sobrios, sin exagerar el tamaño */
+/* Títulos: serif editorial (Newsreader) */
 @utility font-display {
-  font-family: var(--font-archivo);
+  font-family: var(--font-newsreader);
   font-weight: 400;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.02em;
 }
 
 /* Etiqueta pequeña en mayúsculas sobre los títulos */
@@ -56,4 +56,25 @@ body {
     background-color 0.2s,
     color 0.2s,
     border-color 0.2s;
+}
+
+/* Logos de clientes en movimiento */
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: marquee 80s linear infinite;
+}
+.marquee-reverse {
+  animation-direction: reverse;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
 }
