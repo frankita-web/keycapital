@@ -70,6 +70,7 @@ export const ranking = {
   organizacion: "Leaders League",
   anio: 2027,
   detalle: "Banco de inversión · Fusiones y adquisiciones · Firmas locales · Chile",
+  url: "https://www.leadersleague.com/es/rankings/fusiones-y-adquisiciones-firmas-locales-banco-de-inversion-chile-2027",
 };
 
 export const valores = ["Creatividad", "Objetividad", "Análisis", "Profesionalismo"] as const;

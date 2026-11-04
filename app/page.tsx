@@ -21,7 +21,12 @@ export default function Home() {
       <section className="bg-ink text-white">
         {/* Ranking destacado */}
         <div className="border-b border-white/10">
-          <div className="mx-auto flex max-w-7xl flex-col gap-x-8 gap-y-2 px-6 py-6 lg:flex-row lg:items-center lg:px-10">
+          <a
+            href={ranking.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group mx-auto flex max-w-7xl flex-col gap-x-8 gap-y-2 px-6 py-6 lg:flex-row lg:items-center lg:px-10"
+          >
             <p className="font-display text-3xl whitespace-nowrap">{ranking.categoria}</p>
             <div className="lg:border-l lg:border-white/20 lg:pl-8">
               <p className="text-sm font-semibold">
@@ -29,7 +34,10 @@ export default function Home() {
               </p>
               <p className="mt-1 text-sm text-white/70">{ranking.detalle}</p>
             </div>
-          </div>
+            <span className="text-sm text-white/70 underline underline-offset-4 group-hover:text-white lg:ml-auto">
+              Ver ranking
+            </span>
+          </a>
         </div>
 
         <div className="mx-auto max-w-7xl px-6 pt-20 pb-16 lg:px-10 lg:pt-28 lg:pb-20">
