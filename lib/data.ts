@@ -64,6 +64,14 @@ export const pilares = [
   },
 ] as const;
 
+/** Distinción destacada al entrar. Es la categoría real de KeyCapital en el ranking: no cambiarla sin verificar. */
+export const ranking = {
+  categoria: "Muy recomendado",
+  organizacion: "Leaders League",
+  anio: 2027,
+  detalle: "Banco de inversión · Fusiones y adquisiciones · Firmas locales · Chile",
+};
+
 export const valores = ["Creatividad", "Objetividad", "Análisis", "Profesionalismo"] as const;
 
 export const equipo = [
@@ -73,7 +81,7 @@ export const equipo = [
     foto: "/equipo/Cristian_Mandiola.png",
     email: "cristian.mandiola@keycapitalchile.com",
     formacion: "Ingeniero Comercial, MBA",
-    bio: "Más de 25 años en el sistema financiero chileno, más de dos décadas de ellos en banca de inversión y finanzas corporativas. Fue Gerente General de Banchile Citibank Global Markets hasta 2010 y en marzo de ese año fundó KeyCapital, boutique de M&A y finanzas corporativas.",
+    bio: "Más de 35 años en el sistema financiero chileno, más de dos décadas de ellos en banca de inversión y finanzas corporativas. Fue Gerente General de Banchile Citibank Global Markets hasta 2010 y en marzo de ese año fundó KeyCapital, boutique de M&A y finanzas corporativas.",
   },
   {
     nombre: "Jaime Barriga Sotta",

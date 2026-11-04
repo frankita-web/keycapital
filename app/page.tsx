@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ClientMarquee } from "@/components/client-marquee";
 import { DealCard } from "@/components/deal-card";
 import { Eyebrow } from "@/components/page-hero";
-import { equipo, pilares, servicios, transacciones, valores } from "@/lib/data";
+import { equipo, pilares, ranking, servicios, transacciones, valores } from "@/lib/data";
 
 const recientes = [...transacciones].sort((a, b) => b.anio - a.anio).slice(0, 6);
 
@@ -19,6 +19,19 @@ export default function Home() {
     <>
       {/* Hero */}
       <section className="bg-ink text-white">
+        {/* Ranking destacado */}
+        <div className="border-b border-white/10">
+          <div className="mx-auto flex max-w-7xl flex-col gap-x-8 gap-y-2 px-6 py-6 lg:flex-row lg:items-center lg:px-10">
+            <p className="font-display text-3xl whitespace-nowrap">{ranking.categoria}</p>
+            <div className="lg:border-l lg:border-white/20 lg:pl-8">
+              <p className="text-sm font-semibold">
+                {ranking.organizacion} · Ranking {ranking.anio}
+              </p>
+              <p className="mt-1 text-sm text-white/70">{ranking.detalle}</p>
+            </div>
+          </div>
+        </div>
+
         <div className="mx-auto max-w-7xl px-6 pt-20 pb-16 lg:px-10 lg:pt-28 lg:pb-20">
           <Eyebrow light>Asesores financieros</Eyebrow>
           <h1 className="mt-6 max-w-4xl font-display text-[2.75rem] leading-[1.05] text-balance sm:text-6xl lg:text-7xl">
