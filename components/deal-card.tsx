@@ -1,13 +1,14 @@
 import Image from "next/image";
-import { categorias, nombrePorLogo, type Transaccion } from "@/lib/data";
-
-const etiqueta = Object.fromEntries(categorias.map((c) => [c.id, c.label]));
+import { contenido } from "@/lib/contenido";
+import { nombrePorLogo, type Transaccion } from "@/lib/data";
+import type { Idioma } from "@/lib/i18n";
 
 /** Tombstone: aviso clásico de transacción de banca de inversión. */
-export function DealCard({ deal }: { deal: Transaccion }) {
+export function DealCard({ deal, idioma }: { deal: Transaccion; idioma: Idioma }) {
+  const etiqueta = contenido(idioma).categorias.find((c) => c.id === deal.categoria)?.label;
   return (
     <article className="flex h-full flex-col items-center border-r border-b border-line bg-white px-8 py-10 text-center">
-      <p className="label text-muted">{etiqueta[deal.categoria]}</p>
+      <p className="label text-muted">{etiqueta}</p>
       <div className="mt-8 flex h-14 items-center justify-center gap-5">
         {deal.logos ? (
           deal.logos.map((logo) => (

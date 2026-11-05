@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { contacto, navegacion } from "@/lib/data";
+import { contacto } from "@/lib/data";
+import { navegacion, ruta, textos, type Idioma } from "@/lib/i18n";
 
 async function anioActual() {
   "use cache";
@@ -8,8 +9,10 @@ async function anioActual() {
 
 const linkColumna = "text-lg text-white/55 transition-colors hover:text-white";
 
-export async function Footer() {
+export async function Footer({ idioma }: { idioma: Idioma }) {
   const anio = await anioActual();
+  const t = textos[idioma].footer;
+  const direccion = textos[idioma].contacto.direccion;
 
   return (
     <footer className="bg-ink text-white">
@@ -19,13 +22,13 @@ export async function Footer() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/logo-white.svg" alt="KeyCapital" width={196} height={40} className="h-9 w-auto" />
             <p className="mt-16 font-display text-5xl leading-[1.05] lg:text-6xl">
-              <span className="block text-white/35">Independencia,</span>
-              <span className="block text-white/65">creatividad</span>
-              <span className="block">y resultados concretos.</span>
+              <span className="block text-white/35">{t.lema[0]}</span>
+              <span className="block text-white/65">{t.lema[1]}</span>
+              <span className="block">{t.lema[2]}</span>
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-6">
-              <Link href="/contacto" className="btn bg-white text-ink hover:bg-brand-light">
-                Contáctanos
+              <Link href={ruta(idioma, "contacto")} className="btn bg-white text-ink hover:bg-brand-light">
+                {textos[idioma].general.contactanos}
               </Link>
               <a href={contacto.telefonoHref} className="text-white/55 hover:text-white">
                 {contacto.telefono}
@@ -35,9 +38,9 @@ export async function Footer() {
 
           <div className="grid gap-12 sm:grid-cols-[2fr_3fr] lg:col-span-5 lg:pt-1">
             <div>
-              <h3 className="text-lg">Sitio</h3>
+              <h3 className="text-lg">{t.sitio}</h3>
               <ul className="mt-6 space-y-3">
-                {navegacion.map((item) => (
+                {navegacion(idioma).map((item) => (
                   <li key={item.href}>
                     <Link href={item.href} className={linkColumna}>
                       {item.label}
@@ -49,10 +52,10 @@ export async function Footer() {
 
             <div className="space-y-12">
               <div>
-                <h3 className="text-lg">Oficina</h3>
+                <h3 className="text-lg">{t.oficina}</h3>
                 <address className="mt-6 space-y-3 not-italic">
                   <a href={contacto.mapaUrl} target="_blank" rel="noreferrer" className={`block ${linkColumna}`}>
-                    {contacto.direccion.split(", ").map((linea) => (
+                    {direccion.split(", ").map((linea) => (
                       <span key={linea} className="block">
                         {linea}
                       </span>
@@ -65,7 +68,7 @@ export async function Footer() {
                 </address>
               </div>
               <div>
-                <h3 className="text-lg">Síguenos</h3>
+                <h3 className="text-lg">{t.siguenos}</h3>
                 <ul className="mt-6 space-y-3">
                   {contacto.redes.map((r) => (
                     <li key={r.nombre}>
@@ -81,8 +84,8 @@ export async function Footer() {
         </div>
 
         <div className="mt-20 flex flex-col gap-4 border-t border-white/10 pt-8 text-xs text-white/40 md:flex-row md:items-center md:justify-between">
-          <p>© {anio} KeyCapital. Todos los derechos reservados.</p>
-          <p>Asesores financieros · Santiago, Chile</p>
+          <p>© {anio} KeyCapital. {t.derechos}</p>
+          <p>{t.ubicacion}</p>
         </div>
       </div>
     </footer>

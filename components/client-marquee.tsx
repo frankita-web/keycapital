@@ -1,11 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { clientes, slugLogo, tieneTransacciones } from "@/lib/data";
+import { ruta, textos, type Idioma } from "@/lib/i18n";
 
 const celda = "group flex h-28 w-48 shrink-0 items-center justify-center border-r border-line bg-white px-7";
 
 /** Logos de clientes en movimiento continuo; se pausa al pasar el mouse. */
-export function ClientMarquee() {
+export function ClientMarquee({ idioma }: { idioma: Idioma }) {
+  const t = textos[idioma].inicio;
   const filas = [clientes.slice(0, 20), clientes.slice(20)];
   return (
     <div className="marquee space-y-px border-y border-line bg-line">
@@ -27,9 +29,9 @@ export function ClientMarquee() {
                 <li key={`${c.logo}-${j}`} aria-hidden={duplicado} className="contents">
                   {tieneTransacciones(c.logo) ? (
                     <Link
-                      href={`/experiencia?empresa=${slugLogo(c.logo)}`}
+                      href={`${ruta(idioma, "experiencia")}?empresa=${slugLogo(c.logo)}`}
                       tabIndex={duplicado ? -1 : undefined}
-                      title={`Ver transacciones de ${c.nombre}`}
+                      title={t.verTransaccionesDe(c.nombre)}
                       className={celda}
                     >
                       {logo}

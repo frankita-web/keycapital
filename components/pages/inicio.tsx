@@ -3,18 +3,22 @@ import Link from "next/link";
 import { ClientMarquee } from "@/components/client-marquee";
 import { DealCard } from "@/components/deal-card";
 import { Eyebrow } from "@/components/page-hero";
-import { equipo, pilares, ranking, servicios, transacciones, valores } from "@/lib/data";
+import { contenido } from "@/lib/contenido";
+import { ruta, textos, type Idioma } from "@/lib/i18n";
 
-const recientes = [...transacciones].sort((a, b) => b.anio - a.anio).slice(0, 6);
+export function InicioPage({ idioma }: { idioma: Idioma }) {
+  const t = textos[idioma].inicio;
+  const { equipo, pilares, ranking, servicios, transacciones, valores } = contenido(idioma);
+  const experiencia = ruta(idioma, "experiencia");
+  const paginaEquipo = ruta(idioma, "equipo");
+  const recientes = [...transacciones].sort((a, b) => b.anio - a.anio).slice(0, 6);
+  const cifras = [
+    { valor: "+20", label: t.cifraAnios },
+    { valor: `${transacciones.length}`, label: t.cifraTransacciones },
+    { valor: "4", label: t.cifraContinentes },
+    { valor: t.cifraDesde, label: t.cifraIndependiente },
+  ];
 
-const cifras = [
-  { valor: "+20", label: "Años en banca de inversión" },
-  { valor: `${transacciones.length}`, label: "Transacciones asesoradas" },
-  { valor: "4", label: "Continentes con socios de cobertura" },
-  { valor: "Desde 2010", label: "Equipo independiente" },
-];
-
-export default function Home() {
   return (
     <>
       {/* Hero */}
@@ -35,27 +39,23 @@ export default function Home() {
               <p className="mt-1 text-sm text-white/70">{ranking.detalle}</p>
             </div>
             <span className="text-sm text-white/70 underline underline-offset-4 group-hover:text-white lg:ml-auto">
-              Ver ranking
+              {t.verRanking}
             </span>
           </a>
         </div>
 
         <div className="mx-auto max-w-7xl px-6 pt-20 pb-16 lg:px-10 lg:pt-28 lg:pb-20">
-          <Eyebrow light>Asesores financieros</Eyebrow>
+          <Eyebrow light>{t.eyebrow}</Eyebrow>
           <h1 className="mt-6 max-w-4xl font-display text-[2.75rem] leading-[1.05] text-balance sm:text-6xl lg:text-7xl">
-            Confianza en un equipo senior con resultados concretos.
+            {t.titulo}
           </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-pretty text-white/70">
-            Servicios de asesoría en compra y venta de empresas, reestructuración de pasivos de
-            largo plazo, valoraciones y financiamientos especiales y de proyectos. Independencia y
-            creatividad.
-          </p>
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-pretty text-white/70">{t.bajada}</p>
           <div className="mt-10 flex flex-wrap gap-4">
-            <Link href="/contacto" className="btn bg-white text-ink hover:bg-brand-light">
-              Contáctanos
+            <Link href={ruta(idioma, "contacto")} className="btn bg-white text-ink hover:bg-brand-light">
+              {textos[idioma].general.contactanos}
             </Link>
-            <Link href="/experiencia" className="btn border border-white/30 text-white hover:border-white">
-              Ver experiencia
+            <Link href={experiencia} className="btn border border-white/30 text-white hover:border-white">
+              {t.verExperiencia}
             </Link>
           </div>
         </div>
@@ -79,17 +79,15 @@ export default function Home() {
       <section className="py-20 lg:py-24">
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-4 px-6 sm:flex-row sm:items-end lg:px-10">
           <div>
-            <Eyebrow>Clientes</Eyebrow>
-            <h2 className="mt-4 font-display text-4xl leading-[1.1] text-balance md:text-5xl">
-              Empresas que han confiado en nosotros
-            </h2>
+            <Eyebrow>{t.clientesEyebrow}</Eyebrow>
+            <h2 className="mt-4 font-display text-4xl leading-[1.1] text-balance md:text-5xl">{t.clientesTitulo}</h2>
           </div>
-          <Link href="/experiencia" className="text-sm text-ink underline underline-offset-4 hover:text-brand">
-            Ver todas las transacciones
+          <Link href={experiencia} className="text-sm text-ink underline underline-offset-4 hover:text-brand">
+            {t.verTransacciones}
           </Link>
         </div>
         <div className="mt-10">
-          <ClientMarquee />
+          <ClientMarquee idioma={idioma} />
         </div>
       </section>
 
@@ -98,14 +96,11 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-24">
           <div className="grid gap-6 lg:grid-cols-12">
             <div className="lg:col-span-5">
-              <Eyebrow>Servicios</Eyebrow>
-              <h2 className="mt-4 font-display text-4xl leading-[1.1] text-balance md:text-5xl">
-                Asesoría especializada en las decisiones clave de una empresa.
-              </h2>
+              <Eyebrow>{t.serviciosEyebrow}</Eyebrow>
+              <h2 className="mt-4 font-display text-4xl leading-[1.1] text-balance md:text-5xl">{t.serviciosTitulo}</h2>
             </div>
             <p className="text-lg leading-relaxed text-pretty text-muted lg:col-span-6 lg:col-start-7 lg:self-end">
-              Servicios especializados a medianas y grandes empresas, incluidos sus accionistas, en
-              sus desafíos de negocio.
+              {t.serviciosBajada}
             </p>
           </div>
 
@@ -123,9 +118,9 @@ export default function Home() {
 
       {/* Por qué KeyCapital */}
       <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-24">
-        <Eyebrow>Por qué KeyCapital</Eyebrow>
+        <Eyebrow>{t.porQue}</Eyebrow>
         <h2 className="mt-4 max-w-4xl font-display text-4xl leading-[1.1] text-balance md:text-5xl">
-          {valores.join(", ").replace(/, ([^,]+)$/, " y $1")}.
+          {valores.join(", ").replace(/, ([^,]+)$/, ` ${t.y} $1`)}.
         </h2>
         <div className="mt-14 grid gap-x-10 gap-y-10 md:grid-cols-3">
           {pilares.map((p) => (
@@ -142,18 +137,16 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-24">
           <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
             <div>
-              <Eyebrow>Experiencia</Eyebrow>
-              <h2 className="mt-4 font-display text-4xl leading-[1.1] text-balance md:text-5xl">
-                Transacciones recientes
-              </h2>
+              <Eyebrow>{t.experienciaEyebrow}</Eyebrow>
+              <h2 className="mt-4 font-display text-4xl leading-[1.1] text-balance md:text-5xl">{t.recientes}</h2>
             </div>
-            <Link href="/experiencia" className="text-sm text-ink underline underline-offset-4 hover:text-brand">
-              Ver las {transacciones.length} transacciones
+            <Link href={experiencia} className="text-sm text-ink underline underline-offset-4 hover:text-brand">
+              {t.verLasTransacciones(transacciones.length)}
             </Link>
           </div>
           <div className="mt-10 grid border-t border-l border-line md:grid-cols-2 lg:grid-cols-3">
             {recientes.map((d) => (
-              <DealCard key={`${d.cliente}-${d.anio}`} deal={d} />
+              <DealCard key={`${d.cliente}-${d.anio}`} deal={d} idioma={idioma} />
             ))}
           </div>
         </div>
@@ -164,18 +157,16 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-24">
           <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
             <div>
-              <Eyebrow>Equipo</Eyebrow>
-              <h2 className="mt-4 font-display text-4xl leading-[1.1] text-balance md:text-5xl">
-                Un equipo senior con más de 20 años de trayectoria
-              </h2>
+              <Eyebrow>{t.equipoEyebrow}</Eyebrow>
+              <h2 className="mt-4 font-display text-4xl leading-[1.1] text-balance md:text-5xl">{t.equipoTitulo}</h2>
             </div>
-            <Link href="/equipo" className="text-sm text-ink underline underline-offset-4 hover:text-brand">
-              Conocer al equipo
+            <Link href={paginaEquipo} className="text-sm text-ink underline underline-offset-4 hover:text-brand">
+              {t.conocerEquipo}
             </Link>
           </div>
           <div className="mt-12 grid gap-10 md:grid-cols-3">
             {equipo.map((p) => (
-              <Link key={p.nombre} href="/equipo" className="group border-t border-line pt-8">
+              <Link key={p.nombre} href={paginaEquipo} className="group border-t border-line pt-8">
                 <Image
                   src={p.foto}
                   alt={p.nombre}

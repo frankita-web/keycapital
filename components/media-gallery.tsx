@@ -2,16 +2,20 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
-import { medios } from "@/lib/data";
+import { contenido } from "@/lib/contenido";
+import { textos, type Idioma } from "@/lib/i18n";
 
-export function MediaGallery() {
+export function MediaGallery({ idioma }: { idioma: Idioma }) {
+  const t = textos[idioma].medios;
+  const { medios } = contenido(idioma);
+  const total = medios.length;
   const [abierto, setAbierto] = useState<number | null>(null);
 
   const cerrar = useCallback(() => setAbierto(null), []);
   const mover = useCallback(
     (paso: number) =>
-      setAbierto((i) => (i === null ? null : (i + paso + medios.length) % medios.length)),
-    [],
+      setAbierto((i) => (i === null ? null : (i + paso + total) % total)),
+    [total],
   );
 
   useEffect(() => {
@@ -79,7 +83,7 @@ export function MediaGallery() {
               onClick={cerrar}
               className="btn border border-white/30 hover:border-white"
             >
-              Cerrar ✕
+              {t.cerrar}
             </button>
           </div>
           <div className="relative flex-1" onClick={(e) => e.stopPropagation()}>
@@ -91,14 +95,14 @@ export function MediaGallery() {
               onClick={() => mover(-1)}
               className="btn border border-white/30 text-white hover:border-white"
             >
-              ← Anterior
+              {t.anterior}
             </button>
             <button
               type="button"
               onClick={() => mover(1)}
               className="btn border border-white/30 text-white hover:border-white"
             >
-              Siguiente →
+              {t.siguiente}
             </button>
           </div>
         </div>

@@ -3,31 +3,33 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import {
-  categorias,
-  clientes,
-  nombrePorLogo,
-  slugLogo,
-  transacciones,
-  type Categoria,
-  type Transaccion,
-} from "@/lib/data";
+import { contenido } from "@/lib/contenido";
+import { clientes, nombrePorLogo, slugLogo, type Categoria, type Transaccion } from "@/lib/data";
+import { ruta, textos, type Idioma } from "@/lib/i18n";
 
 /** Lee ?tipo= (pestaña) y ?empresa= (los logos del inicio enlazan aquí). */
-export function DealExplorer() {
+export function DealExplorer({ idioma }: { idioma: Idioma }) {
   const params = useSearchParams();
+  const { categorias } = contenido(idioma);
   const tipo = categorias.find((c) => c.id === params.get("tipo"))?.id ?? null;
   const empresa = clientes.find((c) => slugLogo(c.logo) === params.get("empresa")) ?? null;
-  return <DealExplorerView tipo={tipo} empresa={empresa} />;
+  return <DealExplorerView idioma={idioma} tipo={tipo} empresa={empresa} />;
 }
 
 export function DealExplorerView({
+  idioma,
   tipo,
   empresa,
 }: {
+  idioma: Idioma;
   tipo: Categoria | null;
   empresa: { nombre: string; logo: string } | null;
 }) {
+  const t = textos[idioma].experiencia;
+  const experiencia = ruta(idioma, "experiencia");
+  const { categorias, transacciones } = contenido(idioma);
+  const etiqueta = Object.fromEntries(categorias.map((c) => [c.id, c.label]));
+
   if (empresa) {
     const casos = transacciones
       .filter((t) => t.logos?.includes(empresa.logo))
@@ -45,14 +47,14 @@ export function DealExplorerView({
             />
           </div>
           <div className="flex-1">
-            <p className="label text-brand">Transacciones relacionadas</p>
+            <p className="label text-brand">{t.relacionadas}</p>
             <h2 className="mt-2 font-display text-3xl">{empresa.nombre}</h2>
           </div>
-          <Link href="/experiencia" scroll={false} className="btn border border-ink/20 hover:border-ink">
-            Ver toda la experiencia
+          <Link href={experiencia} scroll={false} className="btn border border-ink/20 hover:border-ink">
+            {t.verToda}
           </Link>
         </div>
-        <ListaCasos casos={casos} mostrarCategoria />
+        <ListaCasos casos={casos} etiqueta={etiqueta} mostrarCategoria />
       </div>
     );
   }
@@ -64,7 +66,7 @@ export function DealExplorerView({
     <div>
       <nav
         className="flex flex-wrap gap-x-8 gap-y-2 shadow-[inset_0_-1px_0_var(--color-line)]"
-        aria-label="Tipos de transacción"
+        aria-label={t.tipos}
       >
         {categorias.map((c) => {
           const total = transacciones.filter((t) => t.categoria === c.id).length;
@@ -72,7 +74,7 @@ export function DealExplorerView({
           return (
             <Link
               key={c.id}
-              href={`/experiencia?tipo=${c.id}`}
+              href={`${experiencia}?tipo=${c.id}`}
               scroll={false}
               aria-current={esActiva ? "page" : undefined}
               className={`flex items-baseline gap-2 border-b-2 pb-3 transition-colors md:pb-4 ${
@@ -85,14 +87,20 @@ export function DealExplorerView({
           );
         })}
       </nav>
-      <ListaCasos casos={casos} />
+      <ListaCasos casos={casos} etiqueta={etiqueta} />
     </div>
   );
 }
 
-const etiqueta = Object.fromEntries(categorias.map((c) => [c.id, c.label]));
-
-function ListaCasos({ casos, mostrarCategoria = false }: { casos: Transaccion[]; mostrarCategoria?: boolean }) {
+function ListaCasos({
+  casos,
+  etiqueta,
+  mostrarCategoria = false,
+}: {
+  casos: Transaccion[];
+  etiqueta: Record<string, string>;
+  mostrarCategoria?: boolean;
+}) {
   return (
     <ul className="divide-y divide-line border-b border-line">
       {casos.map((t) => (

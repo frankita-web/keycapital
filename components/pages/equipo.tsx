@@ -1,18 +1,16 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import { PageHero } from "@/components/page-hero";
-import { equipo } from "@/lib/data";
+import { contenido } from "@/lib/contenido";
+import { textos, type Idioma } from "@/lib/i18n";
 
-export const metadata: Metadata = {
-  title: "Equipo",
-  description: "Un equipo senior con más de 20 años en banca de inversión, finanzas corporativas y M&A.",
-};
+export function EquipoPage({ idioma }: { idioma: Idioma }) {
+  const t = textos[idioma].equipo;
+  const { equipo } = contenido(idioma);
 
-export default function EquipoPage() {
   return (
     <>
-      <PageHero eyebrow="Equipo" title="Un equipo senior con resultados concretos.">
-        Más de 20 años en banca de inversión, finanzas corporativas y M&A.
+      <PageHero eyebrow={t.eyebrow} title={t.titulo}>
+        {t.bajada}
       </PageHero>
 
       <section className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-24">

@@ -9,4 +9,5 @@ npm run build   # verificar antes de publicar
 ```
 
 - Contenido (equipo, transacciones, prensa, clientes, contacto): `lib/data.ts`
-- Páginas: `app/` · Componentes: `components/` · Imágenes: `public/`
+- Textos en ambos idiomas: `lib/i18n.ts` · Contenido en inglés: `lib/contenido.ts` (las transacciones y medios tienen su inglés al lado en `lib/data.ts`)
+- Rutas: español en `app/(es)/`, inglés en `app/(en)/en/` · Páginas: `components/pages/` · Componentes: `components/` · Imágenes: `public/`
