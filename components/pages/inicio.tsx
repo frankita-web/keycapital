@@ -7,7 +7,7 @@ import { Flecha } from "@/components/flecha";
 import { Eyebrow } from "@/components/page-hero";
 import { RankingPopup } from "@/components/ranking-popup";
 import { contenido } from "@/lib/contenido";
-import { ruta, textos, type Idioma } from "@/lib/i18n";
+import { ruta, rutaQueHacemos, textos, type Idioma } from "@/lib/i18n";
 
 export function InicioPage({ idioma }: { idioma: Idioma }) {
   const t = textos[idioma].inicio;
@@ -118,7 +118,11 @@ export function InicioPage({ idioma }: { idioma: Idioma }) {
       </section>
 
       {/* Servicios */}
-      <section className="border-y border-line bg-paper">
+      <section
+        id="que-hacemos"
+        data-menu={rutaQueHacemos(idioma)}
+        className="scroll-mt-[7.3rem] border-y border-line bg-paper"
+      >
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-24">
           <div className="grid gap-6 lg:grid-cols-12">
             <div className="lg:col-span-5">

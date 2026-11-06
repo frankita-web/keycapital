@@ -77,7 +77,7 @@ export function Header({ idioma }: { idioma: Idioma }) {
             <img src="/logo-white.svg" alt="KeyCapital" width={196} height={40} className="h-9 w-auto" />
           </Link>
 
-          <nav className="hidden h-full items-stretch gap-8 md:flex" aria-label={t.menuPrincipal}>
+          <nav className="hidden h-full items-stretch gap-8 lg:flex" aria-label={t.menuPrincipal}>
             {menu.map((item) => {
               const active = marcado === item.href;
               return (
@@ -99,7 +99,7 @@ export function Header({ idioma }: { idioma: Idioma }) {
 
           <button
             type="button"
-            className="flex size-11 items-center justify-center text-white md:hidden"
+            className="flex size-11 items-center justify-center text-white lg:hidden"
             aria-label={open ? t.cerrarMenu : t.abrirMenu}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
@@ -123,7 +123,7 @@ export function Header({ idioma }: { idioma: Idioma }) {
       {/* Menú móvil */}
       {open && (
         <nav
-          className="fixed inset-x-0 top-[7.25rem] bottom-0 overflow-y-auto bg-ink px-6 md:hidden"
+          className="fixed inset-x-0 top-[7.25rem] bottom-0 overflow-y-auto bg-ink px-6 lg:hidden"
           aria-label={t.menuMovil}
         >
           {menu.map((item) => (

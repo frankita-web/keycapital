@@ -22,10 +22,16 @@ export function rutaEquivalente(pathname: string, idioma: Idioma) {
   return rutas[pagina ?? "inicio"][idioma];
 }
 
-const paginasMenu: Pagina[] = ["inicio", "equipo", "experiencia", "medios", "contacto"];
+/** Sección de servicios dentro de Inicio. */
+export const rutaQueHacemos = (idioma: Idioma) => `${ruta(idioma, "inicio")}#que-hacemos`;
 
-export const navegacion = (idioma: Idioma) =>
-  paginasMenu.map((p) => ({ href: ruta(idioma, p), label: textos[idioma].menu[p] }));
+const paginasMenu: Pagina[] = ["equipo", "experiencia", "medios", "contacto"];
+
+export const navegacion = (idioma: Idioma) => [
+  { href: ruta(idioma, "inicio"), label: textos[idioma].menu.inicio },
+  { href: rutaQueHacemos(idioma), label: textos[idioma].inicio.serviciosEyebrow },
+  ...paginasMenu.map((p) => ({ href: ruta(idioma, p), label: textos[idioma].menu[p] })),
+];
 
 export const textos = {
   es: {
