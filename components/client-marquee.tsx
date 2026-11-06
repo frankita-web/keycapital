@@ -3,7 +3,7 @@ import Link from "next/link";
 import { clientes, slugLogo, tieneTransacciones } from "@/lib/data";
 import { ruta, textos, type Idioma } from "@/lib/i18n";
 
-const celda = "group flex h-24 w-44 shrink-0 items-center justify-center border-r border-line bg-white px-6";
+const celda = "group flex h-20 w-40 shrink-0 items-center justify-center border-r border-line bg-white px-6";
 
 /** Logos de clientes en movimiento continuo; se pausa al pasar el mouse. */
 export function ClientMarquee({ idioma }: { idioma: Idioma }) {
@@ -19,7 +19,7 @@ export function ClientMarquee({ idioma }: { idioma: Idioma }) {
                   alt={duplicado ? "" : c.nombre}
                   width={160}
                   height={96}
-                  className="max-h-12 w-auto object-contain mix-blend-multiply grayscale transition duration-300 group-hover:grayscale-0"
+                  className="max-h-11 w-auto object-contain mix-blend-multiply grayscale transition duration-300 group-hover:grayscale-0"
                 />
               );
               return (

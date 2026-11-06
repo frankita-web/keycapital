@@ -38,37 +38,36 @@ export function InicioPage({ idioma }: { idioma: Idioma }) {
 
       {/* Hero */}
       <section className="hero-vivo flex flex-col rounded-b-2xl bg-ink text-white">
-        {/* Ranking destacado */}
-        <div className="border-b border-white/10">
-          <a
-            href={ranking.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="entrada group mx-auto flex max-w-7xl flex-col gap-x-8 gap-y-2 px-6 py-6 md:py-3 lg:flex-row lg:items-center lg:px-10"
-          >
-            <p className="font-display text-3xl whitespace-nowrap">{ranking.categoria}</p>
-            <div className="lg:border-l lg:border-white/20 lg:pl-8">
-              <p className="text-sm font-semibold">
-                {ranking.organizacion} · Ranking {ranking.anio}
-              </p>
-              <p className="mt-1 text-sm text-white/70">{ranking.detalle}</p>
-            </div>
-            <span className="text-white/70 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-white lg:ml-auto">
-              <span className="sr-only">{t.verRanking}</span>
-              <Flecha />
-            </span>
-          </a>
-        </div>
-
-        <div className="mx-auto w-full max-w-7xl px-6 py-14 md:py-[clamp(1rem,3.5vh,2.5rem)] lg:px-10">
-          <div className="entrada entrada-2">
+        <div className="mx-auto w-full max-w-7xl px-6 py-14 md:py-[clamp(1.5rem,7vh,4.5rem)] lg:px-10">
+          <div className="entrada flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
             <Eyebrow light>{t.eyebrow}</Eyebrow>
+            {/* Ranking destacado */}
+            <a
+              href={ranking.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              title={ranking.detalle}
+              className="group inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/5 py-2 pr-3 pl-4 text-sm transition-colors hover:border-white/40 hover:bg-white/10"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true" className="size-3.5 fill-brand-light">
+                <path d="m12 2.5 2.9 6.2 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6L2.5 9.5l6.6-.8z" />
+              </svg>
+              <span className="font-display text-base leading-none">{ranking.categoria}</span>
+              <span className="h-3.5 w-px bg-white/20" />
+              <span className="text-white/70">
+                {ranking.organizacion} {ranking.anio}
+              </span>
+              <span className="sr-only">{t.verRanking}</span>
+              <span className="text-white/70 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-white">
+                <Flecha className="size-4" />
+              </span>
+            </a>
           </div>
-          <h1 className="entrada entrada-2 mt-4 max-w-6xl font-display text-[2.75rem] leading-[1.05] text-balance sm:text-6xl md:text-[clamp(2.5rem,7.5vh,4.5rem)]">
+          <h1 className="entrada entrada-2 mt-5 max-w-6xl font-display text-[2.75rem] leading-[1.05] text-balance sm:text-6xl md:text-[clamp(2.5rem,7.5vh,4.5rem)]">
             {t.titulo}
           </h1>
-          <p className="entrada entrada-3 mt-4 max-w-3xl text-lg leading-relaxed text-pretty text-white/70 md:text-base lg:text-lg">{t.bajada}</p>
-          <div className="entrada entrada-4 mt-6 flex flex-wrap gap-4">
+          <p className="entrada entrada-3 mt-5 max-w-4xl text-lg leading-relaxed text-pretty text-white/70 md:text-base lg:text-lg">{t.bajada}</p>
+          <div className="entrada entrada-4 mt-8 flex flex-wrap gap-4">
             <Link href={ruta(idioma, "contacto")} className="btn bg-white text-ink hover:bg-brand-light">
               {textos[idioma].general.contactanos}
             </Link>
@@ -96,7 +95,7 @@ export function InicioPage({ idioma }: { idioma: Idioma }) {
       </section>
 
       {/* Clientes */}
-      <section className="pt-5 pb-8">
+      <section className="pt-4 pb-8">
         <div className="mx-auto flex max-w-7xl items-baseline justify-between gap-4 px-6 lg:px-10">
           <h2 className="text-sm text-muted">{t.clientesTitulo}</h2>
           <Link
