@@ -9,9 +9,10 @@ import { ruta, textos, type Idioma } from "@/lib/i18n";
 
 export function InicioPage({ idioma }: { idioma: Idioma }) {
   const t = textos[idioma].inicio;
-  const { equipo, pilares, ranking, servicios, transacciones, valores } = contenido(idioma);
+  const { equipo, medios, pilares, ranking, servicios, transacciones, valores } = contenido(idioma);
   const experiencia = ruta(idioma, "experiencia");
   const paginaEquipo = ruta(idioma, "equipo");
+  const paginaMedios = ruta(idioma, "medios");
   const recientes = [...transacciones].sort((a, b) => b.anio - a.anio).slice(0, 6);
   const cifras = [
     { valor: "+20", label: t.cifraAnios },
@@ -144,28 +145,8 @@ export function InicioPage({ idioma }: { idioma: Idioma }) {
         </div>
       </section>
 
-      {/* Transacciones recientes */}
-      <section className="border-t border-line bg-paper">
-        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-24">
-          <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-            <div>
-              <Eyebrow>{t.experienciaEyebrow}</Eyebrow>
-              <h2 className="mt-4 font-display text-4xl leading-[1.1] text-balance md:text-5xl">{t.recientes}</h2>
-            </div>
-            <Link href={experiencia} className="text-sm text-ink underline underline-offset-4 hover:text-brand">
-              {t.verLasTransacciones(transacciones.length)}
-            </Link>
-          </div>
-          <div className="mt-10 grid border-t border-l border-line md:grid-cols-2 lg:grid-cols-3">
-            {recientes.map((d) => (
-              <DealCard key={`${d.cliente}-${d.anio}`} deal={d} idioma={idioma} />
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Equipo */}
-      <section className="border-t border-line">
+      <section data-menu={paginaEquipo} className="border-t border-line">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-24">
           <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
             <div>
@@ -188,6 +169,60 @@ export function InicioPage({ idioma }: { idioma: Idioma }) {
                 />
                 <p className="mt-6 font-display text-2xl group-hover:text-brand">{p.nombre}</p>
                 <p className="mt-1 text-sm text-muted">{p.cargo}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Transacciones recientes */}
+      <section data-menu={experiencia} className="border-t border-line bg-paper">
+        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-24">
+          <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+            <div>
+              <Eyebrow>{t.experienciaEyebrow}</Eyebrow>
+              <h2 className="mt-4 font-display text-4xl leading-[1.1] text-balance md:text-5xl">{t.recientes}</h2>
+            </div>
+            <Link href={experiencia} className="text-sm text-ink underline underline-offset-4 hover:text-brand">
+              {t.verLasTransacciones(transacciones.length)}
+            </Link>
+          </div>
+          <div className="mt-10 grid border-t border-l border-line md:grid-cols-2 lg:grid-cols-3">
+            {recientes.map((d) => (
+              <DealCard key={`${d.cliente}-${d.anio}`} deal={d} idioma={idioma} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Medios */}
+      <section data-menu={paginaMedios} className="border-t border-line">
+        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-24">
+          <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+            <div>
+              <Eyebrow>{textos[idioma].medios.eyebrow}</Eyebrow>
+              <h2 className="mt-4 font-display text-4xl leading-[1.1] text-balance md:text-5xl">
+                {textos[idioma].medios.titulo}
+              </h2>
+            </div>
+            <Link href={paginaMedios} className="text-sm text-ink underline underline-offset-4 hover:text-brand">
+              {t.verMedios}
+            </Link>
+          </div>
+          <div className="mt-10 grid border-t border-l border-line md:grid-cols-3">
+            {medios.slice(0, 3).map((m) => (
+              <Link key={m.imagen} href={paginaMedios} className="group border-r border-b border-line bg-white p-5">
+                <div className="relative aspect-[4/3] overflow-hidden border border-line bg-paper">
+                  <Image
+                    src={m.imagen}
+                    alt={m.titulo}
+                    fill
+                    sizes="(min-width: 768px) 33vw, 100vw"
+                    className="object-cover object-top"
+                  />
+                </div>
+                <p className="label mt-5 text-brand">{m.fuente}</p>
+                <h3 className="mt-2 font-display text-lg leading-snug text-balance group-hover:text-brand">{m.titulo}</h3>
               </Link>
             ))}
           </div>

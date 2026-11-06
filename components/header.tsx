@@ -11,10 +11,32 @@ export function Header({ idioma }: { idioma: Idioma }) {
   const t = textos[idioma].general;
   const menu = navegacion(idioma);
   const [open, setOpen] = useState(false);
+  const inicio = ruta(idioma, "inicio");
+  const [seccion, setSeccion] = useState<string>(inicio);
+  // En Inicio la rayita sigue a la sección que se está viendo; en el resto, a la página.
+  const marcado = pathname === inicio ? seccion : pathname;
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
   }, [open]);
+
+  useEffect(() => {
+    if (pathname !== inicio) return;
+    function medir() {
+      let actual: string = inicio;
+      document.querySelectorAll<HTMLElement>("[data-menu]").forEach((el) => {
+        if (el.getBoundingClientRect().top <= window.innerHeight * 0.6) actual = el.dataset.menu ?? actual;
+      });
+      setSeccion(actual);
+    }
+    medir();
+    window.addEventListener("scroll", medir, { passive: true });
+    window.addEventListener("resize", medir);
+    return () => {
+      window.removeEventListener("scroll", medir);
+      window.removeEventListener("resize", medir);
+    };
+  }, [pathname, inicio]);
 
   return (
     <header className="sticky top-0 z-50">
@@ -53,12 +75,12 @@ export function Header({ idioma }: { idioma: Idioma }) {
 
           <nav className="hidden h-full items-stretch gap-8 md:flex" aria-label={t.menuPrincipal}>
             {menu.map((item) => {
-              const active = pathname === item.href;
+              const active = marcado === item.href;
               return (
                 <Link
                   key={item.href}
                   href={item.href}
-                  aria-current={active ? "page" : undefined}
+                  aria-current={pathname === item.href ? "page" : undefined}
                   className={`flex items-center border-b-2 pt-0.5 text-sm transition-colors ${
                     active
                       ? "border-white text-white"
