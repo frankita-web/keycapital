@@ -19,22 +19,22 @@ export function Header({ idioma }: { idioma: Idioma }) {
   return (
     <header className="sticky top-0 z-50">
       {/* Barra superior */}
-      <div className="bg-ink text-white/70">
+      <div className="border-b border-line bg-white text-muted">
         <div className="mx-auto flex h-9 max-w-7xl items-center justify-end gap-6 px-6 text-xs lg:px-10">
-          <a href={contacto.telefonoHref} className="hidden hover:text-white sm:block">
+          <a href={contacto.telefonoHref} className="hidden hover:text-ink sm:block">
             {contacto.telefono}
           </a>
-          <a href={`mailto:${contacto.email}`} className="hidden hover:text-white sm:block">
+          <a href={`mailto:${contacto.email}`} className="hidden hover:text-ink sm:block">
             {contacto.email}
           </a>
           <span className="flex gap-3 font-semibold tracking-widest">
             {(["es", "en"] as const).map((i) =>
               i === idioma ? (
-                <span key={i} className="text-white">
+                <span key={i} className="text-brand">
                   {i.toUpperCase()}
                 </span>
               ) : (
-                <a key={i} href={rutaEquivalente(pathname, i)} lang={i} className="hover:text-white">
+                <a key={i} href={rutaEquivalente(pathname, i)} lang={i} className="hover:text-ink">
                   {i.toUpperCase()}
                 </a>
               ),

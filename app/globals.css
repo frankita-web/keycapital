@@ -1,44 +1,45 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-ink: #0b1f33;
-  --color-ink-2: #12293f;
+  --color-ink: #1b1d21;
+  --color-ink-2: #2a2d33;
   --color-brand: #0a71b3;
   --color-brand-light: #7fb8de;
   --color-paper: #f7f6f2;
-  --color-line: #dcd9d1;
+  --color-line: #e2e0da;
   --color-graphite: #4d4d4d;
-  --color-muted: #646b75;
+  --color-muted: #5f6368;
   --font-sans: var(--font-inter);
 }
 
 html {
-  /* El rebote del scroll muestra este color: igual a la barra superior y al footer */
-  background: var(--color-ink);
+  /* El rebote del scroll muestra este color */
+  background: var(--color-paper);
 }
 
 body {
-  background: white;
+  background: var(--color-paper);
   color: var(--color-ink);
 }
 
 ::selection {
-  background: var(--color-ink);
+  background: var(--color-brand);
   color: white;
 }
 
-/* Títulos: serif editorial (Newsreader) */
+/* Títulos y cifras: sans geométrica (Outfit) */
 @utility font-display {
-  font-family: var(--font-newsreader);
-  font-weight: 400;
-  letter-spacing: -0.02em;
+  font-family: var(--font-titulos);
+  font-weight: 500;
+  letter-spacing: -0.03em;
 }
 
-/* Etiqueta pequeña en mayúsculas sobre los títulos */
+/* Etiqueta en mayúsculas e itálica sobre los títulos */
 @utility label {
-  font-size: 0.6875rem;
+  font-size: 0.8125rem;
+  font-style: italic;
   font-weight: 600;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
 }
 

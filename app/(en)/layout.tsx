@@ -6,7 +6,7 @@ import { metaSitio } from "@/lib/i18n";
 export const metadata: Metadata = metaSitio("en");
 
 export const viewport: Viewport = {
-  themeColor: "#071523",
+  themeColor: "#f7f6f2",
 };
 
 export default function LayoutIngles({ children }: { children: ReactNode }) {
