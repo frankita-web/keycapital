@@ -1,10 +1,12 @@
-import { ContactForm } from "@/components/contact-form";
 import { PageHero } from "@/components/page-hero";
 import { contacto } from "@/lib/data";
 import { textos, type Idioma } from "@/lib/i18n";
 
+const enlace = "underline underline-offset-4 transition-colors hover:text-brand";
+
 export function ContactoPage({ idioma }: { idioma: Idioma }) {
   const t = textos[idioma].contacto;
+  const fila = "grid gap-1 sm:grid-cols-[7rem_1fr] sm:gap-4";
 
   return (
     <>
@@ -12,40 +14,38 @@ export function ContactoPage({ idioma }: { idioma: Idioma }) {
         {t.bajada}
       </PageHero>
 
-      <section className="mx-auto grid max-w-7xl gap-12 px-6 py-20 lg:grid-cols-12 lg:px-10 lg:py-28">
-        <div className="lg:col-span-7">
-          <div className="border border-line bg-white p-8 lg:p-12">
-            <ContactForm idioma={idioma} />
-          </div>
-        </div>
+      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-24">
+        <div className="max-w-2xl rounded-2xl border border-line bg-white p-8 lg:p-12">
+          <p className="font-display text-3xl leading-tight text-balance md:text-4xl">{t.pregunta}</p>
+          <p className="font-display text-3xl leading-tight text-balance text-muted md:text-4xl">{t.respuesta}</p>
 
-        <aside className="space-y-4 lg:col-span-4 lg:col-start-9">
-          <a
-            href={contacto.mapaUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="group block bg-ink p-8 text-white"
-          >
-            <p className="label text-brand-light">{t.oficina}</p>
-            <p className="mt-4 font-display text-2xl leading-tight text-balance">{t.direccion}</p>
-            <p className="mt-1 text-white/60">{contacto.comuna}</p>
-            <p className="mt-6 text-sm text-white/70 group-hover:text-white">{t.verMapa}</p>
-          </a>
-          <a
-            href={contacto.telefonoHref}
-            className="block border border-line bg-white p-8 transition-colors hover:border-ink"
-          >
-            <p className="label text-muted">{t.telefono}</p>
-            <p className="mt-4 font-display text-2xl text-balance">{contacto.telefono}</p>
-          </a>
-          <a
-            href={`mailto:${contacto.email}`}
-            className="block border border-line bg-white p-8 transition-colors hover:border-ink"
-          >
-            <p className="label text-muted">{t.correo}</p>
-            <p className="mt-4 font-display text-xl break-all text-balance">{contacto.email}</p>
-          </a>
-        </aside>
+          <dl className="mt-10 space-y-4 text-lg">
+            <div className={fila}>
+              <dt className="text-muted">{t.correo}</dt>
+              <dd>
+                <a href={`mailto:${contacto.email}`} className={`break-all ${enlace}`}>
+                  {contacto.email}
+                </a>
+              </dd>
+            </div>
+            <div className={fila}>
+              <dt className="text-muted">{t.telefono}</dt>
+              <dd>
+                <a href={contacto.telefonoHref} className={enlace}>
+                  {contacto.telefono}
+                </a>
+              </dd>
+            </div>
+            <div className={fila}>
+              <dt className="text-muted">{t.oficina}</dt>
+              <dd>
+                <a href={contacto.mapaUrl} target="_blank" rel="noreferrer" className={enlace}>
+                  {t.direccion}, {contacto.comuna}
+                </a>
+              </dd>
+            </div>
+          </dl>
+        </div>
       </section>
     </>
   );

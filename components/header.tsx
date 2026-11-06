@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { contacto } from "@/lib/data";
 import { navegacion, ruta, rutaEquivalente, textos, type Idioma } from "@/lib/i18n";
 
 export function Header({ idioma }: { idioma: Idioma }) {
@@ -43,12 +42,17 @@ export function Header({ idioma }: { idioma: Idioma }) {
       {/* Barra superior */}
       <div className="bg-ink text-white/70">
         <div className="mx-auto flex h-9 max-w-7xl items-center justify-end gap-6 px-6 text-xs lg:px-10">
-          <a href={contacto.telefonoHref} className="hidden hover:text-white sm:block">
-            {contacto.telefono}
-          </a>
-          <a href={`mailto:${contacto.email}`} className="hidden hover:text-white sm:block">
-            {contacto.email}
-          </a>
+          <Link
+            href={ruta(idioma, "contacto")}
+            aria-label={textos[idioma].menu.contacto}
+            title={textos[idioma].menu.contacto}
+            className="text-white/60 transition-colors hover:text-white"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true" className="size-4">
+              <rect x="3" y="5" width="18" height="14" rx="2" />
+              <path d="m3.5 7 8.5 6 8.5-6" />
+            </svg>
+          </Link>
           <span className="flex gap-3 font-semibold tracking-widest">
             {(["es", "en"] as const).map((i) =>
               i === idioma ? (
@@ -134,14 +138,6 @@ export function Header({ idioma }: { idioma: Idioma }) {
               {item.label}
             </Link>
           ))}
-          <div className="space-y-1 py-8 text-sm text-white/60">
-            <a href={contacto.telefonoHref} className="block">
-              {contacto.telefono}
-            </a>
-            <a href={`mailto:${contacto.email}`} className="block">
-              {contacto.email}
-            </a>
-          </div>
         </nav>
       )}
     </header>
