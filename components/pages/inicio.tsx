@@ -14,6 +14,7 @@ export function InicioPage({ idioma }: { idioma: Idioma }) {
   const recientes = [...transacciones].sort((a, b) => b.anio - a.anio).slice(0, 6);
   const cifras = [
     { valor: "+20", label: t.cifraAnios },
+    { valor: `${transacciones.length}`, label: t.cifraTransacciones },
     { valor: "4", label: t.cifraContinentes },
     { valor: t.cifraDesde, label: t.cifraIndependiente },
   ];
@@ -21,66 +22,53 @@ export function InicioPage({ idioma }: { idioma: Idioma }) {
   return (
     <>
       {/* Hero */}
-      <section className="border-b border-line">
+      <section className="bg-ink text-white">
         {/* Ranking destacado */}
-        <div className="border-b border-line">
+        <div className="border-b border-white/10">
           <a
             href={ranking.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="group mx-auto flex max-w-7xl flex-col gap-x-8 gap-y-2 px-6 py-5 lg:flex-row lg:items-center lg:px-10"
+            className="group mx-auto flex max-w-7xl flex-col gap-x-8 gap-y-2 px-6 py-6 lg:flex-row lg:items-center lg:px-10"
           >
-            <p className="font-display text-2xl whitespace-nowrap text-brand">{ranking.categoria}</p>
-            <div className="lg:border-l lg:border-line lg:pl-8">
+            <p className="font-display text-3xl whitespace-nowrap">{ranking.categoria}</p>
+            <div className="lg:border-l lg:border-white/20 lg:pl-8">
               <p className="text-sm font-semibold">
                 {ranking.organizacion} · Ranking {ranking.anio}
               </p>
-              <p className="mt-1 text-sm text-muted">{ranking.detalle}</p>
+              <p className="mt-1 text-sm text-white/70">{ranking.detalle}</p>
             </div>
-            <span className="text-sm text-muted underline underline-offset-4 group-hover:text-brand lg:ml-auto">
+            <span className="text-sm text-white/70 underline underline-offset-4 group-hover:text-white lg:ml-auto">
               {t.verRanking}
             </span>
           </a>
         </div>
 
-        <div className="mx-auto max-w-7xl px-6 pt-16 pb-16 lg:px-10 lg:pt-24 lg:pb-20">
-          <h1 className="text-lg leading-snug font-semibold uppercase italic md:text-2xl">
-            <span className="block text-brand">{t.titulo[0]}</span>
-            <span className="block">{t.titulo[1]}</span>
+        <div className="mx-auto max-w-7xl px-6 pt-20 pb-16 lg:px-10 lg:pt-28 lg:pb-20">
+          <Eyebrow light>{t.eyebrow}</Eyebrow>
+          <h1 className="mt-6 max-w-4xl font-display text-[2.75rem] leading-[1.05] text-balance sm:text-6xl lg:text-7xl">
+            {t.titulo}
           </h1>
-
-          <div className="mt-8 flex flex-col gap-x-10 gap-y-6 md:flex-row md:items-end lg:mt-10">
-            <p className="font-display text-[11rem] leading-[0.8] tracking-[-0.05em] text-brand tabular-nums sm:text-[16rem] lg:text-[24rem]">
-              {transacciones.length}
-            </p>
-            <p className="font-display text-5xl leading-[1.05] text-graphite md:text-6xl lg:pb-3 lg:text-7xl">
-              <span className="block">{t.cifraPrincipal[0]}</span>
-              <span className="block text-brand">{t.cifraPrincipal[1]}</span>
-            </p>
-          </div>
-
-          <div className="mt-16 grid gap-10 lg:mt-20 lg:grid-cols-12 lg:items-end">
-            <div className="lg:col-span-6">
-              <p className="text-lg leading-relaxed text-pretty">{t.bajada}</p>
-              <p className="mt-6 text-lg font-medium text-brand italic">{t.cierre}</p>
-            </div>
-            <div className="flex flex-wrap gap-4 lg:col-span-5 lg:col-start-8 lg:justify-end">
-              <Link href={ruta(idioma, "contacto")} className="btn bg-brand text-white hover:bg-ink">
-                {textos[idioma].general.contactanos}
-              </Link>
-              <Link href={experiencia} className="btn border border-ink/20 text-ink hover:border-ink">
-                {t.verExperiencia}
-              </Link>
-            </div>
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-pretty text-white/70">{t.bajada}</p>
+          <div className="mt-10 flex flex-wrap gap-4">
+            <Link href={ruta(idioma, "contacto")} className="btn bg-white text-ink hover:bg-brand-light">
+              {textos[idioma].general.contactanos}
+            </Link>
+            <Link href={experiencia} className="btn border border-white/30 text-white hover:border-white">
+              {t.verExperiencia}
+            </Link>
           </div>
         </div>
 
-        <div className="border-t border-line">
-          <dl className="mx-auto grid max-w-7xl px-6 sm:grid-cols-3 lg:px-10">
+        <div className="border-t border-white/10">
+          <dl className="mx-auto grid max-w-7xl grid-cols-2 gap-x-6 px-6 md:grid-cols-4 md:gap-x-0 lg:px-10">
             {cifras.map((c, i) => (
-              <div key={c.label} className={`py-8 sm:px-8 sm:first:pl-0 ${i > 0 ? "sm:border-l sm:border-line" : ""}`}>
-                <dd className="font-display text-4xl whitespace-nowrap text-brand tabular-nums lg:text-5xl">{c.valor}</dd>
-                <dt className="mt-2 text-sm text-muted">{c.label}</dt>
+              <div
+                key={c.label}
+                className={`py-8 md:px-8 md:first:pl-0 ${i > 0 ? "md:border-l md:border-white/10" : ""}`}
+              >
+                <dd className="font-display text-4xl whitespace-nowrap tabular-nums lg:text-5xl">{c.valor}</dd>
+                <dt className="mt-2 text-sm text-white/55">{c.label}</dt>
               </div>
             ))}
           </dl>

@@ -77,7 +77,7 @@ export function ContactForm({ idioma }: { idioma: Idioma }) {
         <p className="text-xs text-muted">{t.confidencial}</p>
         <button
           type="submit"
-          className="btn bg-brand text-white hover:bg-ink"
+          className="btn bg-ink text-white hover:bg-brand"
         >
           {t.enviar}
         </button>
