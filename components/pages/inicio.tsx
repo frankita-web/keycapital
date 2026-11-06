@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ClientMarquee } from "@/components/client-marquee";
 import { Contador } from "@/components/contador";
 import { DealCard } from "@/components/deal-card";
+import { Flecha } from "@/components/flecha";
 import { Eyebrow } from "@/components/page-hero";
 import { RankingPopup } from "@/components/ranking-popup";
 import { contenido } from "@/lib/contenido";
@@ -52,8 +53,9 @@ export function InicioPage({ idioma }: { idioma: Idioma }) {
               </p>
               <p className="mt-1 text-sm text-white/70">{ranking.detalle}</p>
             </div>
-            <span className="text-sm text-white/70 underline underline-offset-4 group-hover:text-white lg:ml-auto">
-              {t.verRanking}
+            <span className="text-white/70 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-white lg:ml-auto">
+              <span className="sr-only">{t.verRanking}</span>
+              <Flecha />
             </span>
           </a>
         </div>
@@ -98,11 +100,13 @@ export function InicioPage({ idioma }: { idioma: Idioma }) {
         <div className="mx-auto flex max-w-7xl items-baseline justify-between gap-4 px-6 lg:px-10">
           <h2 className="text-sm text-muted">{t.clientesTitulo}</h2>
           <Link
-            href={experiencia}
-            className="hidden text-sm text-ink underline underline-offset-4 hover:text-brand sm:inline"
-          >
-            {t.verTransacciones}
-          </Link>
+              href={experiencia}
+              aria-label={t.verTransacciones}
+              title={t.verTransacciones}
+              className="hidden sm:inline-flex w-fit text-ink transition-transform hover:translate-x-0.5 hover:-translate-y-0.5 hover:text-brand"
+            >
+              <Flecha />
+            </Link>
         </div>
         <div className="mt-4">
           <ClientMarquee idioma={idioma} />
@@ -158,8 +162,13 @@ export function InicioPage({ idioma }: { idioma: Idioma }) {
               <Eyebrow>{t.equipoEyebrow}</Eyebrow>
               <h2 className="mt-4 font-display text-4xl leading-[1.1] text-balance md:text-5xl">{t.equipoTitulo}</h2>
             </div>
-            <Link href={paginaEquipo} className="text-sm text-ink underline underline-offset-4 hover:text-brand">
-              {t.conocerEquipo}
+            <Link
+              href={paginaEquipo}
+              aria-label={t.conocerEquipo}
+              title={t.conocerEquipo}
+              className="inline-flex w-fit text-ink transition-transform hover:translate-x-0.5 hover:-translate-y-0.5 hover:text-brand"
+            >
+              <Flecha />
             </Link>
           </div>
           <div className="mt-12 grid gap-10 md:grid-cols-3">
@@ -188,8 +197,13 @@ export function InicioPage({ idioma }: { idioma: Idioma }) {
               <Eyebrow>{t.experienciaEyebrow}</Eyebrow>
               <h2 className="mt-4 font-display text-4xl leading-[1.1] text-balance md:text-5xl">{t.recientes}</h2>
             </div>
-            <Link href={experiencia} className="text-sm text-ink underline underline-offset-4 hover:text-brand">
-              {t.verLasTransacciones(transacciones.length)}
+            <Link
+              href={experiencia}
+              aria-label={t.verLasTransacciones(transacciones.length)}
+              title={t.verLasTransacciones(transacciones.length)}
+              className="inline-flex w-fit text-ink transition-transform hover:translate-x-0.5 hover:-translate-y-0.5 hover:text-brand"
+            >
+              <Flecha />
             </Link>
           </div>
           <div className="mt-10 grid border-t border-l border-line md:grid-cols-2 lg:grid-cols-3">
@@ -210,8 +224,13 @@ export function InicioPage({ idioma }: { idioma: Idioma }) {
                 {textos[idioma].medios.titulo}
               </h2>
             </div>
-            <Link href={paginaMedios} className="text-sm text-ink underline underline-offset-4 hover:text-brand">
-              {t.verMedios}
+            <Link
+              href={paginaMedios}
+              aria-label={t.verMedios}
+              title={t.verMedios}
+              className="inline-flex w-fit text-ink transition-transform hover:translate-x-0.5 hover:-translate-y-0.5 hover:text-brand"
+            >
+              <Flecha />
             </Link>
           </div>
           <div className="mt-10 grid border-t border-l border-line md:grid-cols-3">
