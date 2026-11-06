@@ -154,11 +154,16 @@ body {
   height: 130%;
   background: radial-gradient(closest-side, rgb(10 113 179 / 0.4), transparent);
   pointer-events: none;
+  z-index: 1;
   animation: brillo 16s ease-in-out infinite alternate;
 }
-.hero-vivo > * {
+.hero-vivo > :not(.hero-fondo) {
   position: relative;
   z-index: 1;
+}
+.hero-fondo {
+  position: absolute;
+  inset: 0;
 }
 
 /* Con animaciones reducidas en el equipo: solo aparecen suavemente, sin desplazarse */

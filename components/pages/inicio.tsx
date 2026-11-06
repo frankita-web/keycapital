@@ -38,6 +38,11 @@ export function InicioPage({ idioma }: { idioma: Idioma }) {
 
       {/* Hero */}
       <section className="hero-vivo flex flex-col rounded-b-2xl bg-ink text-white">
+        <div aria-hidden="true" className="hero-fondo">
+          <Image src="/edificios.jpg" alt="" fill priority sizes="100vw" className="object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-r from-ink/95 via-ink/85 to-ink/60" />
+        </div>
+
         <div className="mx-auto w-full max-w-7xl px-6 py-14 md:py-[clamp(1.5rem,7vh,4.5rem)] lg:px-10">
           <div className="entrada flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
             <Eyebrow light>{t.eyebrow}</Eyebrow>

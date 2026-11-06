@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { Inter, Newsreader } from "next/font/google";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
+import { VolverArriba } from "@/components/volver-arriba";
 import type { Idioma } from "@/lib/i18n";
 import "@/app/globals.css";
 
@@ -27,6 +28,7 @@ export function Sitio({ idioma, children }: { idioma: Idioma; children: ReactNod
         <Header idioma={idioma} />
         <main className="flex-1">{children}</main>
         <Footer idioma={idioma} />
+        <VolverArriba />
       </body>
     </html>
   );

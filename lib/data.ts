@@ -21,7 +21,7 @@ export const servicios = [
       "Acompañamos a accionistas en procesos de M&A de principio a fin: valorización, búsqueda de contrapartes, negociación y cierre.",
   },
   {
-    titulo: "Reestructuración de pasivos",
+    titulo: "Reestructuración de pasivos a largo plazo",
     descripcion:
       "Rediseñamos la estructura de deuda de largo plazo para dar holgura financiera y sostener el crecimiento del negocio.",
   },

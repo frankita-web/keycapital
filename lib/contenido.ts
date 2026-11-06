@@ -20,7 +20,7 @@ const ingles = {
         "We guide shareholders through M&A processes from start to finish: valuation, search for counterparties, negotiation and closing.",
     },
     {
-      titulo: "Debt restructuring",
+      titulo: "Long-term debt restructuring",
       descripcion:
         "We redesign long-term debt structures to provide financial headroom and sustain business growth.",
     },

@@ -66,7 +66,7 @@ export const textos = {
       cifraIndependiente: "Equipo independiente",
       clientesTitulo: "Empresas que han confiado en nosotros",
       verTransacciones: "Ver todas las transacciones",
-      serviciosEyebrow: "Servicios",
+      serviciosEyebrow: "Qué hacemos",
       serviciosTitulo: "Asesoría especializada en las decisiones clave de una empresa.",
       serviciosBajada:
         "Servicios especializados a medianas y grandes empresas, incluidos sus accionistas, en sus desafíos de negocio.",
@@ -161,7 +161,7 @@ export const textos = {
       cifraIndependiente: "Independent team",
       clientesTitulo: "Companies that have trusted us",
       verTransacciones: "View all transactions",
-      serviciosEyebrow: "Services",
+      serviciosEyebrow: "What we do",
       serviciosTitulo: "Specialized advice on a company's key decisions.",
       serviciosBajada:
         "Specialized services for medium and large companies, and their shareholders, in their business challenges.",
