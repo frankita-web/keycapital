@@ -35,7 +35,7 @@ export function InicioPage({ idioma }: { idioma: Idioma }) {
       />
 
       {/* Hero */}
-      <section className="flex flex-col rounded-b-2xl bg-ink text-white md:min-h-[calc(100svh-7.3125rem)]">
+      <section className="flex flex-col rounded-b-2xl bg-ink text-white">
         {/* Ranking destacado */}
         <div className="border-b border-white/10">
           <a
@@ -57,9 +57,9 @@ export function InicioPage({ idioma }: { idioma: Idioma }) {
           </a>
         </div>
 
-        <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-6 py-16 md:py-4 lg:px-10">
+        <div className="mx-auto w-full max-w-7xl px-6 py-14 md:py-[clamp(1.5rem,4.5vh,3rem)] lg:px-10">
           <Eyebrow light>{t.eyebrow}</Eyebrow>
-          <h1 className="mt-4 max-w-4xl font-display text-[2.75rem] leading-[1.05] text-balance sm:text-6xl md:text-[clamp(2.5rem,7.5vh,4.5rem)]">
+          <h1 className="mt-4 max-w-6xl font-display text-[2.75rem] leading-[1.05] text-balance sm:text-6xl md:text-[clamp(2.5rem,7.5vh,4.5rem)]">
             {t.titulo}
           </h1>
           <p className="mt-4 max-w-2xl text-lg leading-relaxed text-pretty text-white/70 md:text-base lg:text-lg">{t.bajada}</p>

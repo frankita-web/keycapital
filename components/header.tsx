@@ -56,7 +56,7 @@ export function Header({ idioma }: { idioma: Idioma }) {
                   {i.toUpperCase()}
                 </span>
               ) : (
-                <a key={i} href={rutaEquivalente(pathname, i)} lang={i} className="hover:text-white">
+                <a key={i} href={rutaEquivalente(pathname, i)} lang={i} className="text-white/35 transition-colors hover:text-white">
                   {i.toUpperCase()}
                 </a>
               ),
