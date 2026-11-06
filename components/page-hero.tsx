@@ -10,7 +10,7 @@ export function PageHero({
   children?: ReactNode;
 }) {
   return (
-    <section className="rounded-b-[2rem] bg-ink text-white lg:rounded-b-[3rem]">
+    <section className="rounded-b-2xl bg-ink text-white">
       <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-24">
         <p className="label text-brand-light">{eyebrow}</p>
         <h1 className="mt-5 max-w-3xl font-display text-5xl leading-[1.05] text-balance md:text-6xl">
