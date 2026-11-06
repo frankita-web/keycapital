@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ClientMarquee } from "@/components/client-marquee";
 import { DealCard } from "@/components/deal-card";
 import { Eyebrow } from "@/components/page-hero";
+import { RankingPopup } from "@/components/ranking-popup";
 import { contenido } from "@/lib/contenido";
 import { ruta, textos, type Idioma } from "@/lib/i18n";
 
@@ -21,6 +22,17 @@ export function InicioPage({ idioma }: { idioma: Idioma }) {
 
   return (
     <>
+      <RankingPopup
+        categoria={ranking.categoria}
+        organizacion={ranking.organizacion}
+        anio={ranking.anio}
+        intro={t.rankingIntro}
+        detalle={ranking.detalle}
+        url={ranking.url}
+        accion={t.verRanking}
+        cerrar={t.cerrar}
+      />
+
       {/* Hero */}
       <section className="bg-ink text-white">
         {/* Ranking destacado */}

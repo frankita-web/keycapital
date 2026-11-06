@@ -72,8 +72,9 @@ body {
 .marquee:hover .marquee-track {
   animation-play-state: paused;
 }
+/* Con animaciones reducidas en el equipo: siguen, pero a la mitad de velocidad (se pausan con el mouse) */
 @media (prefers-reduced-motion: reduce) {
   .marquee-track {
-    animation: none;
+    animation-duration: 160s;
   }
 }
