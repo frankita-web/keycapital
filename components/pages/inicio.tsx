@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ClientMarquee } from "@/components/client-marquee";
 import { DealCard } from "@/components/deal-card";
+import { LineaTiempo, type Paso } from "@/components/linea-tiempo";
 import { Eyebrow } from "@/components/page-hero";
 import { contenido } from "@/lib/contenido";
 import { ruta, textos, type Idioma } from "@/lib/i18n";
@@ -14,9 +15,44 @@ export function InicioPage({ idioma }: { idioma: Idioma }) {
   const recientes = [...transacciones].sort((a, b) => b.anio - a.anio).slice(0, 6);
   const cifras = [
     { valor: "+20", label: t.cifraAnios },
-    { valor: `${transacciones.length}`, label: t.cifraTransacciones },
     { valor: "4", label: t.cifraContinentes },
     { valor: t.cifraDesde, label: t.cifraIndependiente },
+  ];
+
+  const paginas = textos[idioma];
+  const pasos: Paso[] = [
+    {
+      id: "equipo",
+      etiqueta: paginas.menu.equipo,
+      titulo: paginas.equipo.titulo,
+      texto: paginas.equipo.bajada,
+      href: paginaEquipo,
+      accion: t.conocerEquipo,
+    },
+    {
+      id: "experiencia",
+      etiqueta: paginas.menu.experiencia,
+      titulo: paginas.experiencia.titulo,
+      texto: paginas.experiencia.bajada(transacciones.length),
+      href: experiencia,
+      accion: t.verExperiencia,
+    },
+    {
+      id: "medios",
+      etiqueta: paginas.menu.medios,
+      titulo: paginas.medios.titulo,
+      texto: paginas.medios.bajada,
+      href: ruta(idioma, "medios"),
+      accion: t.verMedios,
+    },
+    {
+      id: "contacto",
+      etiqueta: paginas.menu.contacto,
+      titulo: paginas.contacto.titulo,
+      texto: paginas.contacto.bajada,
+      href: ruta(idioma, "contacto"),
+      accion: paginas.general.contactanos,
+    },
   ];
 
   return (
@@ -44,28 +80,44 @@ export function InicioPage({ idioma }: { idioma: Idioma }) {
           </a>
         </div>
 
-        <div className="mx-auto max-w-7xl px-6 pt-20 pb-16 lg:px-10 lg:pt-28 lg:pb-20">
-          <Eyebrow light>{t.eyebrow}</Eyebrow>
-          <h1 className="mt-6 max-w-4xl font-display text-[2.75rem] leading-[1.05] text-balance sm:text-6xl lg:text-7xl">
-            {t.titulo}
+        <div className="mx-auto max-w-7xl px-6 pt-16 pb-16 lg:px-10 lg:pt-24 lg:pb-20">
+          <h1 className="font-display text-2xl leading-snug italic md:text-4xl">
+            <span className="block text-brand-light">{t.titulo[0]}</span>
+            <span className="block">{t.titulo[1]}</span>
           </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-pretty text-white/70">{t.bajada}</p>
-          <div className="mt-10 flex flex-wrap gap-4">
-            <Link href={ruta(idioma, "contacto")} className="btn bg-white text-ink hover:bg-brand-light">
-              {textos[idioma].general.contactanos}
-            </Link>
-            <Link href={experiencia} className="btn border border-white/30 text-white hover:border-white">
-              {t.verExperiencia}
-            </Link>
+
+          <div className="mt-14 flex flex-col gap-x-10 gap-y-4 md:flex-row md:items-end lg:mt-20">
+            <p className="font-display text-[12rem] leading-[0.8] tracking-[-0.04em] text-brand-light sm:text-[17rem] lg:text-[26rem]">
+              {transacciones.length}
+            </p>
+            <p className="font-display text-5xl leading-[1.05] md:text-6xl lg:pb-4 lg:text-7xl">
+              <span className="block">{t.cifraPrincipal[0]}</span>
+              <span className="block text-brand-light">{t.cifraPrincipal[1]}</span>
+            </p>
+          </div>
+
+          <div className="mt-14 grid gap-10 lg:mt-20 lg:grid-cols-12 lg:items-end">
+            <div className="lg:col-span-6">
+              <p className="text-lg leading-relaxed text-pretty text-white/70">{t.bajada}</p>
+              <p className="mt-5 font-display text-2xl text-brand-light italic">{t.cierre}</p>
+            </div>
+            <div className="flex flex-wrap gap-4 lg:col-span-5 lg:col-start-8 lg:justify-end">
+              <Link href={ruta(idioma, "contacto")} className="btn bg-white text-ink hover:bg-brand-light">
+                {textos[idioma].general.contactanos}
+              </Link>
+              <Link href={experiencia} className="btn border border-white/30 text-white hover:border-white">
+                {t.verExperiencia}
+              </Link>
+            </div>
           </div>
         </div>
 
         <div className="border-t border-white/10">
-          <dl className="mx-auto grid max-w-7xl grid-cols-2 gap-x-6 px-6 md:grid-cols-4 md:gap-x-0 lg:px-10">
+          <dl className="mx-auto grid max-w-7xl px-6 sm:grid-cols-3 lg:px-10">
             {cifras.map((c, i) => (
               <div
                 key={c.label}
-                className={`py-8 md:px-8 md:first:pl-0 ${i > 0 ? "md:border-l md:border-white/10" : ""}`}
+                className={`py-8 sm:px-8 sm:first:pl-0 ${i > 0 ? "sm:border-l sm:border-white/10" : ""}`}
               >
                 <dd className="font-display text-4xl whitespace-nowrap tabular-nums lg:text-5xl">{c.valor}</dd>
                 <dt className="mt-2 text-sm text-white/55">{c.label}</dt>
@@ -74,6 +126,9 @@ export function InicioPage({ idioma }: { idioma: Idioma }) {
           </dl>
         </div>
       </section>
+
+      {/* Línea de tiempo por los ítems del menú */}
+      <LineaTiempo titulo={t.lineaTitulo} pasos={pasos} />
 
       {/* Clientes */}
       <section className="py-20 lg:py-24">
@@ -117,18 +172,29 @@ export function InicioPage({ idioma }: { idioma: Idioma }) {
       </section>
 
       {/* Por qué KeyCapital */}
-      <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-24">
-        <Eyebrow>{t.porQue}</Eyebrow>
-        <h2 className="mt-4 max-w-4xl font-display text-4xl leading-[1.1] text-balance md:text-5xl">
-          {valores.join(", ").replace(/, ([^,]+)$/, ` ${t.y} $1`)}.
-        </h2>
-        <div className="mt-14 grid gap-x-10 gap-y-10 md:grid-cols-3">
-          {pilares.map((p) => (
-            <div key={p.titulo} className="border-t border-line pt-6">
-              <h3 className="text-base font-semibold text-balance">{p.titulo}</h3>
-              <p className="mt-3 leading-relaxed text-pretty text-muted">{p.descripcion}</p>
-            </div>
-          ))}
+      <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
+        <div className="grid gap-12 lg:grid-cols-12">
+          <div className="lg:sticky lg:top-44 lg:col-span-5 lg:self-start">
+            <Eyebrow>{t.porQue}</Eyebrow>
+            <h2 className="mt-4 font-display text-4xl leading-[1.1] text-balance md:text-5xl">
+              {valores.join(", ").replace(/, ([^,]+)$/, ` ${t.y} $1`)}.
+            </h2>
+          </div>
+          <div className="space-y-6 lg:col-span-6 lg:col-start-7">
+            {pilares.map((p, i) => (
+              <article
+                key={p.titulo}
+                className="flex min-h-[24rem] flex-col border border-line bg-paper p-8 lg:sticky lg:min-h-[28rem] lg:p-10"
+                style={{ top: `${10 + i * 2}rem` }}
+              >
+                <h3 className="font-display text-3xl leading-tight text-balance md:text-4xl">{p.titulo}</h3>
+                <p className="mt-5 leading-relaxed text-pretty text-muted">{p.descripcion}</p>
+                <p className="mt-auto self-end pt-8 font-display text-8xl leading-none text-brand lg:text-9xl">
+                  0{i + 1}
+                </p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
