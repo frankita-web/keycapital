@@ -17,7 +17,7 @@ export async function Footer({ idioma }: { idioma: Idioma }) {
   const direccion = textos[idioma].contacto.direccion;
 
   return (
-    <footer className="bg-ink text-white">
+    <footer className="rounded-t-2xl bg-ink text-white">
       <div className="mx-auto max-w-7xl px-6 py-14 lg:px-10 lg:py-16">
         <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
           <div>
