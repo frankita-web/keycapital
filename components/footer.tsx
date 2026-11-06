@@ -27,14 +27,9 @@ export async function Footer({ idioma }: { idioma: Idioma }) {
               {t.lema.join(" ")}
             </p>
           </div>
-          <div className="flex shrink-0 flex-wrap items-center gap-6">
-            <a href={contacto.telefonoHref} className={`text-sm ${enlace}`}>
-              {contacto.telefono}
-            </a>
-            <Link href={ruta(idioma, "contacto")} className="btn bg-white text-ink hover:bg-brand-light">
-              {textos[idioma].general.contactanos}
-            </Link>
-          </div>
+          <Link href={ruta(idioma, "contacto")} className="btn shrink-0 self-start bg-white text-ink hover:bg-brand-light md:self-end">
+            {textos[idioma].general.contactanos}
+          </Link>
         </div>
 
         <div className="mt-12 grid grid-cols-2 gap-x-8 gap-y-10 border-t border-white/10 pt-10 md:grid-cols-3">
@@ -73,6 +68,9 @@ export async function Footer({ idioma }: { idioma: Idioma }) {
               </a>
               <a href={`mailto:${contacto.email}`} className={`block ${enlace}`}>
                 {contacto.email}
+              </a>
+              <a href={contacto.telefonoHref} className={`block ${enlace}`}>
+                {contacto.telefono}
               </a>
             </address>
           </div>

@@ -10,14 +10,14 @@ export function PageHero({
   children?: ReactNode;
 }) {
   return (
-    <section className="rounded-b-2xl bg-ink text-white">
+    <section className="hero-vivo rounded-b-2xl bg-ink text-white">
       <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-24">
-        <p className="label text-brand-light">{eyebrow}</p>
-        <h1 className="mt-5 max-w-3xl font-display text-5xl leading-[1.05] text-balance md:text-6xl">
+        <p className="label entrada text-brand-light">{eyebrow}</p>
+        <h1 className="entrada entrada-2 mt-5 max-w-3xl font-display text-5xl leading-[1.05] text-balance md:text-6xl">
           {title}
         </h1>
         {children && (
-          <div className="mt-6 max-w-2xl text-lg leading-relaxed text-pretty text-white/70">{children}</div>
+          <div className="entrada entrada-3 mt-6 max-w-2xl text-lg leading-relaxed text-pretty text-white/70">{children}</div>
         )}
       </div>
     </section>

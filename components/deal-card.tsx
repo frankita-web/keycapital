@@ -7,7 +7,7 @@ import type { Idioma } from "@/lib/i18n";
 export function DealCard({ deal, idioma }: { deal: Transaccion; idioma: Idioma }) {
   const etiqueta = contenido(idioma).categorias.find((c) => c.id === deal.categoria)?.label;
   return (
-    <article className="flex h-full flex-col items-center border-r border-b border-line bg-white px-8 py-10 text-center">
+    <article className="relative flex h-full flex-col items-center border-r border-b border-line bg-white px-8 py-10 text-center transition duration-300 hover:z-10 hover:-translate-y-1 hover:shadow-lg">
       <p className="label text-muted">{etiqueta}</p>
       <div className="mt-8 flex h-14 items-center justify-center gap-5">
         {deal.logos ? (

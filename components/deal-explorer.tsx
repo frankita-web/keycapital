@@ -137,7 +137,7 @@ function ListaCasos({
           <li
             key={`${t.categoria}-${t.cliente}-${t.anio}`}
             data-caso
-            className="relative grid grid-cols-[1fr] gap-y-1 py-5 md:grid-cols-[4.5rem_6rem_1fr_9rem] md:gap-x-6 md:py-6"
+            className="group relative grid grid-cols-[1fr] gap-y-1 py-5 md:grid-cols-[4.5rem_6rem_1fr_9rem] md:gap-x-6 md:py-6"
           >
             <span
               aria-hidden="true"
@@ -164,7 +164,7 @@ function ListaCasos({
                 />
               ))}
             </div>
-            <div>
+            <div className="origin-left transition-transform duration-300 group-hover:scale-[1.03]">
               {mostrarCategoria && <p className="label mb-1 text-muted">{etiqueta[t.categoria]}</p>}
               <h3 className="font-display text-lg leading-7">{t.cliente}</h3>
               <p className="max-w-xl text-sm leading-relaxed text-pretty text-muted">{t.detalle}</p>

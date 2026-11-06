@@ -3,26 +3,23 @@ import Link from "next/link";
 import { clientes, slugLogo, tieneTransacciones } from "@/lib/data";
 import { ruta, textos, type Idioma } from "@/lib/i18n";
 
-const celda = "group flex h-28 w-48 shrink-0 items-center justify-center border-r border-line bg-white px-7";
+const celda = "group flex h-24 w-44 shrink-0 items-center justify-center border-r border-line bg-white px-6";
 
 /** Logos de clientes en movimiento continuo; se pausa al pasar el mouse. */
 export function ClientMarquee({ idioma }: { idioma: Idioma }) {
   const t = textos[idioma].inicio;
-  const filas = [clientes.slice(0, 20), clientes.slice(20)];
   return (
-    <div className="marquee space-y-px border-y border-line bg-line">
-      {filas.map((fila, i) => (
-        <div key={i} className="overflow-hidden bg-white">
-          <ul className={`marquee-track flex w-max ${i === 1 ? "marquee-reverse" : ""}`}>
-            {[...fila, ...fila].map((c, j) => {
-              const duplicado = j >= fila.length;
+    <div className="marquee overflow-hidden border-y border-line bg-white">
+          <ul className="marquee-track flex w-max">
+            {[...clientes, ...clientes].map((c, j) => {
+              const duplicado = j >= clientes.length;
               const logo = (
                 <Image
                   src={`/clientes/${c.logo}`}
                   alt={duplicado ? "" : c.nombre}
                   width={160}
                   height={96}
-                  className="max-h-14 w-auto object-contain mix-blend-multiply grayscale transition duration-300 group-hover:grayscale-0"
+                  className="max-h-12 w-auto object-contain mix-blend-multiply grayscale transition duration-300 group-hover:grayscale-0"
                 />
               );
               return (
@@ -43,8 +40,6 @@ export function ClientMarquee({ idioma }: { idioma: Idioma }) {
               );
             })}
           </ul>
-        </div>
-      ))}
     </div>
   );
 }

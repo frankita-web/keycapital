@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ClientMarquee } from "@/components/client-marquee";
+import { Contador } from "@/components/contador";
 import { DealCard } from "@/components/deal-card";
 import { Eyebrow } from "@/components/page-hero";
 import { RankingPopup } from "@/components/ranking-popup";
@@ -35,14 +36,14 @@ export function InicioPage({ idioma }: { idioma: Idioma }) {
       />
 
       {/* Hero */}
-      <section className="flex flex-col rounded-b-2xl bg-ink text-white">
+      <section className="hero-vivo flex flex-col rounded-b-2xl bg-ink text-white">
         {/* Ranking destacado */}
         <div className="border-b border-white/10">
           <a
             href={ranking.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="group mx-auto flex max-w-7xl flex-col gap-x-8 gap-y-2 px-6 py-6 md:py-3 lg:flex-row lg:items-center lg:px-10"
+            className="entrada group mx-auto flex max-w-7xl flex-col gap-x-8 gap-y-2 px-6 py-6 md:py-3 lg:flex-row lg:items-center lg:px-10"
           >
             <p className="font-display text-3xl whitespace-nowrap">{ranking.categoria}</p>
             <div className="lg:border-l lg:border-white/20 lg:pl-8">
@@ -57,13 +58,15 @@ export function InicioPage({ idioma }: { idioma: Idioma }) {
           </a>
         </div>
 
-        <div className="mx-auto w-full max-w-7xl px-6 py-14 md:py-[clamp(1.5rem,4.5vh,3rem)] lg:px-10">
-          <Eyebrow light>{t.eyebrow}</Eyebrow>
-          <h1 className="mt-4 max-w-6xl font-display text-[2.75rem] leading-[1.05] text-balance sm:text-6xl md:text-[clamp(2.5rem,7.5vh,4.5rem)]">
+        <div className="mx-auto w-full max-w-7xl px-6 py-14 md:py-[clamp(1rem,3.5vh,2.5rem)] lg:px-10">
+          <div className="entrada entrada-2">
+            <Eyebrow light>{t.eyebrow}</Eyebrow>
+          </div>
+          <h1 className="entrada entrada-2 mt-4 max-w-6xl font-display text-[2.75rem] leading-[1.05] text-balance sm:text-6xl md:text-[clamp(2.5rem,7.5vh,4.5rem)]">
             {t.titulo}
           </h1>
-          <p className="mt-4 max-w-2xl text-lg leading-relaxed text-pretty text-white/70 md:text-base lg:text-lg">{t.bajada}</p>
-          <div className="mt-6 flex flex-wrap gap-4">
+          <p className="entrada entrada-3 mt-4 max-w-3xl text-lg leading-relaxed text-pretty text-white/70 md:text-base lg:text-lg">{t.bajada}</p>
+          <div className="entrada entrada-4 mt-6 flex flex-wrap gap-4">
             <Link href={ruta(idioma, "contacto")} className="btn bg-white text-ink hover:bg-brand-light">
               {textos[idioma].general.contactanos}
             </Link>
@@ -73,14 +76,16 @@ export function InicioPage({ idioma }: { idioma: Idioma }) {
           </div>
         </div>
 
-        <div className="border-t border-white/10">
+        <div className="entrada entrada-5 border-t border-white/10">
           <dl className="mx-auto grid max-w-7xl grid-cols-2 gap-x-6 px-6 md:grid-cols-4 md:gap-x-0 lg:px-10">
             {cifras.map((c, i) => (
               <div
                 key={c.label}
                 className={`py-6 md:px-8 md:py-4 md:first:pl-0 ${i > 0 ? "md:border-l md:border-white/10" : ""}`}
               >
-                <dd className="font-display text-4xl whitespace-nowrap tabular-nums">{c.valor}</dd>
+                <dd className="font-display text-4xl whitespace-nowrap tabular-nums">
+                  <Contador valor={c.valor} />
+                </dd>
                 <dt className="mt-2 text-sm text-white/55">{c.label}</dt>
               </div>
             ))}
@@ -89,17 +94,17 @@ export function InicioPage({ idioma }: { idioma: Idioma }) {
       </section>
 
       {/* Clientes */}
-      <section className="py-20 lg:py-24">
-        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-4 px-6 sm:flex-row sm:items-end lg:px-10">
-          <div>
-            <Eyebrow>{t.clientesEyebrow}</Eyebrow>
-            <h2 className="mt-4 font-display text-4xl leading-[1.1] text-balance md:text-5xl">{t.clientesTitulo}</h2>
-          </div>
-          <Link href={experiencia} className="text-sm text-ink underline underline-offset-4 hover:text-brand">
+      <section className="pt-5 pb-8">
+        <div className="mx-auto flex max-w-7xl items-baseline justify-between gap-4 px-6 lg:px-10">
+          <h2 className="text-sm text-muted">{t.clientesTitulo}</h2>
+          <Link
+            href={experiencia}
+            className="hidden text-sm text-ink underline underline-offset-4 hover:text-brand sm:inline"
+          >
             {t.verTransacciones}
           </Link>
         </div>
-        <div className="mt-10">
+        <div className="mt-4">
           <ClientMarquee idioma={idioma} />
         </div>
       </section>
@@ -165,7 +170,7 @@ export function InicioPage({ idioma }: { idioma: Idioma }) {
                   alt={p.nombre}
                   width={170}
                   height={170}
-                  className="size-24 rounded-full grayscale transition group-hover:grayscale-0"
+                  className="size-24 rounded-full grayscale transition duration-500 group-hover:scale-105 group-hover:grayscale-0"
                 />
                 <p className="mt-6 font-display text-2xl group-hover:text-brand">{p.nombre}</p>
                 <p className="mt-1 text-sm text-muted">{p.cargo}</p>
@@ -211,14 +216,14 @@ export function InicioPage({ idioma }: { idioma: Idioma }) {
           </div>
           <div className="mt-10 grid border-t border-l border-line md:grid-cols-3">
             {medios.slice(0, 3).map((m) => (
-              <Link key={m.imagen} href={paginaMedios} className="group border-r border-b border-line bg-white p-5">
+              <Link key={m.imagen} href={paginaMedios} className="group relative border-r border-b border-line bg-white p-5 transition duration-300 hover:z-10 hover:-translate-y-1 hover:shadow-lg">
                 <div className="relative aspect-[4/3] overflow-hidden border border-line bg-paper">
                   <Image
                     src={m.imagen}
                     alt={m.titulo}
                     fill
                     sizes="(min-width: 768px) 33vw, 100vw"
-                    className="object-cover object-top"
+                    className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
                 <p className="label mt-5 text-brand">{m.fuente}</p>
