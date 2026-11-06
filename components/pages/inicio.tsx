@@ -34,14 +34,14 @@ export function InicioPage({ idioma }: { idioma: Idioma }) {
       />
 
       {/* Hero */}
-      <section className="rounded-b-2xl bg-ink text-white">
+      <section className="flex flex-col rounded-b-2xl bg-ink text-white md:min-h-[calc(100svh-7.3125rem)]">
         {/* Ranking destacado */}
         <div className="border-b border-white/10">
           <a
             href={ranking.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="group mx-auto flex max-w-7xl flex-col gap-x-8 gap-y-2 px-6 py-6 lg:flex-row lg:items-center lg:px-10"
+            className="group mx-auto flex max-w-7xl flex-col gap-x-8 gap-y-2 px-6 py-6 md:py-3 lg:flex-row lg:items-center lg:px-10"
           >
             <p className="font-display text-3xl whitespace-nowrap">{ranking.categoria}</p>
             <div className="lg:border-l lg:border-white/20 lg:pl-8">
@@ -56,13 +56,13 @@ export function InicioPage({ idioma }: { idioma: Idioma }) {
           </a>
         </div>
 
-        <div className="mx-auto max-w-7xl px-6 pt-20 pb-16 lg:px-10 lg:pt-28 lg:pb-20">
+        <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-6 py-16 md:py-4 lg:px-10">
           <Eyebrow light>{t.eyebrow}</Eyebrow>
-          <h1 className="mt-6 max-w-4xl font-display text-[2.75rem] leading-[1.05] text-balance sm:text-6xl lg:text-7xl">
+          <h1 className="mt-4 max-w-4xl font-display text-[2.75rem] leading-[1.05] text-balance sm:text-6xl md:text-[clamp(2.5rem,7.5vh,4.5rem)]">
             {t.titulo}
           </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-pretty text-white/70">{t.bajada}</p>
-          <div className="mt-10 flex flex-wrap gap-4">
+          <p className="mt-4 max-w-2xl text-lg leading-relaxed text-pretty text-white/70 md:text-base lg:text-lg">{t.bajada}</p>
+          <div className="mt-6 flex flex-wrap gap-4">
             <Link href={ruta(idioma, "contacto")} className="btn bg-white text-ink hover:bg-brand-light">
               {textos[idioma].general.contactanos}
             </Link>
@@ -77,9 +77,9 @@ export function InicioPage({ idioma }: { idioma: Idioma }) {
             {cifras.map((c, i) => (
               <div
                 key={c.label}
-                className={`py-8 md:px-8 md:first:pl-0 ${i > 0 ? "md:border-l md:border-white/10" : ""}`}
+                className={`py-6 md:px-8 md:py-4 md:first:pl-0 ${i > 0 ? "md:border-l md:border-white/10" : ""}`}
               >
-                <dd className="font-display text-4xl whitespace-nowrap tabular-nums lg:text-5xl">{c.valor}</dd>
+                <dd className="font-display text-4xl whitespace-nowrap tabular-nums">{c.valor}</dd>
                 <dt className="mt-2 text-sm text-white/55">{c.label}</dt>
               </div>
             ))}
