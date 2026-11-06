@@ -115,7 +115,7 @@ function ListaCasos({
       const llenado = Math.min(height, Math.max(0, window.innerHeight * 0.6 - top));
       const filas = Array.from(el.querySelectorAll<HTMLElement>("[data-caso]"));
       setAvance(height ? llenado / height : 0);
-      setMarcados(filas.filter((f) => f.offsetTop + 36 <= llenado).length);
+      setMarcados(filas.filter((f) => f.offsetTop + 30 <= llenado).length);
     }
     medir();
     window.addEventListener("scroll", medir, { passive: true });
@@ -127,8 +127,8 @@ function ListaCasos({
   }, []);
 
   return (
-    <ul ref={lista} className="relative border-b border-line pl-8 md:pl-12">
-      <li aria-hidden="true" className="absolute inset-y-0 left-[7px] w-0.5 bg-line">
+    <ul ref={lista} className="relative mt-4 pl-7 md:pl-10">
+      <li aria-hidden="true" className="absolute inset-y-0 left-[3.5px] w-px bg-line">
         <span className="block w-full bg-brand" style={{ height: `${avance * 100}%` }} />
       </li>
       {casos.map((t, i) => {
@@ -137,22 +137,22 @@ function ListaCasos({
           <li
             key={`${t.categoria}-${t.cliente}-${t.anio}`}
             data-caso
-            className="relative grid grid-cols-[1fr] gap-x-6 gap-y-2 border-b border-line py-7 last:border-b-0 md:grid-cols-[5rem_8rem_1fr_11rem] md:items-center md:gap-x-8"
+            className="relative grid grid-cols-[1fr] gap-y-1 py-5 md:grid-cols-[4.5rem_6rem_1fr_9rem] md:gap-x-6 md:py-6"
           >
             <span
               aria-hidden="true"
-              className={`absolute top-9 -left-8 size-4 rounded-full border-2 transition-colors md:top-1/2 md:-left-12 md:-translate-y-1/2 ${
-                marcado ? "border-brand bg-brand" : "border-line bg-white"
+              className={`absolute top-[30px] -left-7 size-2 rounded-full transition-colors md:top-[34px] md:-left-10 ${
+                marcado ? "bg-brand" : "bg-line"
               }`}
             />
             <span
-              className={`font-display text-2xl tabular-nums transition-colors md:text-3xl ${
-                marcado ? "text-brand" : "text-ink/40"
+              className={`font-display text-xl leading-7 tabular-nums transition-colors ${
+                marcado ? "text-ink" : "text-ink/35"
               }`}
             >
               {t.anio}
             </span>
-            <div className="hidden h-12 items-center gap-3 md:flex">
+            <div className="hidden h-8 items-center gap-2 md:flex">
               {t.logos?.slice(0, 2).map((logo) => (
                 <Image
                   key={logo}
@@ -160,16 +160,16 @@ function ListaCasos({
                   alt={nombrePorLogo[logo] ?? ""}
                   width={120}
                   height={72}
-                  className="max-h-12 w-auto max-w-16 object-contain mix-blend-multiply"
+                  className="max-h-8 w-auto max-w-20 object-contain mix-blend-multiply"
                 />
               ))}
             </div>
             <div>
-              {mostrarCategoria && <p className="label mb-1 text-brand">{etiqueta[t.categoria]}</p>}
-              <h3 className="font-display text-xl leading-snug">{t.cliente}</h3>
-              <p className="mt-1 text-sm leading-relaxed text-pretty text-muted">{t.detalle}</p>
+              {mostrarCategoria && <p className="label mb-1 text-muted">{etiqueta[t.categoria]}</p>}
+              <h3 className="font-display text-lg leading-7">{t.cliente}</h3>
+              <p className="max-w-xl text-sm leading-relaxed text-pretty text-muted">{t.detalle}</p>
             </div>
-            <p className="text-sm font-semibold text-ink md:text-right">{t.monto ?? ""}</p>
+            <p className="text-sm leading-7 text-ink/70 md:text-right">{t.monto ?? ""}</p>
           </li>
         );
       })}
