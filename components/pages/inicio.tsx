@@ -34,7 +34,7 @@ export function InicioPage({ idioma }: { idioma: Idioma }) {
       />
 
       {/* Hero */}
-      <section className="bg-ink text-white">
+      <section className="rounded-b-[2rem] bg-ink text-white lg:rounded-b-[3rem]">
         {/* Ranking destacado */}
         <div className="border-b border-white/10">
           <a

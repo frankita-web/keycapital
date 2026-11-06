@@ -44,11 +44,11 @@ export function Header({ idioma }: { idioma: Idioma }) {
       </div>
 
       {/* Navegación principal */}
-      <div className="border-b border-line bg-white">
+      <div className="border-b border-white/10 bg-ink">
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-10">
           <Link href={ruta(idioma, "inicio")} aria-label={t.inicioAria} onClick={() => setOpen(false)}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logo.svg" alt="KeyCapital" width={196} height={40} className="h-9 w-auto" />
+            <img src="/logo-white.svg" alt="KeyCapital" width={196} height={40} className="h-9 w-auto" />
           </Link>
 
           <nav className="hidden h-full items-stretch gap-8 md:flex" aria-label={t.menuPrincipal}>
@@ -61,8 +61,8 @@ export function Header({ idioma }: { idioma: Idioma }) {
                   aria-current={active ? "page" : undefined}
                   className={`flex items-center border-b-2 pt-0.5 text-sm transition-colors ${
                     active
-                      ? "border-ink text-ink"
-                      : "border-transparent text-ink/60 hover:text-ink"
+                      ? "border-white text-white"
+                      : "border-transparent text-white/60 hover:text-white"
                   }`}
                 >
                   {item.label}
@@ -73,7 +73,7 @@ export function Header({ idioma }: { idioma: Idioma }) {
 
           <button
             type="button"
-            className="flex size-11 items-center justify-center text-ink md:hidden"
+            className="flex size-11 items-center justify-center text-white md:hidden"
             aria-label={open ? t.cerrarMenu : t.abrirMenu}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
@@ -97,7 +97,7 @@ export function Header({ idioma }: { idioma: Idioma }) {
       {/* Menú móvil */}
       {open && (
         <nav
-          className="fixed inset-x-0 top-[7.25rem] bottom-0 overflow-y-auto bg-white px-6 md:hidden"
+          className="fixed inset-x-0 top-[7.25rem] bottom-0 overflow-y-auto bg-ink px-6 md:hidden"
           aria-label={t.menuMovil}
         >
           {menu.map((item) => (
@@ -105,14 +105,14 @@ export function Header({ idioma }: { idioma: Idioma }) {
               key={item.href}
               href={item.href}
               onClick={() => setOpen(false)}
-              className={`block border-b border-line py-5 text-lg ${
-                pathname === item.href ? "text-brand" : "text-ink"
+              className={`block border-b border-white/10 py-5 text-lg ${
+                pathname === item.href ? "text-brand-light" : "text-white"
               }`}
             >
               {item.label}
             </Link>
           ))}
-          <div className="space-y-1 py-8 text-sm text-muted">
+          <div className="space-y-1 py-8 text-sm text-white/60">
             <a href={contacto.telefonoHref} className="block">
               {contacto.telefono}
             </a>
