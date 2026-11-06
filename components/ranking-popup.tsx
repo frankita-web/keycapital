@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { Modal } from "@/components/modal";
 
 const CLAVE = "keycapital-popup-ranking-visto";
 
@@ -25,7 +26,7 @@ export function RankingPopup({
   cerrar: string;
 }) {
   const [abierto, setAbierto] = useState(false);
-  const botonCerrar = useRef<HTMLButtonElement>(null);
+  const cerrarPopup = useCallback(() => setAbierto(false), []);
 
   useEffect(() => {
     try {
@@ -39,38 +40,16 @@ export function RankingPopup({
 
   useEffect(() => {
     if (!abierto) return;
-    botonCerrar.current?.focus();
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setAbierto(false);
-    };
-    document.body.style.overflow = "hidden";
-    window.addEventListener("keydown", onKey);
     try {
       sessionStorage.setItem(CLAVE, "1");
     } catch {
       // Sin acceso al almacenamiento: volverá a aparecer en la próxima carga.
     }
-    return () => {
-      document.body.style.overflow = "";
-      window.removeEventListener("keydown", onKey);
-    };
   }, [abierto]);
 
-  if (!abierto) return null;
-
   return (
-    <div
-      className="fixed inset-0 z-[60] flex items-center justify-center overflow-y-auto bg-ink/60 p-4 sm:p-6"
-      onClick={() => setAbierto(false)}
-    >
-      <div
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="popup-ranking-titulo"
-        className="relative w-full max-w-md bg-white shadow-2xl"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="flex flex-col justify-center px-8 py-14 text-center sm:px-12">
+    <Modal abierto={abierto} onCerrar={cerrarPopup} tituloId="popup-ranking-titulo" cerrar={cerrar}>
+      <div className="flex flex-col justify-center px-8 py-14 text-center sm:px-12">
           <p className="label text-brand">
             {organizacion} · {anio}
           </p>
@@ -88,17 +67,6 @@ export function RankingPopup({
             {accion}
           </a>
         </div>
-
-        <button
-          ref={botonCerrar}
-          type="button"
-          onClick={() => setAbierto(false)}
-          aria-label={cerrar}
-          className="absolute top-4 right-4 flex size-9 items-center justify-center rounded-full bg-ink text-white transition-colors hover:bg-brand"
-        >
-          ✕
-        </button>
-      </div>
-    </div>
+    </Modal>
   );
 }

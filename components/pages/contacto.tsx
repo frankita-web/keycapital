@@ -1,3 +1,4 @@
+import { ContactoPopup } from "@/components/contacto-popup";
 import { PageHero } from "@/components/page-hero";
 import { contacto } from "@/lib/data";
 import { textos, type Idioma } from "@/lib/i18n";
@@ -45,6 +46,8 @@ export function ContactoPage({ idioma }: { idioma: Idioma }) {
               </dd>
             </div>
           </dl>
+
+          <ContactoPopup idioma={idioma} />
         </div>
       </section>
     </>
