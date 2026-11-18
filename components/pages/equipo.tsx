@@ -9,11 +9,7 @@ export function EquipoPage({ idioma }: { idioma: Idioma }) {
 
   return (
     <>
-      <PageHero
-        eyebrow={t.eyebrow}
-        title={t.titulo}
-        fondo={{ src: "/equipo/socios-df-2020.jpg", credito: textos[idioma].inicio.fotoSocios }}
-      >
+      <PageHero eyebrow={t.eyebrow} title={t.titulo}>
         {t.bajada}
       </PageHero>
 
