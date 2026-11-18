@@ -212,3 +212,24 @@ body {
   padding-bottom: 0.08em;
   display: inline-block;
 }
+
+/* Líneas del mapa de la red: se dibujan al llegar a la sección */
+@keyframes dibujar {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.trazo {
+  stroke-dasharray: 1;
+  stroke-linecap: round;
+}
+@supports (animation-timeline: view()) {
+  .trazo {
+    animation: dibujar linear both;
+    animation-timeline: view();
+    animation-range: entry 20% cover 45%;
+  }
+}

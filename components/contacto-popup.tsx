@@ -70,9 +70,10 @@ export function ContactoPopup({ idioma, flotante = false }: { idioma: Idioma; fl
       <Modal abierto={abierto} onCerrar={cerrarPopup} tituloId="popup-contacto-titulo" cerrar={t.formCerrar}>
         <form onSubmit={onSubmit} className="px-6 py-10 sm:px-10">
           <p className="label text-center text-brand">KeyCapital</p>
-          <h2 id="popup-contacto-titulo" className="mt-4 text-center font-display text-4xl leading-tight text-balance">
-            {t.formTitulo}
+          <h2 id="popup-contacto-titulo" className="mt-4 text-center font-display text-3xl leading-tight text-balance">
+            {t.formEncabezado}
           </h2>
+          <p className="mt-3 text-center text-sm text-muted">{t.formRespuesta}</p>
 
           <div className="mt-7 grid grid-cols-2 gap-px border border-line bg-line">
             <input

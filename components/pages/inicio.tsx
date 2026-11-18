@@ -6,6 +6,7 @@ import { DealCard } from "@/components/deal-card";
 import { Flecha } from "@/components/flecha";
 import { Eyebrow } from "@/components/page-hero";
 import { RankingPopup } from "@/components/ranking-popup";
+import { RedInternacional } from "@/components/red-internacional";
 import { contenido } from "@/lib/contenido";
 import { ruta, rutaQueHacemos, textos, type Idioma } from "@/lib/i18n";
 
@@ -73,7 +74,10 @@ export function InicioPage({ idioma }: { idioma: Idioma }) {
           </h1>
           <p className="entrada entrada-3 mt-5 max-w-4xl text-lg leading-relaxed text-pretty text-white/70 md:text-base lg:text-lg">{t.bajada}</p>
           <div className="entrada entrada-4 mt-8 flex flex-wrap gap-4">
-            <Link href={experiencia} className="btn bg-white text-ink hover:bg-brand-light">
+            <Link href={ruta(idioma, "contacto")} className="btn bg-white text-ink hover:bg-brand-light">
+              {t.conversemos}
+            </Link>
+            <Link href={experiencia} className="btn border border-white/30 text-white hover:border-white">
               {t.verExperiencia}
             </Link>
           </div>
@@ -158,6 +162,9 @@ export function InicioPage({ idioma }: { idioma: Idioma }) {
           ))}
         </div>
       </section>
+
+      {/* Red internacional */}
+      <RedInternacional idioma={idioma} />
 
       {/* Equipo */}
       <section data-menu={paginaEquipo} className="border-t border-line">

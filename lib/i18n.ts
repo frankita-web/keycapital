@@ -35,7 +35,7 @@ export const navegacion = (idioma: Idioma) => [
 
 export const textos = {
   es: {
-    menu: { inicio: "Inicio", equipo: "Equipo", experiencia: "Experiencia", medios: "Medios", contacto: "Contacto" },
+    menu: { inicio: "Inicio", equipo: "Equipo", experiencia: "Transacciones", medios: "Medios", contacto: "Contacto" },
     general: {
       tituloSitio: "KeyCapital | Asesores financieros · M&A y finanzas corporativas",
       descripcionSitio:
@@ -57,10 +57,11 @@ export const textos = {
     },
     inicio: {
       eyebrow: "Corporate Finance · M&A",
-      titulo: "Asesoría independiente en M&A y financiamiento.",
+      titulo: "Asesoría independiente en M&A y financiamiento para empresas y accionistas.",
       bajada:
-        "Conectamos a accionistas y empresas medianas y grandes de Chile con compradores y financistas locales e internacionales.",
-      verExperiencia: "Ver experiencia",
+        "Desde 2010 acompañamos a familias empresarias, accionistas y directorios en sus decisiones financieras más importantes: vender, comprar, financiar y reestructurar.",
+      verExperiencia: "Ver transacciones",
+      conversemos: "Conversemos de su transacción",
       verRanking: "Ver ranking",
       verMedios: "Ver todos los medios",
       rankingIntro: "KeyCapital aparece en el ranking de Leaders League de banca de inversión en Chile.",
@@ -77,9 +78,17 @@ export const textos = {
       serviciosBajada:
         "Servicios especializados a medianas y grandes empresas, incluidos sus accionistas, en sus desafíos de negocio.",
       porQue: "Por qué KeyCapital",
+      redEyebrow: "Red internacional",
+      redTitulo: "Desde Santiago, con compradores e inversionistas en todo el mundo.",
+      redTexto:
+        "Mediante alianzas con bancos de inversión en Perú, Colombia, Argentina, Brasil, México, Centroamérica, Estados Unidos, Europa y Asia, llevamos cada proceso a los compradores e inversionistas correctos, estén donde estén.",
+      redAliados: "Bancos aliados:",
+      redAliadosLista: "Perú, Colombia, Argentina, Brasil, México, Centroamérica, Estados Unidos, Europa y Asia.",
+      redCompradores: "Compradores en operaciones cerradas:",
+      redCompradoresLista: "Francia, Suiza y Canadá.",
       porQueTitulo: "Atención directa de socios, independencia y resultados demostrables.",
       y: "y",
-      experienciaEyebrow: "Experiencia",
+      experienciaEyebrow: "Transacciones",
       recientes: "Transacciones recientes",
       verLasTransacciones: (n: number) => `Ver las ${n} transacciones`,
       equipoEyebrow: "Equipo",
@@ -93,12 +102,12 @@ export const textos = {
       bajada: "Más de 30 años en banca de inversión, finanzas corporativas y M&A.",
     },
     experiencia: {
-      eyebrow: "Experiencia",
-      titulo: "Experiencia que da confianza.",
+      eyebrow: "Transacciones",
+      titulo: "Transacciones que dan confianza.",
       bajada: (n: number) =>
         `${n} transacciones asesoradas en venta y compra de empresas, financiamiento, reestructuración de pasivos y valoración.`,
       relacionadas: "Transacciones relacionadas",
-      verToda: "Ver toda la experiencia",
+      verToda: "Ver todas las transacciones",
       tipos: "Tipos de transacción",
     },
     medios: {
@@ -118,6 +127,8 @@ export const textos = {
       pregunta: "¿Tienes preguntas?",
       respuesta: "Nos encantaría conversar.",
       formTitulo: "Escríbenos",
+      formEncabezado: "Toda conversación comienza en confidencialidad.",
+      formRespuesta: "Un socio le responderá en menos de 48 horas hábiles.",
       formNombre: "Nombre",
       formApellido: "Apellido(s)",
       formCorreo: "Correo electrónico",
@@ -131,7 +142,7 @@ export const textos = {
     },
   },
   en: {
-    menu: { inicio: "Home", equipo: "Team", experiencia: "Experience", medios: "Media", contacto: "Contact" },
+    menu: { inicio: "Home", equipo: "Team", experiencia: "Transactions", medios: "Media", contacto: "Contact" },
     general: {
       tituloSitio: "KeyCapital | Financial advisors · M&A and corporate finance",
       descripcionSitio:
@@ -153,10 +164,11 @@ export const textos = {
     },
     inicio: {
       eyebrow: "Corporate Finance · M&A",
-      titulo: "Independent M&A and financing advice.",
+      titulo: "Independent M&A and financing advice for companies and shareholders.",
       bajada:
-        "We connect shareholders and mid-to-large Chilean companies with local and international buyers and lenders.",
-      verExperiencia: "View experience",
+        "Since 2010, we have advised business families, shareholders and boards on their most consequential financial decisions: selling, acquiring, financing and restructuring.",
+      verExperiencia: "View transactions",
+      conversemos: "Discuss your transaction",
       verRanking: "View ranking",
       verMedios: "View all media",
       rankingIntro: "KeyCapital is listed in the Leaders League investment banking ranking for Chile.",
@@ -173,9 +185,17 @@ export const textos = {
       serviciosBajada:
         "Specialized services for medium and large companies, and their shareholders, in their business challenges.",
       porQue: "Why KeyCapital",
+      redEyebrow: "International network",
+      redTitulo: "From Santiago, to buyers and investors worldwide.",
+      redTexto:
+        "Through alliances with investment banks in Peru, Colombia, Argentina, Brazil, Mexico, Central America, the United States, Europe and Asia, we take each process to the right buyers and investors, wherever they are.",
+      redAliados: "Partner investment banks:",
+      redAliadosLista: "Peru, Colombia, Argentina, Brazil, Mexico, Central America, the United States, Europe and Asia.",
+      redCompradores: "Buyers in closed deals:",
+      redCompradoresLista: "France, Switzerland and Canada.",
       porQueTitulo: "Direct partner attention, independence and proven results.",
       y: "and",
-      experienciaEyebrow: "Experience",
+      experienciaEyebrow: "Transactions",
       recientes: "Recent transactions",
       verLasTransacciones: (n: number) => `View all ${n} transactions`,
       equipoEyebrow: "Team",
@@ -189,12 +209,12 @@ export const textos = {
       bajada: "Over 30 years in investment banking, corporate finance and M&A.",
     },
     experiencia: {
-      eyebrow: "Experience",
-      titulo: "Experience that builds trust.",
+      eyebrow: "Transactions",
+      titulo: "Transactions that build trust.",
       bajada: (n: number) =>
         `${n} transactions advised in the sale and purchase of companies, financing, debt restructuring and valuation.`,
       relacionadas: "Related transactions",
-      verToda: "View all experience",
+      verToda: "View all transactions",
       tipos: "Transaction types",
     },
     medios: {
@@ -214,6 +234,8 @@ export const textos = {
       pregunta: "Have questions?",
       respuesta: "We would be happy to talk.",
       formTitulo: "Write to us",
+      formEncabezado: "Every conversation starts in confidence.",
+      formRespuesta: "A partner will reply within two business days.",
       formNombre: "First name",
       formApellido: "Last name",
       formCorreo: "Email address",
@@ -241,12 +263,12 @@ const metadatos: Record<Exclude<Pagina, "inicio">, Record<Idioma, Metadata>> = {
   },
   experiencia: {
     es: {
-      title: "Experiencia",
+      title: "Transacciones",
       description:
         "Transacciones de M&A, financiamiento, reestructuración de pasivos y valoración asesoradas por KeyCapital.",
     },
     en: {
-      title: "Experience",
+      title: "Transactions",
       description: "M&A, financing, debt restructuring and valuation transactions advised by KeyCapital.",
     },
   },
