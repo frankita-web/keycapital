@@ -86,7 +86,7 @@ export function InicioPage({ idioma }: { idioma: Idioma }) {
                 key={c.label}
                 className={`py-6 md:px-8 md:py-4 md:first:pl-0 ${i > 0 ? "md:border-l md:border-white/10" : ""}`}
               >
-                <dd className="font-display text-5xl whitespace-nowrap text-bronce tabular-nums lg:text-[4rem] lg:leading-none">
+                <dd className="cifra-dorada font-display text-5xl whitespace-nowrap tabular-nums lg:text-[4rem] lg:leading-none">
                   <Contador valor={c.valor} />
                 </dd>
                 <dt className="mt-2 text-sm text-white/55">{c.label}</dt>

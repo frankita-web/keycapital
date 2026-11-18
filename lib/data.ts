@@ -9,7 +9,6 @@ export const contacto = {
   redes: [
     { nombre: "LinkedIn", url: "https://www.linkedin.com/company/key-capital-chile" },
     { nombre: "Instagram", url: "https://www.instagram.com/keycapitalchile/" },
-    { nombre: "X / Twitter", url: "https://twitter.com/keycapitalchile" },
     { nombre: "Facebook", url: "https://www.facebook.com/keycapitalchile.keycapital" },
   ],
 };
