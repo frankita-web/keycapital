@@ -57,7 +57,7 @@ export const textos = {
     },
     inicio: {
       eyebrow: "Asesores financieros",
-      titulo: "Asesoría independiente en M&A y financiamiento, liderada por socios.",
+      titulo: "Asesoría independiente en M&A y financiamiento, con atención directa de nuestros socios.",
       bajada:
         "Conectamos a accionistas y empresas medianas y grandes de Chile con compradores y financistas locales e internacionales.",
       verExperiencia: "Ver experiencia",
@@ -153,7 +153,7 @@ export const textos = {
     },
     inicio: {
       eyebrow: "Financial advisors",
-      titulo: "Independent M&A and financing advice, led by partners.",
+      titulo: "Independent M&A and financing advice, with direct attention from our partners.",
       bajada:
         "We connect shareholders and mid-to-large Chilean companies with local and international buyers and lenders.",
       verExperiencia: "View experience",
