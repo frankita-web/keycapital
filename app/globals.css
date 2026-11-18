@@ -81,10 +81,11 @@ body {
 .marquee-track {
   animation: marquee 110s linear infinite;
 }
-.marquee:hover .marquee-track {
+/* Sigue avanzando con el mouse encima; solo se detiene al navegar con teclado */
+.marquee:focus-within .marquee-track {
   animation-play-state: paused;
 }
-/* Con animaciones reducidas en el equipo: siguen, pero a la mitad de velocidad (se pausan con el mouse) */
+/* Con animaciones reducidas en el equipo: siguen, pero a la mitad de velocidad  */
 @media (prefers-reduced-motion: reduce) {
   .marquee-track {
     animation-duration: 200s;

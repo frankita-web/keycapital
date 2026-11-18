@@ -19,7 +19,7 @@ export function ClientMarquee({ idioma }: { idioma: Idioma }) {
                   alt={duplicado ? "" : c.nombre}
                   width={160}
                   height={96}
-                  className="max-h-11 w-auto object-contain mix-blend-multiply grayscale transition duration-300 group-hover:grayscale-0"
+                  className="max-h-11 w-auto object-contain mix-blend-multiply grayscale transition duration-300 group-hover:scale-115 group-hover:grayscale-0"
                 />
               );
               return (
