@@ -48,7 +48,7 @@ export const textos = {
       contactanos: "Contáctanos",
     },
     footer: {
-      lema: ["Independencia,", "creatividad", "y resultados concretos."],
+      lema: ["Independencia,", "atención de socios", "y resultados demostrables."],
       sitio: "Compañía",
       oficina: "Oficina",
       siguenos: "Síguenos",
@@ -57,9 +57,9 @@ export const textos = {
     },
     inicio: {
       eyebrow: "Asesores financieros",
-      titulo: "Confianza en un equipo senior con resultados concretos.",
+      titulo: "Asesoría independiente en M&A y financiamiento, liderada por socios.",
       bajada:
-        "Servicios de asesoría en compra y venta de empresas, reestructuración de pasivos de largo plazo, valoraciones y financiamientos especiales y de proyectos. Independencia y creatividad.",
+        "Conectamos a accionistas y empresas medianas y grandes de Chile con compradores y financistas locales e internacionales.",
       verExperiencia: "Ver experiencia",
       verRanking: "Ver ranking",
       verMedios: "Ver todos los medios",
@@ -77,6 +77,7 @@ export const textos = {
       serviciosBajada:
         "Servicios especializados a medianas y grandes empresas, incluidos sus accionistas, en sus desafíos de negocio.",
       porQue: "Por qué KeyCapital",
+      porQueTitulo: "Atención directa de socios, independencia y resultados demostrables.",
       y: "y",
       experienciaEyebrow: "Experiencia",
       recientes: "Transacciones recientes",
@@ -143,7 +144,7 @@ export const textos = {
       contactanos: "Contact us",
     },
     footer: {
-      lema: ["Independence,", "creativity", "and proven results."],
+      lema: ["Independence,", "partner attention", "and proven results."],
       sitio: "Company",
       oficina: "Office",
       siguenos: "Follow us",
@@ -152,9 +153,9 @@ export const textos = {
     },
     inicio: {
       eyebrow: "Financial advisors",
-      titulo: "Trust in a senior team with proven results.",
+      titulo: "Independent M&A and financing advice, led by partners.",
       bajada:
-        "Advisory services in the sale and purchase of companies, long-term debt restructuring, valuations, and special and project financing. Independence and creativity.",
+        "We connect shareholders and mid-to-large Chilean companies with local and international buyers and lenders.",
       verExperiencia: "View experience",
       verRanking: "View ranking",
       verMedios: "View all media",
@@ -172,6 +173,7 @@ export const textos = {
       serviciosBajada:
         "Specialized services for medium and large companies, and their shareholders, in their business challenges.",
       porQue: "Why KeyCapital",
+      porQueTitulo: "Direct partner attention, independence and proven results.",
       y: "and",
       experienciaEyebrow: "Experience",
       recientes: "Recent transactions",

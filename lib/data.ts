@@ -44,19 +44,24 @@ export const servicios = [
 
 export const pilares = [
   {
-    titulo: "Asesoría especializada",
+    titulo: "Atención directa de socios",
     descripcion:
-      "Servicios a la medida para medianas y grandes empresas, y sus accionistas, en sus principales desafíos de negocio.",
+      "Cada mandato lo lideran personalmente los socios, de principio a fin, para accionistas y empresas medianas y grandes.",
   },
   {
-    titulo: "Más de 30 años de experiencia",
+    titulo: "Independencia, sin conflictos de interés",
     descripcion:
-      "En banca de inversión, con un exitoso track record en finanzas corporativas y M&A en Banedwards, Banchile Asesoría Financiera, Banchile Citibank y ahora, de forma independiente, en KeyCapital. Un equipo senior en estas áreas y en análisis de mercado, con excelentes resultados para nuestros clientes.",
+      "No pertenecemos a ningún banco ni grupo económico: nuestra única prioridad es el interés de nuestros clientes.",
   },
   {
-    titulo: "Cobertura internacional",
+    titulo: "Resultados demostrables",
     descripcion:
-      "Acuerdos de trabajo con bancas de inversión en Latinoamérica, Asia, Europa y Estados Unidos.",
+      "Más de 30 años en banca de inversión, con un exitoso track record en finanzas corporativas y M&A en Banedwards, Banchile Asesoría Financiera, Banchile Citibank y ahora en KeyCapital.",
+  },
+  {
+    titulo: "Alcance internacional",
+    descripcion:
+      "Acuerdos con bancas de inversión en Latinoamérica, Asia, Europa y Estados Unidos para llegar a compradores y financistas en todo el mundo.",
   },
 ] as const;
 
@@ -69,7 +74,6 @@ export const ranking = {
   url: "https://www.leadersleague.com/es/rankings/fusiones-y-adquisiciones-firmas-locales-banco-de-inversion-chile-2027",
 };
 
-export const valores = ["Creatividad", "Objetividad", "Análisis", "Profesionalismo"] as const;
 
 export const equipo = [
   {

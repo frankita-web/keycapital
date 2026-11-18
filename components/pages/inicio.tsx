@@ -11,7 +11,7 @@ import { ruta, rutaQueHacemos, textos, type Idioma } from "@/lib/i18n";
 
 export function InicioPage({ idioma }: { idioma: Idioma }) {
   const t = textos[idioma].inicio;
-  const { equipo, medios, pilares, ranking, servicios, transacciones, valores } = contenido(idioma);
+  const { equipo, medios, pilares, ranking, servicios, transacciones } = contenido(idioma);
   const experiencia = ruta(idioma, "experiencia");
   const paginaEquipo = ruta(idioma, "equipo");
   const paginaMedios = ruta(idioma, "medios");
@@ -150,9 +150,9 @@ export function InicioPage({ idioma }: { idioma: Idioma }) {
       <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-24">
         <Eyebrow>{t.porQue}</Eyebrow>
         <h2 className="mt-4 max-w-4xl font-display text-4xl leading-[1.1] text-balance md:text-5xl">
-          {valores.join(", ").replace(/, ([^,]+)$/, ` ${t.y} $1`)}.
+          {t.porQueTitulo}
         </h2>
-        <div className="mt-14 grid gap-x-10 gap-y-10 md:grid-cols-3">
+        <div className="mt-14 grid gap-x-10 gap-y-10 md:grid-cols-2 lg:grid-cols-4">
           {pilares.map((p) => (
             <div key={p.titulo} className="border-t border-line pt-6">
               <h3 className="text-base font-semibold text-balance">{p.titulo}</h3>

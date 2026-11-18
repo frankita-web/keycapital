@@ -6,7 +6,6 @@ import {
   ranking,
   servicios,
   transacciones,
-  valores,
   type Categoria,
   type Transaccion,
 } from "@/lib/data";
@@ -41,22 +40,26 @@ const ingles = {
   ],
   pilares: [
     {
-      titulo: "Specialized advisory services",
+      titulo: "Direct partner attention",
       descripcion:
-        "Tailored services for medium and large companies, and their shareholders, in their main business challenges.",
+        "Every mandate is led personally by the partners, from start to finish, for shareholders and mid-to-large companies.",
     },
     {
-      titulo: "Over 30 years of experience",
+      titulo: "Independent, with no conflicts of interest",
       descripcion:
-        "In investment banking, with a successful track record in corporate finance and M&A at Banedwards, Banchile Asesoría Financiera, Banchile Citibank and now, independently, at KeyCapital. A senior team in these areas and in market analysis, with excellent results for our clients.",
+        "We are not part of any bank or business group: our only priority is our clients' interest.",
     },
     {
-      titulo: "International coverage",
+      titulo: "Proven results",
       descripcion:
-        "Working agreements with investment banks in Latin America, Asia, Europe and the United States.",
+        "Over 30 years in investment banking, with a successful track record in corporate finance and M&A at Banedwards, Banchile Asesoría Financiera, Banchile Citibank and now at KeyCapital.",
+    },
+    {
+      titulo: "International reach",
+      descripcion:
+        "Agreements with investment banks in Latin America, Asia, Europe and the United States to reach buyers and lenders worldwide.",
     },
   ],
-  valores: ["Creativity", "Objectivity", "Analysis", "Professionalism"],
   // Cargos y formación según el sitio en inglés de KeyCapital.
   equipo: [
     {
@@ -100,7 +103,6 @@ export function contenido(idioma: Idioma) {
     return {
       servicios,
       pilares,
-      valores,
       equipo,
       categorias,
       ranking,
@@ -111,7 +113,6 @@ export function contenido(idioma: Idioma) {
   return {
     servicios: ingles.servicios,
     pilares: ingles.pilares,
-    valores: ingles.valores,
     equipo: equipo.map((p, i) => ({ ...p, ...ingles.equipo[i] })),
     categorias: categorias.map((c) => ({ id: c.id, label: ingles.categorias[c.id] })),
     ranking: { ...ranking, ...ingles.ranking },
