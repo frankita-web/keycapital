@@ -56,7 +56,7 @@ export const textos = {
       ubicacion: "Asesores financieros · Santiago, Chile",
     },
     inicio: {
-      eyebrow: "Asesores financieros",
+      eyebrow: "Corporate Finance · M&A",
       titulo: "Asesoría independiente en M&A y financiamiento.",
       bajada:
         "Conectamos a accionistas y empresas medianas y grandes de Chile con compradores y financistas locales e internacionales.",
@@ -152,7 +152,7 @@ export const textos = {
       ubicacion: "Financial advisors · Santiago, Chile",
     },
     inicio: {
-      eyebrow: "Financial advisors",
+      eyebrow: "Corporate Finance · M&A",
       titulo: "Independent M&A and financing advice.",
       bajada:
         "We connect shareholders and mid-to-large Chilean companies with local and international buyers and lenders.",

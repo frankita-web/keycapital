@@ -73,10 +73,7 @@ export function InicioPage({ idioma }: { idioma: Idioma }) {
           </h1>
           <p className="entrada entrada-3 mt-5 max-w-4xl text-lg leading-relaxed text-pretty text-white/70 md:text-base lg:text-lg">{t.bajada}</p>
           <div className="entrada entrada-4 mt-8 flex flex-wrap gap-4">
-            <Link href={ruta(idioma, "contacto")} className="btn bg-white text-ink hover:bg-brand-light">
-              {textos[idioma].general.contactanos}
-            </Link>
-            <Link href={experiencia} className="btn border border-white/30 text-white hover:border-white">
+            <Link href={experiencia} className="btn bg-white text-ink hover:bg-brand-light">
               {t.verExperiencia}
             </Link>
           </div>
@@ -89,7 +86,7 @@ export function InicioPage({ idioma }: { idioma: Idioma }) {
                 key={c.label}
                 className={`py-6 md:px-8 md:py-4 md:first:pl-0 ${i > 0 ? "md:border-l md:border-white/10" : ""}`}
               >
-                <dd className="font-display text-4xl whitespace-nowrap tabular-nums">
+                <dd className="font-display text-5xl whitespace-nowrap text-bronce tabular-nums lg:text-[4rem] lg:leading-none">
                   <Contador valor={c.valor} />
                 </dd>
                 <dt className="mt-2 text-sm text-white/55">{c.label}</dt>
@@ -121,7 +118,7 @@ export function InicioPage({ idioma }: { idioma: Idioma }) {
       <section
         id="que-hacemos"
         data-menu={rutaQueHacemos(idioma)}
-        className="scroll-mt-[7.3rem] border-y border-line bg-paper"
+        className="scroll-mt-20 border-y border-line bg-paper"
       >
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-24">
           <div className="grid gap-6 lg:grid-cols-12">
@@ -136,8 +133,8 @@ export function InicioPage({ idioma }: { idioma: Idioma }) {
 
           <div className="mt-14 grid gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
             {servicios.map((s, i) => (
-              <div key={s.titulo} className="border-t border-ink pt-6">
-                <p className="text-sm text-brand tabular-nums">0{i + 1}</p>
+              <div key={s.titulo} className="border-t border-bronce pt-6">
+                <p className="text-sm text-bronce tabular-nums">0{i + 1}</p>
                 <h3 className="mt-4 font-display text-2xl leading-snug text-balance">{s.titulo}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-pretty text-muted">{s.descripcion}</p>
               </div>

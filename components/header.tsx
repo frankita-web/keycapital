@@ -5,12 +5,15 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { navegacion, ruta, rutaEquivalente, textos, type Idioma } from "@/lib/i18n";
 
+/** Encabezado fijo y minimalista: logo, cinco enlaces, "ES | EN" en texto y Contacto destacado. */
 export function Header({ idioma }: { idioma: Idioma }) {
   const pathname = usePathname();
   const t = textos[idioma].general;
-  const menu = navegacion(idioma);
-  const [open, setOpen] = useState(false);
   const inicio = ruta(idioma, "inicio");
+  const contacto = ruta(idioma, "contacto");
+  // El logo lleva al inicio y Contacto va como botón aparte: el menú son los demás enlaces.
+  const menu = navegacion(idioma).filter((item) => item.href !== inicio && item.href !== contacto);
+  const [open, setOpen] = useState(false);
   const [seccion, setSeccion] = useState<string>(inicio);
   // En Inicio la rayita sigue a la sección que se está viendo; en el resto, a la página.
   const marcado = pathname === inicio ? seccion : pathname;
@@ -37,47 +40,33 @@ export function Header({ idioma }: { idioma: Idioma }) {
     };
   }, [pathname, inicio]);
 
+  const idiomas = (
+    <span className="flex items-center gap-2 text-xs font-semibold tracking-widest">
+      {(["es", "en"] as const).map((i, n) => (
+        <span key={i} className="flex items-center gap-2">
+          {n > 0 && <span className="text-white/25">|</span>}
+          {i === idioma ? (
+            <span className="text-white">{i.toUpperCase()}</span>
+          ) : (
+            <a href={rutaEquivalente(pathname, i)} lang={i} className="text-white/40 transition-colors hover:text-white">
+              {i.toUpperCase()}
+            </a>
+          )}
+        </span>
+      ))}
+    </span>
+  );
+
   return (
-    <header className="sticky top-0 z-50">
-      {/* Barra superior */}
-      <div className="bg-ink text-white/70">
-        <div className="mx-auto flex h-9 max-w-7xl items-center justify-end gap-6 px-6 text-xs lg:px-10">
-          <Link
-            href={ruta(idioma, "contacto")}
-            aria-label={textos[idioma].menu.contacto}
-            title={textos[idioma].menu.contacto}
-            className="text-white/60 transition-colors hover:text-white"
-          >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true" className="size-4">
-              <rect x="3" y="5" width="18" height="14" rx="2" />
-              <path d="m3.5 7 8.5 6 8.5-6" />
-            </svg>
-          </Link>
-          <span className="flex gap-3 font-semibold tracking-widest">
-            {(["es", "en"] as const).map((i) =>
-              i === idioma ? (
-                <span key={i} className="text-white">
-                  {i.toUpperCase()}
-                </span>
-              ) : (
-                <a key={i} href={rutaEquivalente(pathname, i)} lang={i} className="text-white/35 transition-colors hover:text-white">
-                  {i.toUpperCase()}
-                </a>
-              ),
-            )}
-          </span>
-        </div>
-      </div>
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-ink">
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-6 px-6 lg:px-10">
+        <Link href={inicio} aria-label={t.inicioAria} onClick={() => setOpen(false)}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo-white.svg" alt="KeyCapital" width={196} height={40} className="h-9 w-auto" />
+        </Link>
 
-      {/* Navegación principal */}
-      <div className="border-b border-white/10 bg-ink">
-        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-10">
-          <Link href={ruta(idioma, "inicio")} aria-label={t.inicioAria} onClick={() => setOpen(false)}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logo-white.svg" alt="KeyCapital" width={196} height={40} className="h-9 w-auto" />
-          </Link>
-
-          <nav className="hidden h-full items-stretch gap-8 lg:flex" aria-label={t.menuPrincipal}>
+        <div className="hidden h-full items-stretch gap-10 lg:flex">
+          <nav className="flex items-stretch gap-8" aria-label={t.menuPrincipal}>
             {menu.map((item) => {
               const active = marcado === item.href;
               return (
@@ -86,9 +75,7 @@ export function Header({ idioma }: { idioma: Idioma }) {
                   href={item.href}
                   aria-current={pathname === item.href ? "page" : undefined}
                   className={`flex items-center border-b-2 pt-0.5 text-sm transition-colors ${
-                    active
-                      ? "border-white text-white"
-                      : "border-transparent text-white/60 hover:text-white"
+                    active ? "border-white text-white" : "border-transparent text-white/60 hover:text-white"
                   }`}
                 >
                   {item.label}
@@ -96,24 +83,33 @@ export function Header({ idioma }: { idioma: Idioma }) {
               );
             })}
           </nav>
+          <div className="flex items-center gap-8">
+            {idiomas}
+            <Link
+              href={contacto}
+              aria-current={pathname === contacto ? "page" : undefined}
+              className="btn bg-white px-5 py-2.5 text-sm text-ink hover:bg-brand-light"
+            >
+              {textos[idioma].menu.contacto}
+            </Link>
+          </div>
+        </div>
 
+        <div className="flex items-center gap-4 lg:hidden">
+          {idiomas}
           <button
             type="button"
-            className="flex size-11 items-center justify-center text-white lg:hidden"
+            className="flex size-11 items-center justify-center text-white"
             aria-label={open ? t.cerrarMenu : t.abrirMenu}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
           >
             <span className="relative block h-3 w-6">
               <span
-                className={`absolute left-0 h-px w-6 bg-current transition-transform ${
-                  open ? "top-1.5 rotate-45" : "top-0"
-                }`}
+                className={`absolute left-0 h-px w-6 bg-current transition-transform ${open ? "top-1.5 rotate-45" : "top-0"}`}
               />
               <span
-                className={`absolute left-0 h-px w-6 bg-current transition-transform ${
-                  open ? "top-1.5 -rotate-45" : "top-3"
-                }`}
+                className={`absolute left-0 h-px w-6 bg-current transition-transform ${open ? "top-1.5 -rotate-45" : "top-3"}`}
               />
             </span>
           </button>
@@ -122,10 +118,7 @@ export function Header({ idioma }: { idioma: Idioma }) {
 
       {/* Menú móvil */}
       {open && (
-        <nav
-          className="fixed inset-x-0 top-[7.25rem] bottom-0 overflow-y-auto bg-ink px-6 lg:hidden"
-          aria-label={t.menuMovil}
-        >
+        <nav className="fixed inset-x-0 top-20 bottom-0 overflow-y-auto bg-ink px-6 lg:hidden" aria-label={t.menuMovil}>
           {menu.map((item) => (
             <Link
               key={item.href}
@@ -138,6 +131,9 @@ export function Header({ idioma }: { idioma: Idioma }) {
               {item.label}
             </Link>
           ))}
+          <Link href={contacto} onClick={() => setOpen(false)} className="btn mt-8 w-full bg-white text-ink">
+            {textos[idioma].menu.contacto}
+          </Link>
         </nav>
       )}
     </header>

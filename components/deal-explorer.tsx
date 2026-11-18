@@ -165,7 +165,7 @@ function ListaCasos({
               ))}
             </div>
             <div className="origin-left transition-transform duration-300 group-hover:scale-[1.03]">
-              {mostrarCategoria && <p className="label mb-1 text-muted">{etiqueta[t.categoria]}</p>}
+              {mostrarCategoria && <p className="label mb-1 text-bronce">{etiqueta[t.categoria]}</p>}
               <h3 className="font-display text-lg leading-7">{t.cliente}</h3>
               <p className="max-w-xl text-sm leading-relaxed text-pretty text-muted">{t.detalle}</p>
             </div>
