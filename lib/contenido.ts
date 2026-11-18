@@ -25,12 +25,16 @@ const ingles = {
         "We redesign long-term debt structures to provide financial headroom and sustain business growth.",
     },
     {
-      titulo: "Valuations",
-      descripcion:
-        "Independent, objective opinions of value for transactions, arbitrations, partnerships and strategic decisions.",
+      titulo: "Economic valuations",
+      descripcion: "Independent, objective valuations for transactions, partnerships and strategic decisions.",
     },
     {
-      titulo: "Special and project financing",
+      titulo: "Fairness opinions for shareholders and arbitrations",
+      descripcion:
+        "Independent opinions of value supporting shareholders and the parties in arbitration proceedings.",
+    },
+    {
+      titulo: "Special, syndicated and project financing",
       descripcion:
         "We structure syndicated, long-term and working capital loans with local and international banks.",
     },
@@ -42,9 +46,9 @@ const ingles = {
         "Tailored services for medium and large companies, and their shareholders, in their main business challenges.",
     },
     {
-      titulo: "Over 20 years of experience",
+      titulo: "Over 30 years of experience",
       descripcion:
-        "A track record in investment banking, corporate finance and M&A at Banedwards, Banchile Asesoría Financiera and Banchile Citibank, and since 2010 as an independent senior team.",
+        "In investment banking, with a successful track record in corporate finance and M&A at Banedwards, Banchile Asesoría Financiera, Banchile Citibank and now, independently, at KeyCapital. A senior team in these areas and in market analysis, with excellent results for our clients.",
     },
     {
       titulo: "International coverage",
@@ -63,12 +67,12 @@ const ingles = {
     {
       cargo: "Commercial Director",
       formacion: "B.A. in Business",
-      bio: "Five years of experience in commercial banking and over 20 in investment banking. Joined Banedwards in 1992 and served as General Manager of Banchile Asesoría Financiera from 2001 to 2008.",
+      bio: "Five years of experience in commercial banking at Banco de Chile, Chemical Bank and Banco Edwards. Over 30 years in investment banking, at Banedwards from 1992 and later at Banchile Asesoría Financiera. General Manager of Banchile Asesoría Financiera S.A., the investment bank of Banco de Chile, from 2001 to 2008. Involved in major M&A and corporate finance transactions.",
     },
     {
       cargo: "Director of Studies",
-      formacion: "B.A. in Business, Accountant Auditor, MBA",
-      bio: "Over 19 years of experience in corporate finance. University professor of finance and accounting for nearly 10 years.",
+      formacion: "B.A. in Business, Accountant Auditor and MBA, Pontificia Universidad Católica de Chile",
+      bio: "Professional and academic experience in corporate finance since 1992. Before joining KeyCapital in 2010, Senior Associate at Banchile-Citi Asesorías Financieras (2004-2009), Manager and Financial Advisor at Costanera S.A.C.I. (1999-2003), Financial Advisor to the General Management of Flores y Kersting (1998) and Research Engineer at Chilgener (1992-1997). Between 1994 and 2004 also taught Finance and Accounting at Universidad Tecnológica Metropolitana, Universidad del Pacífico, Pontificia Universidad Católica de Chile, Universidad Gabriela Mistral and Universidad Diego Portales.",
     },
   ],
   categorias: {

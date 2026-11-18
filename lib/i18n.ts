@@ -65,6 +65,7 @@ export const textos = {
       verMedios: "Ver todos los medios",
       rankingIntro: "KeyCapital aparece en el ranking de Leaders League de banca de inversión en Chile.",
       cerrar: "Cerrar",
+      fotoSocios: "Cristián Mandiola, Jaime Barriga e Iván González, socios de KeyCapital. Foto: Diario Financiero, 2020.",
       cifraAnios: "Años en banca de inversión",
       cifraTransacciones: "Transacciones asesoradas",
       cifraContinentes: "Continentes con socios de cobertura",
@@ -82,14 +83,14 @@ export const textos = {
       recientes: "Transacciones recientes",
       verLasTransacciones: (n: number) => `Ver las ${n} transacciones`,
       equipoEyebrow: "Equipo",
-      equipoTitulo: "Un equipo senior con más de 20 años de trayectoria",
+      equipoTitulo: "Un equipo senior con más de 30 años de trayectoria",
       conocerEquipo: "Conocer al equipo",
       verTransaccionesDe: (nombre: string) => `Ver transacciones de ${nombre}`,
     },
     equipo: {
       eyebrow: "Equipo",
       titulo: "Un equipo senior con resultados concretos.",
-      bajada: "Más de 20 años en banca de inversión, finanzas corporativas y M&A.",
+      bajada: "Más de 30 años en banca de inversión, finanzas corporativas y M&A.",
     },
     experiencia: {
       eyebrow: "Experiencia",
@@ -160,6 +161,7 @@ export const textos = {
       verMedios: "View all media",
       rankingIntro: "KeyCapital is listed in the Leaders League investment banking ranking for Chile.",
       cerrar: "Close",
+      fotoSocios: "Cristián Mandiola, Jaime Barriga and Iván González, partners at KeyCapital. Photo: Diario Financiero, 2020.",
       cifraAnios: "Years in investment banking",
       cifraTransacciones: "Transactions advised",
       cifraContinentes: "Continents with coverage partners",
@@ -177,14 +179,14 @@ export const textos = {
       recientes: "Recent transactions",
       verLasTransacciones: (n: number) => `View all ${n} transactions`,
       equipoEyebrow: "Team",
-      equipoTitulo: "A senior team with over 20 years of experience",
+      equipoTitulo: "A senior team with over 30 years of experience",
       conocerEquipo: "Meet the team",
       verTransaccionesDe: (nombre: string) => `View ${nombre} transactions`,
     },
     equipo: {
       eyebrow: "Team",
       titulo: "A senior team with proven results.",
-      bajada: "Over 20 years in investment banking, corporate finance and M&A.",
+      bajada: "Over 30 years in investment banking, corporate finance and M&A.",
     },
     experiencia: {
       eyebrow: "Experience",
@@ -230,11 +232,11 @@ const metadatos: Record<Exclude<Pagina, "inicio">, Record<Idioma, Metadata>> = {
   equipo: {
     es: {
       title: "Equipo",
-      description: "Un equipo senior con más de 20 años en banca de inversión, finanzas corporativas y M&A.",
+      description: "Un equipo senior con más de 30 años en banca de inversión, finanzas corporativas y M&A.",
     },
     en: {
       title: "Team",
-      description: "A senior team with over 20 years in investment banking, corporate finance and M&A.",
+      description: "A senior team with over 30 years in investment banking, corporate finance and M&A.",
     },
   },
   experiencia: {

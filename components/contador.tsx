@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-/** Cifra que sube desde cero al entrar: "+20", "66", "4". Otros textos quedan igual. */
+/** Cifra que sube desde cero al entrar: "+30", "66", "4". Otros textos quedan igual. */
 export function Contador({ valor }: { valor: string }) {
   const partes = /^(\+?)(\d+)$/.exec(valor);
   const objetivo = partes ? Number(partes[2]) : 0;

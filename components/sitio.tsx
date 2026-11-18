@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { Inter, Newsreader } from "next/font/google";
+import { ContactoPopup } from "@/components/contacto-popup";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { VolverArriba } from "@/components/volver-arriba";
@@ -28,6 +29,7 @@ export function Sitio({ idioma, children }: { idioma: Idioma; children: ReactNod
         <Header idioma={idioma} />
         <main className="flex-1">{children}</main>
         <Footer idioma={idioma} />
+        <ContactoPopup idioma={idioma} flotante />
         <VolverArriba />
       </body>
     </html>

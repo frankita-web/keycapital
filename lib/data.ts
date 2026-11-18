@@ -26,12 +26,17 @@ export const servicios = [
       "Rediseñamos la estructura de deuda de largo plazo para dar holgura financiera y sostener el crecimiento del negocio.",
   },
   {
-    titulo: "Valoraciones",
+    titulo: "Valoraciones económicas",
     descripcion:
-      "Opiniones de valor independientes y objetivas para transacciones, arbitrajes, asociaciones y decisiones estratégicas.",
+      "Valoraciones independientes y objetivas para transacciones, asociaciones y decisiones estratégicas.",
   },
   {
-    titulo: "Financiamientos especiales y de proyectos",
+    titulo: "Opiniones de valor para accionistas y juicios arbitrales",
+    descripcion:
+      "Opiniones de valor independientes que respaldan a accionistas y a las partes en juicios arbitrales.",
+  },
+  {
+    titulo: "Financiamientos especiales, sindicados y de proyectos",
     descripcion:
       "Estructuramos créditos sindicados, de largo plazo y de capital de trabajo junto a la banca local e internacional.",
   },
@@ -44,9 +49,9 @@ export const pilares = [
       "Servicios a la medida para medianas y grandes empresas, y sus accionistas, en sus principales desafíos de negocio.",
   },
   {
-    titulo: "Más de 20 años de experiencia",
+    titulo: "Más de 30 años de experiencia",
     descripcion:
-      "Trayectoria en banca de inversión, finanzas corporativas y M&A en Banedwards, Banchile Asesoría Financiera y Banchile Citibank, y desde 2010 como equipo senior independiente.",
+      "En banca de inversión, con un exitoso track record en finanzas corporativas y M&A en Banedwards, Banchile Asesoría Financiera, Banchile Citibank y ahora, de forma independiente, en KeyCapital. Un equipo senior en estas áreas y en análisis de mercado, con excelentes resultados para nuestros clientes.",
   },
   {
     titulo: "Cobertura internacional",
@@ -81,15 +86,15 @@ export const equipo = [
     foto: "/equipo/Jaime_Barriga.png",
     email: "jaime.barriga@keycapitalchile.com",
     formacion: "Ingeniero Comercial",
-    bio: "Cinco años de experiencia en banca comercial y más de 20 en banca de inversión. Ingresó a Banedwards en 1992 y fue Gerente General de Banchile Asesoría Financiera entre 2001 y 2008.",
+    bio: "Cinco años de experiencia en banca comercial, en el Banco de Chile, Chemical Bank y Banco Edwards. Más de 30 años de experiencia en banca de inversión, desde 1992 en Banedwards y luego en Banchile Asesoría Financiera. Gerente General de Banchile Asesoría Financiera S.A., la banca de inversión del Banco de Chile, entre 2001 y 2008. Ha participado en importantes negocios de M&A y finanzas corporativas.",
   },
   {
     nombre: "Iván González Echanez",
     cargo: "Director de Estudios",
     foto: "/equipo/Ivan_Gonzalez.png",
     email: "ivan.gonzalez@keycapitalchile.com",
-    formacion: "Ingeniero Comercial, Contador Auditor, MBA",
-    bio: "Más de 19 años de experiencia en finanzas corporativas. Ha sido profesor universitario de finanzas y contabilidad durante cerca de 10 años.",
+    formacion: "Ingeniero Comercial, Contador Auditor y MBA, Pontificia Universidad Católica de Chile",
+    bio: "Experiencia profesional y académica en finanzas corporativas desde 1992. Antes de incorporarse a KeyCapital en 2010, fue Asociado Senior en Banchile-Citi Asesorías Financieras (2004-2009), Gerente y Asesor Financiero de Costanera S.A.C.I. (1999-2003), Asesor Financiero de la Gerencia General en Flores y Kersting (1998) e Ingeniero de Estudios en Chilgener (1992-1997). Entre 1994 y 2004 fue además profesor de Finanzas y Contabilidad en la Universidad Tecnológica Metropolitana, la Universidad del Pacífico, la Pontificia Universidad Católica de Chile, la Universidad Gabriela Mistral y la Universidad Diego Portales.",
   },
 ] as const;
 

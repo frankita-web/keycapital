@@ -17,7 +17,7 @@ export function InicioPage({ idioma }: { idioma: Idioma }) {
   const paginaMedios = ruta(idioma, "medios");
   const recientes = [...transacciones].sort((a, b) => b.anio - a.anio).slice(0, 6);
   const cifras = [
-    { valor: "+20", label: t.cifraAnios },
+    { valor: "+30", label: t.cifraAnios },
     { valor: `${transacciones.length}`, label: t.cifraTransacciones },
     { valor: "4", label: t.cifraContinentes },
     { valor: t.cifraDesde, label: t.cifraIndependiente },
@@ -134,7 +134,7 @@ export function InicioPage({ idioma }: { idioma: Idioma }) {
             </p>
           </div>
 
-          <div className="mt-14 grid gap-x-10 gap-y-12 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-14 grid gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
             {servicios.map((s, i) => (
               <div key={s.titulo} className="border-t border-ink pt-6">
                 <p className="text-sm text-brand tabular-nums">0{i + 1}</p>
