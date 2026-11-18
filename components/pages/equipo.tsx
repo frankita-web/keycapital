@@ -9,26 +9,15 @@ export function EquipoPage({ idioma }: { idioma: Idioma }) {
 
   return (
     <>
-      <PageHero eyebrow={t.eyebrow} title={t.titulo}>
+      <PageHero
+        eyebrow={t.eyebrow}
+        title={t.titulo}
+        fondo={{ src: "/equipo/socios-df-2020.jpg", credito: textos[idioma].inicio.fotoSocios }}
+      >
         {t.bajada}
       </PageHero>
 
       <section className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-24">
-        <figure className="mb-16 max-w-3xl lg:mb-20">
-          <div className="overflow-hidden rounded-2xl">
-            <Image
-              src="/equipo/socios-df-2020.jpg"
-              alt={textos[idioma].inicio.fotoSocios}
-              width={622}
-              height={226}
-              sizes="(min-width: 768px) 768px, 100vw"
-              className="h-auto w-full"
-              priority
-            />
-          </div>
-          <figcaption className="mt-3 text-sm text-muted">{textos[idioma].inicio.fotoSocios}</figcaption>
-        </figure>
-
         <div className="divide-y divide-line border-y border-line">
           {equipo.map((p) => (
             <article key={p.nombre} className="grid gap-8 py-12 md:grid-cols-12 md:gap-10 lg:py-16">
