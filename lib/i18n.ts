@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import type { ServicioId } from "@/lib/data";
 
 export type Idioma = "es" | "en";
 
 const rutas = {
   inicio: { es: "/", en: "/en" },
-  equipo: { es: "/equipo", en: "/en/team" },
+  // "equipo" es la página Quiénes somos: la firma, cómo trabajamos y los socios.
+  equipo: { es: "/quienes-somos", en: "/en/about" },
   experiencia: { es: "/experiencia", en: "/en/experience" },
   medios: { es: "/medios", en: "/en/media" },
   contacto: { es: "/contacto", en: "/en/contact" },
@@ -14,8 +16,25 @@ export type Pagina = keyof typeof rutas;
 
 export const ruta = (idioma: Idioma, pagina: Pagina) => rutas[pagina][idioma];
 
+/** Página de cada servicio: /que-hacemos/<slug> y /en/what-we-do/<slug>. */
+const baseServicios = { es: "/que-hacemos", en: "/en/what-we-do" } as const;
+const slugsServicio: Record<ServicioId, Record<Idioma, string>> = {
+  venta: { es: "venta-de-empresas", en: "sell-side" },
+  adquisiciones: { es: "adquisiciones", en: "buy-side" },
+  financiamiento: { es: "financiamiento-y-reestructuracion", en: "debt-advisory" },
+  valoraciones: { es: "valoraciones", en: "valuations" },
+};
+export const servicioIds = Object.keys(slugsServicio) as ServicioId[];
+export const slugServicio = (idioma: Idioma, id: ServicioId) => slugsServicio[id][idioma];
+export const rutaServicio = (idioma: Idioma, id: ServicioId) => `${baseServicios[idioma]}/${slugServicio(idioma, id)}`;
+export const servicioPorSlug = (idioma: Idioma, slug: string) =>
+  servicioIds.find((id) => slugsServicio[id][idioma] === slug);
+export const esRutaServicio = (pathname: string, idioma: Idioma) => pathname.startsWith(`${baseServicios[idioma]}/`);
+
 /** La misma página en el otro idioma (para el botón ES / EN). */
 export function rutaEquivalente(pathname: string, idioma: Idioma) {
+  const servicio = servicioIds.find((id) => (["es", "en"] as const).some((i) => rutaServicio(i, id) === pathname));
+  if (servicio) return rutaServicio(idioma, servicio);
   const pagina = (Object.keys(rutas) as Pagina[]).find(
     (p) => rutas[p].es === pathname || rutas[p].en === pathname,
   );
@@ -25,7 +44,7 @@ export function rutaEquivalente(pathname: string, idioma: Idioma) {
 /** Sección de servicios dentro de Inicio. */
 export const rutaQueHacemos = (idioma: Idioma) => `${ruta(idioma, "inicio")}#que-hacemos`;
 
-const paginasMenu: Pagina[] = ["equipo", "experiencia", "medios", "contacto"];
+const paginasMenu: Pagina[] = ["experiencia", "equipo", "medios", "contacto"];
 
 export const navegacion = (idioma: Idioma) => [
   { href: ruta(idioma, "inicio"), label: textos[idioma].menu.inicio },
@@ -35,7 +54,7 @@ export const navegacion = (idioma: Idioma) => [
 
 export const textos = {
   es: {
-    menu: { inicio: "Inicio", equipo: "Equipo", experiencia: "Transacciones", medios: "Medios", contacto: "Contacto" },
+    menu: { inicio: "Inicio", equipo: "Quiénes somos", experiencia: "Transacciones", medios: "Medios", contacto: "Contacto" },
     general: {
       tituloSitio: "KeyCapital | Asesores financieros · M&A y finanzas corporativas",
       descripcionSitio:
@@ -48,7 +67,7 @@ export const textos = {
       contactanos: "Contáctanos",
     },
     footer: {
-      lema: ["Independencia,", "atención de socios", "y resultados demostrables."],
+      lema: ["Cercanía,", "independencia", "y confidencialidad."],
       sitio: "Compañía",
       oficina: "Oficina",
       siguenos: "Síguenos",
@@ -74,10 +93,22 @@ export const textos = {
       clientesTitulo: "Empresas que han confiado en nosotros",
       verTransacciones: "Ver todas las transacciones",
       serviciosEyebrow: "Qué hacemos",
-      serviciosTitulo: "Asesoría especializada en las decisiones clave de una empresa.",
+      // Frase provisoria: la confirma Franca con su papá.
+      serviciosTitulo: "Vender. Comprar. Financiar. Valorar.",
       serviciosBajada:
-        "Servicios especializados a medianas y grandes empresas, incluidos sus accionistas, en sus desafíos de negocio.",
-      porQue: "Por qué KeyCapital",
+        "Acompañamos a accionistas y empresas medianas y grandes en las decisiones financieras que más pesan, de la primera conversación al cierre.",
+      verServicio: "Ver más",
+      manifiestoEyebrow: "Quiénes somos",
+      // Borrador del manifiesto: lo confirma Franca con su papá.
+      manifiestoTitulo: "Acompañamos las decisiones que una empresa toma una sola vez.",
+      manifiestoComo:
+        "Somos una firma independiente, liderada por socios que dirigieron la banca de inversión de Banchile. Cada mandato lo llevan ellos, de la primera reunión al cierre, con total confidencialidad.",
+      manifiestoLogros: (n: number) =>
+        `Desde 2010 hemos asesorado ${n} transacciones: ventas de empresas familiares de 80 y 100 años, fusiones y financiamientos, con compradores de Chile, Francia, Suiza y Canadá. Leaders League nos distingue como firma muy recomendada en banca de inversión en Chile.`,
+      manifiestoEnlace: "Conozca la firma",
+      cierreEyebrow: "Contacto",
+      cierreTitulo: "Toda conversación comienza en confidencialidad.",
+      cierreTexto: "Cuéntenos brevemente su situación. Un socio le responderá personalmente.",
       redEyebrow: "Red internacional",
       redTitulo: "Desde Santiago, con compradores e inversionistas en todo el mundo.",
       redTexto:
@@ -86,20 +117,30 @@ export const textos = {
       redAliadosLista: "Perú, Colombia, Argentina, Brasil, México, Centroamérica, Estados Unidos, Europa y Asia.",
       redCompradores: "Compradores en operaciones cerradas:",
       redCompradoresLista: "Francia, Suiza y Canadá.",
-      porQueTitulo: "Atención directa de socios, independencia y resultados demostrables.",
       y: "y",
       experienciaEyebrow: "Transacciones",
       recientes: "Transacciones recientes",
       verLasTransacciones: (n: number) => `Ver las ${n} transacciones`,
-      equipoEyebrow: "Equipo",
-      equipoTitulo: "Un equipo senior con más de 30 años de trayectoria",
-      conocerEquipo: "Conocer al equipo",
       verTransaccionesDe: (nombre: string) => `Ver transacciones de ${nombre}`,
     },
     equipo: {
-      eyebrow: "Equipo",
-      titulo: "Un equipo senior con resultados concretos.",
-      bajada: "Más de 30 años en banca de inversión, finanzas corporativas y M&A.",
+      eyebrow: "Quiénes somos",
+      titulo: "Experiencia de banca de inversión, con la independencia de una boutique.",
+      bajada:
+        "KeyCapital nació en 2010 y es liderada por ejecutivos que dirigieron Banchile Asesoría Financiera y Banchile Citibank Global Markets. Combinamos la disciplina y el rigor técnico de la gran banca con algo que ella rara vez ofrece: la atención directa y permanente de los socios en cada etapa de la transacción.",
+      comoTrabajamos: "Cómo trabajamos",
+      socios: "Socios",
+      sociosTitulo: "Un equipo senior con más de 30 años de trayectoria.",
+      reconocimientos: "Reconocimientos",
+      verRanking: "Ver ranking",
+    },
+    servicio: {
+      eyebrow: "Qué hacemos",
+      alcance: "Alcance",
+      transacciones: "Transacciones",
+      transaccionesTitulo: "Operaciones asesoradas",
+      verTodas: (n: number) => `Ver las ${n} transacciones de este tipo`,
+      otros: "Otros servicios",
     },
     experiencia: {
       eyebrow: "Transacciones",
@@ -142,7 +183,7 @@ export const textos = {
     },
   },
   en: {
-    menu: { inicio: "Home", equipo: "Team", experiencia: "Transactions", medios: "Media", contacto: "Contact" },
+    menu: { inicio: "Home", equipo: "About us", experiencia: "Transactions", medios: "Media", contacto: "Contact" },
     general: {
       tituloSitio: "KeyCapital | Financial advisors · M&A and corporate finance",
       descripcionSitio:
@@ -155,7 +196,7 @@ export const textos = {
       contactanos: "Contact us",
     },
     footer: {
-      lema: ["Independence,", "partner attention", "and proven results."],
+      lema: ["Partner attention,", "independence", "and confidentiality."],
       sitio: "Company",
       oficina: "Office",
       siguenos: "Follow us",
@@ -181,10 +222,20 @@ export const textos = {
       clientesTitulo: "Companies that have trusted us",
       verTransacciones: "View all transactions",
       serviciosEyebrow: "What we do",
-      serviciosTitulo: "Specialized advice on a company's key decisions.",
+      serviciosTitulo: "Sell. Buy. Finance. Value.",
       serviciosBajada:
-        "Specialized services for medium and large companies, and their shareholders, in their business challenges.",
-      porQue: "Why KeyCapital",
+        "We advise shareholders and mid-to-large companies on their most consequential financial decisions, from the first conversation to closing.",
+      verServicio: "Learn more",
+      manifiestoEyebrow: "About us",
+      manifiestoTitulo: "We advise on the decisions a company makes only once.",
+      manifiestoComo:
+        "We are an independent firm, led by partners who ran Banchile's investment banking business. Every mandate is handled by them, from the first meeting to closing, in full confidence.",
+      manifiestoLogros: (n: number) =>
+        `Since 2010 we have advised on ${n} transactions: sales of 80- and 100-year-old family businesses, mergers and financings, with buyers from Chile, France, Switzerland and Canada. Leaders League ranks us as a highly recommended investment bank in Chile.`,
+      manifiestoEnlace: "About the firm",
+      cierreEyebrow: "Contact",
+      cierreTitulo: "Every conversation starts in confidence.",
+      cierreTexto: "Tell us briefly about your situation. A partner will reply to you personally.",
       redEyebrow: "International network",
       redTitulo: "From Santiago, to buyers and investors worldwide.",
       redTexto:
@@ -193,20 +244,30 @@ export const textos = {
       redAliadosLista: "Peru, Colombia, Argentina, Brazil, Mexico, Central America, the United States, Europe and Asia.",
       redCompradores: "Buyers in closed deals:",
       redCompradoresLista: "France, Switzerland and Canada.",
-      porQueTitulo: "Direct partner attention, independence and proven results.",
       y: "and",
       experienciaEyebrow: "Transactions",
       recientes: "Recent transactions",
       verLasTransacciones: (n: number) => `View all ${n} transactions`,
-      equipoEyebrow: "Team",
-      equipoTitulo: "A senior team with over 30 years of experience",
-      conocerEquipo: "Meet the team",
       verTransaccionesDe: (nombre: string) => `View ${nombre} transactions`,
     },
     equipo: {
-      eyebrow: "Team",
-      titulo: "A senior team with proven results.",
-      bajada: "Over 30 years in investment banking, corporate finance and M&A.",
+      eyebrow: "About us",
+      titulo: "Investment banking experience, with the independence of a boutique.",
+      bajada:
+        "Founded in 2010, KeyCapital is led by executives who ran Banchile Asesoría Financiera and Banchile Citibank Global Markets. We combine the discipline and technical rigour of a large investment bank with something it rarely offers: the direct, continuous involvement of senior partners at every stage of a transaction.",
+      comoTrabajamos: "How we work",
+      socios: "Partners",
+      sociosTitulo: "A senior team with over 30 years of experience.",
+      reconocimientos: "Recognition",
+      verRanking: "View ranking",
+    },
+    servicio: {
+      eyebrow: "What we do",
+      alcance: "Scope",
+      transacciones: "Transactions",
+      transaccionesTitulo: "Transactions advised",
+      verTodas: (n: number) => `View all ${n} transactions of this type`,
+      otros: "Other services",
     },
     experiencia: {
       eyebrow: "Transactions",
@@ -253,12 +314,13 @@ export const textos = {
 const metadatos: Record<Exclude<Pagina, "inicio">, Record<Idioma, Metadata>> = {
   equipo: {
     es: {
-      title: "Equipo",
-      description: "Un equipo senior con más de 30 años en banca de inversión, finanzas corporativas y M&A.",
+      title: "Quiénes somos",
+      description:
+        "Firma independiente de M&A y financiamiento, liderada por socios con más de 30 años en banca de inversión.",
     },
     en: {
-      title: "Team",
-      description: "A senior team with over 30 years in investment banking, corporate finance and M&A.",
+      title: "About us",
+      description: "Independent M&A and financing firm, led by partners with over 30 years in investment banking.",
     },
   },
   experiencia: {

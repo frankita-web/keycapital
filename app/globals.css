@@ -177,6 +177,33 @@ body {
   inset: 0;
 }
 
+/* Video de la portada: Santiago al amanecer en blanco y negro, teñido con el azul de la marca */
+.video-fondo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 55% 60%;
+  filter: grayscale(1) contrast(1.1) brightness(1.1);
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+.video-fondo.is-visible {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .video-fondo {
+    opacity: 1;
+  }
+}
+.hero-tinte {
+  position: absolute;
+  inset: 0;
+  background: var(--color-brand);
+  mix-blend-mode: color;
+}
+
 /* Con animaciones reducidas en el equipo: solo aparecen suavemente, sin desplazarse */
 @media (prefers-reduced-motion: reduce) {
   @keyframes entrada {

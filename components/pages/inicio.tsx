@@ -1,21 +1,24 @@
-import Image from "next/image";
 import Link from "next/link";
+import { ArteBloques } from "@/components/arte-bloques";
+import { CierreContacto } from "@/components/cierre-contacto";
 import { ClientMarquee } from "@/components/client-marquee";
 import { Contador } from "@/components/contador";
 import { DealCard } from "@/components/deal-card";
+import { EnlaceRaya, Etiqueta } from "@/components/etiqueta";
 import { Flecha } from "@/components/flecha";
 import { Eyebrow } from "@/components/page-hero";
 import { RankingPopup } from "@/components/ranking-popup";
 import { RedInternacional } from "@/components/red-internacional";
+import { VideoFondo } from "@/components/video-fondo";
 import { contenido } from "@/lib/contenido";
-import { ruta, rutaQueHacemos, textos, type Idioma } from "@/lib/i18n";
+import { ruta, rutaQueHacemos, rutaServicio, textos, type Idioma } from "@/lib/i18n";
 
+/** Portada: header y cifras · experiencia · quiénes somos · qué hacemos · red internacional · contacto. */
 export function InicioPage({ idioma }: { idioma: Idioma }) {
   const t = textos[idioma].inicio;
-  const { equipo, medios, pilares, ranking, servicios, transacciones } = contenido(idioma);
+  const { ranking, servicios, transacciones } = contenido(idioma);
   const experiencia = ruta(idioma, "experiencia");
   const paginaEquipo = ruta(idioma, "equipo");
-  const paginaMedios = ruta(idioma, "medios");
   const recientes = [...transacciones].sort((a, b) => b.anio - a.anio).slice(0, 6);
   const cifras = [
     { valor: "+30", label: t.cifraAnios },
@@ -40,8 +43,12 @@ export function InicioPage({ idioma }: { idioma: Idioma }) {
       {/* Hero */}
       <section className="hero-vivo flex flex-col rounded-b-2xl bg-ink text-white">
         <div aria-hidden="true" className="hero-fondo">
-          <Image src="/edificios.jpg" alt="" fill priority sizes="100vw" className="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-ink/95 via-ink/85 to-ink/60" />
+          <VideoFondo src="/video/santiago-amanecer.mp4" poster="/video/santiago-amanecer.jpg" />
+          {/* Tinte azul de la marca sobre el video (en blanco y negro) */}
+          <div className="hero-tinte" />
+          {/* Difuminado: más oscuro detrás del texto y abajo, en las cifras */}
+          <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/60 to-ink/20" />
+          <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-ink/85 to-transparent" />
         </div>
 
         <div className="mx-auto w-full max-w-7xl px-6 py-14 md:py-[clamp(1.5rem,7vh,4.5rem)] lg:px-10">
@@ -118,90 +125,7 @@ export function InicioPage({ idioma }: { idioma: Idioma }) {
         </div>
       </section>
 
-      {/* Servicios */}
-      <section
-        id="que-hacemos"
-        data-menu={rutaQueHacemos(idioma)}
-        className="scroll-mt-20 border-y border-line bg-paper"
-      >
-        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-24">
-          <div className="grid gap-6 lg:grid-cols-12">
-            <div className="lg:col-span-5">
-              <Eyebrow>{t.serviciosEyebrow}</Eyebrow>
-              <h2 className="mt-4 font-display text-4xl leading-[1.1] text-balance md:text-5xl">{t.serviciosTitulo}</h2>
-            </div>
-            <p className="text-lg leading-relaxed text-pretty text-muted lg:col-span-6 lg:col-start-7 lg:self-end">
-              {t.serviciosBajada}
-            </p>
-          </div>
-
-          <div className="mt-14 grid gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-            {servicios.map((s, i) => (
-              <div key={s.titulo} className="border-t border-bronce pt-6">
-                <p className="text-sm text-bronce tabular-nums">0{i + 1}</p>
-                <h3 className="mt-4 font-display text-2xl leading-snug text-balance">{s.titulo}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-pretty text-muted">{s.descripcion}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Por qué KeyCapital */}
-      <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-24">
-        <Eyebrow>{t.porQue}</Eyebrow>
-        <h2 className="mt-4 max-w-4xl font-display text-4xl leading-[1.1] text-balance md:text-5xl">
-          {t.porQueTitulo}
-        </h2>
-        <div className="mt-14 grid gap-x-10 gap-y-10 md:grid-cols-2 lg:grid-cols-4">
-          {pilares.map((p) => (
-            <div key={p.titulo} className="border-t border-line pt-6">
-              <h3 className="text-base font-semibold text-balance">{p.titulo}</h3>
-              <p className="mt-3 leading-relaxed text-pretty text-muted">{p.descripcion}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Red internacional */}
-      <RedInternacional idioma={idioma} />
-
-      {/* Equipo */}
-      <section data-menu={paginaEquipo} className="border-t border-line">
-        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-24">
-          <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-            <div>
-              <Eyebrow>{t.equipoEyebrow}</Eyebrow>
-              <h2 className="mt-4 font-display text-4xl leading-[1.1] text-balance md:text-5xl">{t.equipoTitulo}</h2>
-            </div>
-            <Link
-              href={paginaEquipo}
-              aria-label={t.conocerEquipo}
-              title={t.conocerEquipo}
-              className="inline-flex w-fit text-ink transition-transform hover:translate-x-0.5 hover:-translate-y-0.5 hover:text-brand"
-            >
-              <Flecha />
-            </Link>
-          </div>
-          <div className="mt-12 grid gap-10 md:grid-cols-3">
-            {equipo.map((p) => (
-              <Link key={p.nombre} href={paginaEquipo} className="group border-t border-line pt-8">
-                <Image
-                  src={p.foto}
-                  alt={p.nombre}
-                  width={170}
-                  height={170}
-                  className="size-24 rounded-full grayscale transition duration-500 group-hover:scale-105 group-hover:grayscale-0"
-                />
-                <p className="mt-6 font-display text-2xl group-hover:text-brand">{p.nombre}</p>
-                <p className="mt-1 text-sm text-muted">{p.cargo}</p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Transacciones recientes */}
+      {/* Transacciones recientes (junto a los logos de clientes: la prueba primero) */}
       <section data-menu={experiencia} className="border-t border-line bg-paper">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-24">
           <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
@@ -226,44 +150,68 @@ export function InicioPage({ idioma }: { idioma: Idioma }) {
         </div>
       </section>
 
-      {/* Medios */}
-      <section data-menu={paginaMedios} className="border-t border-line">
-        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-24">
-          <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-            <div>
-              <Eyebrow>{textos[idioma].medios.eyebrow}</Eyebrow>
-              <h2 className="mt-4 font-display text-4xl leading-[1.1] text-balance md:text-5xl">
-                {textos[idioma].medios.titulo}
-              </h2>
+      {/* Quiénes somos: manifiesto */}
+      <section data-menu={paginaEquipo} className="border-t border-line">
+        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
+          <Etiqueta>{t.manifiestoEyebrow}</Etiqueta>
+          <h2 className="mt-5 max-w-5xl font-display text-4xl leading-[1.08] text-balance md:text-6xl">
+            {t.manifiestoTitulo}
+          </h2>
+          <div className="mt-14 grid gap-8 md:grid-cols-2 lg:mt-20 lg:grid-cols-12 lg:gap-10">
+            <p className="text-lg leading-relaxed text-pretty text-ink/80 lg:col-span-4 lg:col-start-5">
+              {t.manifiestoComo}
+            </p>
+            <div className="lg:col-span-4">
+              <p className="text-lg leading-relaxed text-pretty text-ink/80">
+                {t.manifiestoLogros(transacciones.length)}
+              </p>
+              <div className="mt-10">
+                <EnlaceRaya href={paginaEquipo}>{t.manifiestoEnlace}</EnlaceRaya>
+              </div>
             </div>
-            <Link
-              href={paginaMedios}
-              aria-label={t.verMedios}
-              title={t.verMedios}
-              className="inline-flex w-fit text-ink transition-transform hover:translate-x-0.5 hover:-translate-y-0.5 hover:text-brand"
-            >
-              <Flecha />
-            </Link>
           </div>
-          <div className="mt-10 grid border-t border-l border-line md:grid-cols-3">
-            {medios.slice(0, 3).map((m) => (
-              <Link key={m.imagen} href={paginaMedios} className="group relative border-r border-b border-line bg-white p-5 transition duration-300 hover:z-10 hover:-translate-y-1 hover:shadow-lg">
-                <div className="relative aspect-[4/3] overflow-hidden border border-line bg-paper">
-                  <Image
-                    src={m.imagen}
-                    alt={m.titulo}
-                    fill
-                    sizes="(min-width: 768px) 33vw, 100vw"
-                    className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+        </div>
+      </section>
+
+      {/* Qué hacemos: frase, bajada y una tarjeta por servicio */}
+      <section
+        id="que-hacemos"
+        data-menu={rutaQueHacemos(idioma)}
+        className="scroll-mt-20 border-t border-line bg-paper"
+      >
+        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
+          <Etiqueta>{t.serviciosEyebrow}</Etiqueta>
+          <h2 className="mt-5 font-display text-4xl leading-[1.08] text-balance md:text-6xl">{t.serviciosTitulo}</h2>
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-pretty text-muted">{t.serviciosBajada}</p>
+
+          <div className="mt-14 grid gap-x-6 gap-y-14 sm:grid-cols-2 lg:mt-20 lg:grid-cols-4">
+            {servicios.map((s) => (
+              <Link key={s.id} href={rutaServicio(idioma, s.id)} className="group flex flex-col">
+                <div className="overflow-hidden">
+                  <ArteBloques
+                    id={s.id}
+                    className="aspect-[16/10] transition-transform duration-700 ease-out group-hover:scale-[1.04] sm:aspect-square"
                   />
                 </div>
-                <p className="label mt-5 text-brand">{m.fuente}</p>
-                <h3 className="mt-2 font-display text-lg leading-snug text-balance group-hover:text-brand">{m.titulo}</h3>
+                <h3 className="mt-7 font-display text-2xl leading-snug text-balance decoration-1 underline-offset-[6px] group-hover:underline">
+                  {s.titulo}
+                </h3>
+                <p className="mt-3 leading-relaxed text-pretty text-muted">{s.resumen}</p>
+                <span className="mt-auto inline-flex items-center gap-4 pt-6 text-brand">
+                  <span className="sr-only">{t.verServicio}</span>
+                  <Flecha className="size-5 transition-transform group-hover:translate-x-1" />
+                </span>
               </Link>
             ))}
           </div>
         </div>
       </section>
+
+      {/* Red internacional */}
+      <RedInternacional idioma={idioma} />
+
+      {/* Contacto */}
+      <CierreContacto idioma={idioma} />
     </>
   );
 }

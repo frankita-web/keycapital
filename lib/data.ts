@@ -13,56 +13,112 @@ export const contacto = {
   ],
 };
 
-export const servicios = [
-  {
-    titulo: "Compra y venta de empresas",
-    descripcion:
-      "Acompañamos a accionistas en procesos de M&A de principio a fin: valorización, búsqueda de contrapartes, negociación y cierre.",
-  },
-  {
-    titulo: "Reestructuración de pasivos a largo plazo",
-    descripcion:
-      "Rediseñamos la estructura de deuda de largo plazo para dar holgura financiera y sostener el crecimiento del negocio.",
-  },
-  {
-    titulo: "Valoraciones económicas",
-    descripcion:
-      "Valoraciones independientes y objetivas para transacciones, asociaciones y decisiones estratégicas.",
-  },
-  {
-    titulo: "Opiniones de valor para accionistas y juicios arbitrales",
-    descripcion:
-      "Opiniones de valor independientes que respaldan a accionistas y a las partes en juicios arbitrales.",
-  },
-  {
-    titulo: "Financiamientos especiales, sindicados y de proyectos",
-    descripcion:
-      "Estructuramos créditos sindicados, de largo plazo y de capital de trabajo junto a la banca local e internacional.",
-  },
-] as const;
+export type ServicioId = "venta" | "adquisiciones" | "financiamiento" | "valoraciones";
 
-export const pilares = [
+/** Un servicio: tarjeta en Inicio (titulo + resumen) y su propia página (párrafos + alcance + transacciones). */
+export type Servicio = {
+  id: ServicioId;
+  titulo: string;
+  resumen: string;
+  parrafos: [string, string];
+  alcance: { titulo: string; descripcion: string }[];
+};
+
+/** Los cuatro servicios del documento de recomendaciones. Las opiniones de valor y los juicios arbitrales van dentro de Valoraciones. */
+export const servicios: Servicio[] = [
   {
-    titulo: "Atención directa de socios",
-    descripcion:
-      "Cada mandato lo lideran personalmente los socios, de principio a fin, para accionistas y empresas medianas y grandes.",
+    id: "venta",
+    titulo: "Venta de empresas",
+    resumen: "Procesos de venta competitivos, desde la preparación de la compañía hasta la negociación y el cierre.",
+    parrafos: [
+      "Diseñamos y conducimos procesos de venta competitivos para accionistas y familias empresarias: desde la valoración y la preparación de la compañía hasta la negociación y el cierre, para maximizar el valor y la certeza de cierre.",
+      "Cada proceso lo lideran los socios. Buscamos compradores estratégicos y financieros en Chile y en el extranjero, a través de nuestra red de bancos de inversión aliados, y cuidamos la confidencialidad en cada etapa.",
+    ],
+    alcance: [
+      { titulo: "Valorización", descripcion: "Estimamos el valor de la compañía y definimos con los accionistas los objetivos del proceso." },
+      { titulo: "Búsqueda de compradores", descripcion: "Identificamos y contactamos compradores estratégicos y financieros, en Chile y en el extranjero." },
+      { titulo: "Negociación", descripcion: "Conducimos la negociación de precio, estructura y condiciones, junto a los asesores legales." },
+      { titulo: "Cierre", descripcion: "Acompañamos la revisión del comprador (due diligence) y la firma, hasta el cierre de la operación." },
+    ],
   },
   {
-    titulo: "Independencia, sin conflictos de interés",
-    descripcion:
-      "No pertenecemos a ningún banco ni grupo económico: nuestra única prioridad es el interés de nuestros clientes.",
+    id: "adquisiciones",
+    titulo: "Adquisiciones",
+    resumen: "Identificamos, evaluamos y negociamos compras alineadas con la estrategia de crecimiento de nuestros clientes.",
+    parrafos: [
+      "Identificamos, evaluamos y negociamos oportunidades de compra alineadas con la estrategia de crecimiento de nuestros clientes, en Chile y en el extranjero.",
+      "Acompañamos a la empresa compradora en todo el proceso, desde la búsqueda de oportunidades y su valoración hasta la negociación y el cierre, con la atención directa de los socios.",
+    ],
+    alcance: [
+      { titulo: "Búsqueda de oportunidades", descripcion: "Identificamos compañías y activos que calzan con la estrategia del cliente." },
+      { titulo: "Valoración", descripcion: "Estimamos el valor de cada oportunidad para definir cuánto conviene ofrecer." },
+      { titulo: "Negociación y cierre", descripcion: "Negociamos precio y condiciones, y acompañamos la operación hasta el cierre." },
+    ],
   },
   {
-    titulo: "Resultados demostrables",
-    descripcion:
-      "Más de 30 años en banca de inversión, con un exitoso track record en finanzas corporativas y M&A en Banedwards, Banchile Asesoría Financiera, Banchile Citibank y ahora en KeyCapital.",
+    id: "financiamiento",
+    titulo: "Financiamiento y reestructuración",
+    resumen: "Créditos sindicados, financiamiento de proyectos y reestructuración de pasivos de largo plazo.",
+    parrafos: [
+      "Estructuramos financiamientos de proyectos, clubes de bancos y créditos sindicados, y reestructuramos pasivos de largo plazo con una o varias instituciones.",
+      "Trabajamos junto a la banca local e internacional para lograr la estructura y los plazos que dan holgura financiera y sostienen el crecimiento del negocio.",
+    ],
+    alcance: [
+      { titulo: "Créditos sindicados y club deals", descripcion: "Financiamientos con varios bancos, locales e internacionales." },
+      { titulo: "Financiamiento de proyectos", descripcion: "Estructuras de financiamiento para proyectos de inversión." },
+      { titulo: "Capital de trabajo y largo plazo", descripcion: "Créditos para la operación y el crecimiento del negocio." },
+      { titulo: "Reestructuración de pasivos", descripcion: "Rediseñamos la deuda de largo plazo para dar holgura financiera." },
+    ],
   },
   {
-    titulo: "Alcance internacional",
-    descripcion:
-      "Acuerdos con bancas de inversión en Latinoamérica, Asia, Europa y Estados Unidos para llegar a compradores y financistas en todo el mundo.",
+    id: "valoraciones",
+    titulo: "Valoraciones",
+    resumen: "Valoraciones independientes para transacciones, directorios, accionistas y juicios arbitrales.",
+    parrafos: [
+      "Hacemos valoraciones independientes de compañías, activos y unidades de negocio para transacciones, directorios, socios y procesos de planificación.",
+      "También emitimos opiniones de valor que respaldan a accionistas y a las partes en juicios arbitrales, con la objetividad que da no tener conflictos de interés.",
+    ],
+    alcance: [
+      { titulo: "Valoración de empresas", descripcion: "Compañías, activos y unidades de negocio, para comprar, vender o planificar." },
+      { titulo: "Opiniones de valor", descripcion: "Respaldo independiente para decisiones de accionistas y directorios." },
+      { titulo: "Juicios arbitrales", descripcion: "Valoraciones y opiniones de valor para las partes de un arbitraje." },
+    ],
   },
-] as const;
+];
+
+/** Qué tipo de transacción muestra la página de cada servicio. */
+export const categoriaDeServicio: Record<ServicioId, Categoria> = {
+  venta: "venta",
+  adquisiciones: "compra",
+  financiamiento: "financiamiento",
+  valoraciones: "valoracion",
+};
+
+/** Cómo trabajamos (página Quiénes somos): etiqueta corta, frase grande y una línea. */
+export type Pilar = { etiqueta: string; titulo: string; descripcion: string };
+
+export const pilares: Pilar[] = [
+  {
+    etiqueta: "Cercanía",
+    titulo: "Los socios, de la primera reunión al cierre.",
+    descripcion: "Cada mandato lo lideran personalmente los socios, con dedicación directa en cada etapa.",
+  },
+  {
+    etiqueta: "Independencia",
+    titulo: "Sin vínculos con bancos ni grupos económicos.",
+    descripcion: "No pertenecemos a ningún banco ni grupo económico: nuestro único interés es el suyo.",
+  },
+  {
+    etiqueta: "Especialización",
+    titulo: "Solo las decisiones financieras clave de una empresa.",
+    descripcion: "Vender, comprar, financiar, reestructurar y valorar: a eso nos dedicamos.",
+  },
+  {
+    etiqueta: "Confidencialidad",
+    titulo: "Discreción en cada etapa.",
+    descripcion: "Cuidamos cada proceso con la reserva que exige vender o comprar una empresa.",
+  },
+];
 
 /** Distinción destacada al entrar. Es la categoría real de KeyCapital en el ranking: no cambiarla sin verificar. */
 export const ranking = {

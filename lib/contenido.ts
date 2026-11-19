@@ -7,6 +7,8 @@ import {
   servicios,
   transacciones,
   type Categoria,
+  type Pilar,
+  type Servicio,
   type Transaccion,
 } from "@/lib/data";
 import type { Idioma } from "@/lib/i18n";
@@ -14,52 +16,86 @@ import type { Idioma } from "@/lib/i18n";
 const ingles = {
   servicios: [
     {
-      titulo: "Sale and purchase of companies",
-      descripcion:
-        "We guide shareholders through M&A processes from start to finish: valuation, search for counterparties, negotiation and closing.",
+      id: "venta",
+      titulo: "Sell-side M&A",
+      resumen: "Competitive sale processes, from preparing the company to negotiation and closing.",
+      parrafos: [
+        "We design and run competitive sale processes for shareholders and business families — from valuation and preparation to negotiation and closing — to maximise value and deal certainty.",
+        "Every process is led by the partners. We reach strategic and financial buyers in Chile and abroad through our network of partner investment banks, and protect confidentiality at every stage.",
+      ],
+      alcance: [
+        { titulo: "Valuation", descripcion: "We estimate the company's value and set the objectives of the process with the shareholders." },
+        { titulo: "Buyer search", descripcion: "We identify and approach strategic and financial buyers, in Chile and abroad." },
+        { titulo: "Negotiation", descripcion: "We lead the negotiation of price, structure and terms, alongside legal counsel." },
+        { titulo: "Closing", descripcion: "We guide the buyer's due diligence and signing, through to closing." },
+      ],
     },
     {
-      titulo: "Long-term debt restructuring",
-      descripcion:
-        "We redesign long-term debt structures to provide financial headroom and sustain business growth.",
+      id: "adquisiciones",
+      titulo: "Buy-side M&A",
+      resumen: "We identify, evaluate and negotiate acquisitions aligned with our clients' growth strategy.",
+      parrafos: [
+        "We identify, evaluate and negotiate acquisition opportunities aligned with our clients' growth strategy, in Chile and abroad.",
+        "We support the acquiring company throughout the process, from sourcing and valuing opportunities to negotiation and closing, with the direct involvement of the partners.",
+      ],
+      alcance: [
+        { titulo: "Sourcing", descripcion: "We identify companies and assets that fit the client's strategy." },
+        { titulo: "Valuation", descripcion: "We value each opportunity to define how much it makes sense to offer." },
+        { titulo: "Negotiation and closing", descripcion: "We negotiate price and terms, and see the transaction through to closing." },
+      ],
     },
     {
-      titulo: "Economic valuations",
-      descripcion: "Independent, objective valuations for transactions, partnerships and strategic decisions.",
+      id: "financiamiento",
+      titulo: "Debt advisory & restructuring",
+      resumen: "Syndicated loans, project finance and the restructuring of long-term liabilities.",
+      parrafos: [
+        "We arrange project finance, club deals and syndicated loans, and restructure long-term liabilities with one or several lenders.",
+        "We work with local and international banks to achieve the structure and maturities that provide financial headroom and sustain business growth.",
+      ],
+      alcance: [
+        { titulo: "Syndicated loans and club deals", descripcion: "Financing with several local and international banks." },
+        { titulo: "Project finance", descripcion: "Financing structures for investment projects." },
+        { titulo: "Working capital and long-term loans", descripcion: "Credit for operations and business growth." },
+        { titulo: "Debt restructuring", descripcion: "We redesign long-term debt to provide financial headroom." },
+      ],
     },
     {
-      titulo: "Fairness opinions for shareholders and arbitrations",
-      descripcion:
-        "Independent opinions of value supporting shareholders and the parties in arbitration proceedings.",
+      id: "valoraciones",
+      titulo: "Valuations",
+      resumen: "Independent valuations for transactions, boards, shareholders and arbitration.",
+      parrafos: [
+        "We provide independent valuations of companies, assets and business units for transactions, boards, shareholders and planning.",
+        "We also issue fairness opinions that support shareholders and the parties in arbitration proceedings, with the objectivity that comes from having no conflicts of interest.",
+      ],
+      alcance: [
+        { titulo: "Company valuation", descripcion: "Companies, assets and business units, to buy, sell or plan." },
+        { titulo: "Fairness opinions", descripcion: "Independent support for shareholder and board decisions." },
+        { titulo: "Arbitration", descripcion: "Valuations and fairness opinions for the parties in arbitration." },
+      ],
     },
-    {
-      titulo: "Special, syndicated and project financing",
-      descripcion:
-        "We structure syndicated, long-term and working capital loans with local and international banks.",
-    },
-  ],
+  ] satisfies Servicio[],
   pilares: [
     {
-      titulo: "Direct partner attention",
-      descripcion:
-        "Every mandate is led personally by the partners, from start to finish, for shareholders and mid-to-large companies.",
+      etiqueta: "Partner attention",
+      titulo: "The partners, from the first meeting to closing.",
+      descripcion: "Every mandate is led personally by the partners, with direct involvement at every stage.",
     },
     {
-      titulo: "Independent, with no conflicts of interest",
-      descripcion:
-        "We are not part of any bank or business group: our only priority is our clients' interest.",
+      etiqueta: "Independence",
+      titulo: "No ties to banks or business groups.",
+      descripcion: "We belong to no bank or business group — your agenda is our only agenda.",
     },
     {
-      titulo: "Proven results",
-      descripcion:
-        "Over 30 years in investment banking, with a successful track record in corporate finance and M&A at Banedwards, Banchile Asesoría Financiera, Banchile Citibank and now at KeyCapital.",
+      etiqueta: "Focus",
+      titulo: "Only a company's key financial decisions.",
+      descripcion: "Selling, buying, financing, restructuring and valuing: that is all we do.",
     },
     {
-      titulo: "International reach",
-      descripcion:
-        "Agreements with investment banks in Latin America, Asia, Europe and the United States to reach buyers and lenders worldwide.",
+      etiqueta: "Confidentiality",
+      titulo: "Discretion at every stage.",
+      descripcion: "We handle every process with the discretion that selling or buying a company demands.",
     },
-  ],
+  ] satisfies Pilar[],
   // Cargos y formación según el sitio en inglés de KeyCapital.
   equipo: [
     {

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { navegacion, ruta, rutaEquivalente, textos, type Idioma } from "@/lib/i18n";
+import { esRutaServicio, navegacion, ruta, rutaEquivalente, rutaQueHacemos, textos, type Idioma } from "@/lib/i18n";
 
 /** Encabezado fijo y minimalista: logo, cinco enlaces, "ES | EN" en texto y Contacto destacado. */
 export function Header({ idioma }: { idioma: Idioma }) {
@@ -16,7 +16,9 @@ export function Header({ idioma }: { idioma: Idioma }) {
   const [open, setOpen] = useState(false);
   const [seccion, setSeccion] = useState<string>(inicio);
   // En Inicio la rayita sigue a la sección que se está viendo; en el resto, a la página.
-  const marcado = pathname === inicio ? seccion : pathname;
+  // En la página de un servicio se marca "Qué hacemos".
+  const marcado =
+    pathname === inicio ? seccion : esRutaServicio(pathname, idioma) ? rutaQueHacemos(idioma) : pathname;
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
