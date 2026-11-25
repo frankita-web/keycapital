@@ -10,6 +10,7 @@ const rutas = {
   experiencia: { es: "/experiencia", en: "/en/experience" },
   medios: { es: "/medios", en: "/en/media" },
   contacto: { es: "/contacto", en: "/en/contact" },
+  privacidad: { es: "/privacidad", en: "/en/privacy" },
 } as const;
 
 export type Pagina = keyof typeof rutas;
@@ -44,7 +45,7 @@ export function rutaEquivalente(pathname: string, idioma: Idioma) {
 /** Sección de servicios dentro de Inicio. */
 export const rutaQueHacemos = (idioma: Idioma) => `${ruta(idioma, "inicio")}#que-hacemos`;
 
-const paginasMenu: Pagina[] = ["experiencia", "equipo", "medios", "contacto"];
+const paginasMenu = ["experiencia", "equipo", "medios", "contacto"] as const;
 
 export const navegacion = (idioma: Idioma) => [
   { href: ruta(idioma, "inicio"), label: textos[idioma].menu.inicio },
@@ -72,6 +73,7 @@ export const textos = {
       oficina: "Oficina",
       siguenos: "Síguenos",
       derechos: "Todos los derechos reservados.",
+      privacidad: "Política de Privacidad",
       ubicacion: "Asesores financieros · Santiago, Chile",
     },
     inicio: {
@@ -180,6 +182,9 @@ export const textos = {
       formEnviado: "Abrimos tu correo con el mensaje listo. Si no se abrió, escríbenos a",
       telefono: "Teléfono",
       correo: "Email",
+      formAcepto: "Acepto la",
+      formPolitica: "Política de Privacidad",
+      formAutorizo: "y autorizo a KeyCapital a usar mis datos solo para responder a mi consulta.",
     },
   },
   en: {
@@ -201,6 +206,7 @@ export const textos = {
       oficina: "Office",
       siguenos: "Follow us",
       derechos: "All rights reserved.",
+      privacidad: "Privacy Policy",
       ubicacion: "Financial advisors · Santiago, Chile",
     },
     inicio: {
@@ -307,6 +313,9 @@ export const textos = {
       formEnviado: "We opened your email with the message ready. If it didn't open, write to us at",
       telefono: "Phone",
       correo: "Email",
+      formAcepto: "I accept the",
+      formPolitica: "Privacy Policy",
+      formAutorizo: "and authorize KeyCapital to use my data only to reply to my inquiry.",
     },
   },
 } as const;
@@ -341,6 +350,10 @@ const metadatos: Record<Exclude<Pagina, "inicio">, Record<Idioma, Metadata>> = {
   contacto: {
     es: { title: "Contacto", description: "Conversemos sobre la venta, compra o financiamiento de tu empresa." },
     en: { title: "Contact", description: "Let's talk about the sale, purchase or financing of your company." },
+  },
+  privacidad: {
+    es: { title: "Política de Privacidad", description: "Cómo KeyCapital trata los datos personales que recibe a través de este sitio." },
+    en: { title: "Privacy Policy", description: "How KeyCapital handles the personal data it receives through this website." },
   },
 };
 

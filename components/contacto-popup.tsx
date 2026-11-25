@@ -118,6 +118,23 @@ export function ContactoPopup({ idioma, flotante = false }: { idioma: Idioma; fl
             />
           </div>
 
+          {/* Consentimiento (Ley 21.719): obligatorio para enviar. */}
+          <label className="mt-5 flex cursor-pointer items-start gap-3 text-sm leading-relaxed text-pretty text-muted">
+            <input name="consentimiento" type="checkbox" required className="mt-1 size-4 shrink-0 accent-ink" />
+            <span>
+              {t.formAcepto}{" "}
+              <a
+                href={ruta(idioma, "privacidad")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-ink underline underline-offset-2 hover:text-brand"
+              >
+                {t.formPolitica}
+              </a>{" "}
+              {t.formAutorizo}
+            </span>
+          </label>
+
           <button type="submit" className="btn mt-6 w-full bg-ink text-white hover:bg-brand">
             {t.formEnviar}
           </button>
