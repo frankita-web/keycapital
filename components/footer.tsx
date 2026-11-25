@@ -78,7 +78,10 @@ export async function Footer({ idioma }: { idioma: Idioma }) {
 
         <div className="mt-12 flex flex-col gap-2 border-t border-white/10 pt-6 text-xs text-white/45 md:flex-row md:items-center md:justify-between">
           <p>
-            © {anio} KeyCapital. {t.derechos}
+            © {anio} KeyCapital. {t.derechos}{" "}
+            <Link href={ruta(idioma, "privacidad")} className="underline underline-offset-2 transition-colors hover:text-white">
+              {t.privacidad}
+            </Link>
           </p>
           <p>{t.ubicacion}</p>
         </div>
