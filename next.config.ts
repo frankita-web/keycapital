@@ -3,6 +3,22 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* config options here */
   cacheComponents: true,
+  // No anunciar que el sitio está hecho con Next.js.
+  poweredByHeader: false,
+  // Cabeceras de seguridad para todas las páginas.
+  headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          // Nadie puede meter el sitio dentro de otra página (clickjacking).
+          { key: "X-Frame-Options", value: "DENY" },
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+        ],
+      },
+    ];
+  },
   // Equipo pasó a llamarse Quiénes somos: los enlaces antiguos siguen funcionando.
   redirects() {
     return [
